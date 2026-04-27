@@ -1,9 +1,9 @@
 [Unit]
-Description=Generate atl.wiki Sitemap
+Description=Generate foss.wiki Sitemap
 After=docker.service
 Requires=docker.service
 
 [Service]
 Type=oneshot
 User=root
-ExecStart=/usr/bin/docker exec wiki-mediawiki php /var/www/wiki/mediawiki/maintenance/run.php generateSitemap --memory-limit=50M --fspath=/var/www/wiki/sitemap/ --identifier=atl.wiki --urlpath=/sitemap/ --server=https://atl.wiki --compress=yes --skip-redirects
+ExecStart=/usr/bin/docker exec wiki-mediawiki php /var/www/wiki/mediawiki/maintenance/run.php generateSitemap --memory-limit=50M --fspath=/var/www/wiki/sitemap/ --identifier=foss.wiki --urlpath=/sitemap/ --server=https://foss.wiki --compress=yes --skip-redirects

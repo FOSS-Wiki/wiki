@@ -1,7 +1,8 @@
-Contact: https://allthingslinux.org/security
+Contact: security@foss.wiki
 Expires: 2030-01-01T12:00:00Z
-Encryption: https://allthingslinux.org/security@allthingslinux.org-pubkey.asc
-Acknowledgements: https://allthingslinux.org/security
-Hiring: https://allthingslinux.org/get-involved
-Policy: https://allthingslinux.org/security
+Encryption: https://foss.wiki
+Acknowledgements: https://foss.wiki
+Hiring: https://foss.wiki
+Policy: https://foss.wiki
 Preferred-Languages: en
+POLICY WILL BE PUBLISHED ONCE WRITTEN

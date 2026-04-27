@@ -97,4 +97,4 @@ Disallow: /*?*&title=Property%3A
 #################
 ## Sitemap URL ##
 #################
-Sitemap: https://atl.wiki/sitemap.xml
+Sitemap: https://foss.wiki/sitemap.xml

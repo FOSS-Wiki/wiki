@@ -6,10 +6,10 @@
  * PHP version 8.3
  *
  * @category Configuration
- * @package  ATL-Wiki
- * @author   Atmois <atmois@allthingslinux.org>
+ * @package  FOSS-Wiki
+ * @author   Zoe (atmois) <zoe@foss.wiki>
  * @license  https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
- * @link     https://atl.wiki
+ * @link     https://foss.wiki
  */
 
 // Load environment variables from .env file using phpdotenv

@@ -1,11 +1,11 @@
-# atl.wiki Mediawiki Configs
+# foss.wiki Mediawiki Configs
 
 > [!WARNING]
-> Currently this is hardcoded for atl.wiki, in our next release we aim to create a base Mediawiki image that can be easily customized for other deployments seperate from our own images.
+> Currently this is hardcoded for foss.wiki, in our next release we aim to create a base Mediawiki image that can be easily customized for other deployments seperate from our own images.
 >
 > **We do not recommend using this for your own deployments at this time but we welcome any feedback or contributions.**
 
-This repository contains Mediawiki configurations used for the deployment of [atl.wiki](https://atl.wiki). Including Docker configurations, environment settings, and other necessary files to run Mediawiki in a containerized environment with scripts to aid in the deployment and running of the application.
+This repository contains Mediawiki configurations used for the deployment of [foss.wiki](https://foss.wiki). Including Docker configurations, environment settings, and other necessary files to run Mediawiki in a containerized environment with scripts to aid in the deployment and running of the application.
 
 # Deployment Instructions
 *These are currently just a basic overview, more detailed instructions will be added with the refactor in the next release.*
@@ -23,7 +23,7 @@ This repository contains Mediawiki configurations used for the deployment of [at
 
 2. Clone this repository, we recommend cloning the repository to `/opt/mediawiki`
 ```bash
-    git clone https://github.com/allthingslinux/atl-wiki mediawiki
+    git clone https://codeberg.org/FOSS-Wiki/wiki mediawiki
 ```
 
 3. Navigate to the cloned directory
@@ -131,7 +131,7 @@ graph LR
     Robots --- Wiki
     Configs --- Wiki
 
-    Root["📖 atl-wiki"]
+    Root["📖 wiki"]
 
     Deployment --- Root
     Wiki --- Root
@@ -200,9 +200,9 @@ Before running any `just` commands, ensure you have read the `just help` command
 
 # License
 
-Copyright 2025 All Things Linux and Contributors
+Copyright 2025 FOSS Wiki and Contributors
 
-Primary maintainer: Atmois <atmois@allthingslinux.org>
+Primary maintainer: Zoe (atmois) <zoe@foss.wiki>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this project except in compliance with the License.

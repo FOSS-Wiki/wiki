@@ -1,6 +1,6 @@
-# Copyright 2025 All Things Linux and Contributors
+# Copyright 2025 FOSS Wiki and Contributors
 
-# Primary maintainer: Atmois <atmois@allthingslinux.org>
+# Primary maintainer: Zoe (atmois) <zoe@foss.wiki>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -119,9 +119,9 @@ RUN rm -rf /var/www/wiki/mediawiki/tests/ \
 FROM php:8.3-fpm-alpine AS final
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
-LABEL maintainer="atmois@allthingslinux.org" \
-      org.opencontainers.image.title="atl.wiki" \
-      org.opencontainers.image.description="atl.wiki Docker Image"
+LABEL maintainer="zoe@foss.wiki" \
+      org.opencontainers.image.title="foss.wiki" \
+      org.opencontainers.image.description="foss.wiki Docker Image"
 
 # Install Runtime Dependencies
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
@@ -154,8 +154,8 @@ RUN addgroup -g 1000 -S mediawiki && \
 RUN mkdir -p /var/www/wiki/mediawiki && \
     mkdir -p /var/www/wiki/cache && \
     mkdir -p /var/www/wiki/sitemap && \
-    touch /var/www/wiki/sitemap/sitemap-index-atl.wiki.xml && \
-    ln -s /var/www/wiki/sitemap/sitemap-index-atl.wiki.xml /var/www/wiki/sitemap.xml && \
+    touch /var/www/wiki/sitemap/sitemap-index-foss.wiki.xml && \
+    ln -s /var/www/wiki/sitemap/sitemap-index-foss.wiki.xml /var/www/wiki/sitemap.xml && \
     chown -R mediawiki:mediawiki /var/www/wiki && \
     chmod -R 775 /var/www/wiki/sitemap && \
     chmod -R 770 /var/www/wiki/cache

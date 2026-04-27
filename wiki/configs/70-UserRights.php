@@ -9,10 +9,10 @@
  * PHP version 8.3
  *
  * @category Configuration
- * @package  ATL-Wiki
- * @author   Atmois <atmois@allthingslinux.org>
+ * @package  FOSS-Wiki
+ * @author   Zoe (atmois) <zoe@foss.wiki>
  * @license  https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
- * @link     https://atl.wiki
+ * @link     https://foss.wiki
  */
 
 // * ~ Everyone
@@ -38,7 +38,7 @@ $wgGroupPermissions['autoconfirmed']['editsemiprotected'] = false;
 $wgGroupPermissions['template-editor']['template-editing'] = true;
 $wgGroupPermissions['template-editor']['module-editing'] = true;
 
-// staff ~ For all ATL Staff
+// staff ~ For all Wiki Staff
 $wgGroupPermissions['staff']['block'] = true;
 $wgGroupPermissions['staff']['rollback'] = true;
 $wgGroupPermissions['staff']['move'] = true;
@@ -100,7 +100,7 @@ $wgGroupPermissions['sysop']['import'] = false;
 $wgAddGroups['sysop'] = array('moderator', 'autoconfirmed', 'staff', 'template-editor', 'wiki-team');
 $wgRemoveGroups['sysop'] = array('moderator', 'autoconfirmed', 'staff', 'template-editor', 'wiki-team', 'sysop');
 
-// bureaucrat ~ ATL Management
+// bureaucrat ~ FOSS Wiki Management
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 $wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 $wgGroupPermissions['bureaucrat']['renameuser'] = true;

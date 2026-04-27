@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-# Copyright 2025 All Things Linux and Contributors
+# Copyright 2025 FOSS Wiki and Contributors
 
-# Primary maintainer: Atmois <atmois@allthingslinux.org>
+# Primary maintainer: Zoe (atmois) <zoe@foss.wiki>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
