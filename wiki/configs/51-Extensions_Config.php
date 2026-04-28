@@ -115,32 +115,6 @@ if ($discordWebhook !== '') {
 $wgCheckUserLogSuccessfulBotLogins = false;
 $wgCheckUserLogLogins = true;
 
-//######################################################// PluggableAuth
-// https://www.mediawiki.org/wiki/Extension:PluggableAuth
-
-$openidClientId = $env('OPENID_CLIENT_ID');
-$openidClientSecret = $env('OPENID_CLIENT_SECRET');
-
-if ($openidClientId !== '' && $openidClientSecret !== '') {
-    $wgPluggableAuth_Config['Staff Login via All Things Linux (SSO)'] = [
-        'plugin' => 'OpenIDConnect',
-        'data' => [
-            'providerURL' => 'https://sso.allthingslinux.org',
-            'clientID' => $openidClientId,
-            'clientsecret' => $openidClientSecret,
-        ]
-    ];
-}
-
-$wgPluggableAuth_EnableLocalLogin = true;
-$wgPluggableAuth_EnableLocalProperties = true;
-
-//######################################################// OpenID_Connect
-// https://www.mediawiki.org/wiki/Extension:OpenID_Connect
-
-$wgOpenIDConnect_MigrateUsersByEmail = true;
-$wgOpenIDConnect_UseRealNameAsUserName = true;
-
 //######################################################// Description2
 // https://www.mediawiki.org/wiki/Extension:Description2
 

@@ -80,16 +80,12 @@ wfLoadExtension('OATHAuth');
 wfLoadExtension('OAuth');
 // https://www.mediawiki.org/wiki/Extension:OpenGraphMeta
 wfLoadExtension('OpenGraphMeta');
-// https://www.mediawiki.org/wiki/Extension:OpenID_Connect
-wfLoadExtension('OpenIDConnect');
 // https://www.mediawiki.org/wiki/Extension:PageImages
 wfLoadExtension('PageImages');
 // https://www.mediawiki.org/wiki/Extension:ParserFunctions
 wfLoadExtension('ParserFunctions');
 // https://www.mediawiki.org/wiki/Extension:PdfHandler
 wfLoadExtension('PdfHandler');
-// https://www.mediawiki.org/wiki/Extension:PluggableAuth
-wfLoadExtension('PluggableAuth');
 // https://www.mediawiki.org/wiki/Extension:Poem
 wfLoadExtension('Poem');
 // https://www.mediawiki.org/wiki/Extension:ReplaceText
