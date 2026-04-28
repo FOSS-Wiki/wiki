@@ -38,15 +38,6 @@ $wgGroupPermissions['autoconfirmed']['editsemiprotected'] = false;
 $wgGroupPermissions['template-editor']['template-editing'] = true;
 $wgGroupPermissions['template-editor']['module-editing'] = true;
 
-// staff ~ For all Wiki Staff
-$wgGroupPermissions['staff']['block'] = true;
-$wgGroupPermissions['staff']['rollback'] = true;
-$wgGroupPermissions['staff']['move'] = true;
-$wgGroupPermissions['staff']['move-subpages'] = true;
-$wgGroupPermissions['staff']['move-categorypages'] = true;
-$wgGroupPermissions['staff']['move-rootuserpages'] = true;
-$wgGroupPermissions['staff']['editsemiprotected'] = true;
-
 // wiki-team ~ For Wiki Team Members
 $wgGroupPermissions['wiki-team']['template-editing'] = true;
 $wgGroupPermissions['wiki-team']['module-editing'] = true;
@@ -60,8 +51,8 @@ $wgGroupPermissions['wiki-team']['movefile'] = true;
 $wgGroupPermissions['wiki-team']['block'] = true;
 $wgGroupPermissions['wiki-team']['rollback'] = true;
 
-$wgAddGroups['wiki-team'] = array('template-editor', 'staff', 'autoconfirmed');
-$wgRemoveGroups['wiki-team'] = array('template-editor', 'staff', 'autoconfirmed', "wiki-team");
+$wgAddGroups['wiki-team'] = array('template-editor', 'autoconfirmed');
+$wgRemoveGroups['wiki-team'] = array('template-editor', 'autoconfirmed', "wiki-team");
 
 // sysop ~ Only for Wiki Admins, gives ALL permissions
 $wgGroupPermissions['sysop']['checkuser'] = true;
@@ -97,8 +88,8 @@ $wgGroupPermissions['sysop']['mwoauthmanagemygrants'] = true;
 $wgGroupPermissions['sysop']['interwiki'] = true;
 $wgGroupPermissions['sysop']['import'] = false;
 
-$wgAddGroups['sysop'] = array('moderator', 'autoconfirmed', 'staff', 'template-editor', 'wiki-team');
-$wgRemoveGroups['sysop'] = array('moderator', 'autoconfirmed', 'staff', 'template-editor', 'wiki-team', 'sysop');
+$wgAddGroups['sysop'] = array('moderator', 'autoconfirmed','template-editor', 'wiki-team');
+$wgRemoveGroups['sysop'] = array('moderator', 'autoconfirmed', 'template-editor', 'wiki-team', 'sysop');
 
 // bureaucrat ~ FOSS Wiki Management
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
@@ -106,5 +97,5 @@ $wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 $wgGroupPermissions['bureaucrat']['renameuser'] = true;
 $wgGroupPermissions['bureaucrat']['block'] = true;
 
-$wgAddGroups['bureaucrat'] = array('autoconfirmed', 'staff', 'template-editor', 'wiki-team', 'sysop', 'bureaucrat');
-$wgRemoveGroups['bureaucrat'] = array('autoconfirmed', 'staff', 'template-editor', 'wiki-team', 'sysop', 'bureaucrat');
+$wgAddGroups['bureaucrat'] = array('autoconfirmed', 'template-editor', 'wiki-team', 'sysop', 'bureaucrat');
+$wgRemoveGroups['bureaucrat'] = array('autoconfirmed', 'template-editor', 'wiki-team', 'sysop', 'bureaucrat');
