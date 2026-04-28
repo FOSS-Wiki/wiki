@@ -1,6 +1,6 @@
 # Copyright 2025 FOSS Wiki and Contributors
 
-# Primary maintainer: Zoe (atmois) <zoe@foss.wiki>
+# Primary maintainer: Zoe (atmois) <info@atmois.com>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -119,7 +119,7 @@ RUN rm -rf /var/www/wiki/mediawiki/tests/ \
 FROM php:8.3-fpm-alpine AS final
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
-LABEL maintainer="zoe@foss.wiki" \
+LABEL maintainer="info@atmois.com" \
       org.opencontainers.image.title="foss.wiki" \
       org.opencontainers.image.description="foss.wiki Docker Image"
 

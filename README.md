@@ -202,7 +202,7 @@ Before running any `just` commands, ensure you have read the `just help` command
 
 Copyright 2025 FOSS Wiki and Contributors
 
-Primary maintainer: Zoe (atmois) <zoe@foss.wiki>
+Primary maintainer: Zoe (atmois) <info@atmois.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this project except in compliance with the License.

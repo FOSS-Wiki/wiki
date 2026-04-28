@@ -10,7 +10,7 @@
  *
  * @category Configuration
  * @package  FOSS-Wiki
- * @author   Zoe (atmois) <zoe@foss.wiki>
+ * @author   Zoe (atmois) <info@atmois.com>
  * @license  https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
  * @link     https://foss.wiki
  */
