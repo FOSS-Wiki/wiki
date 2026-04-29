@@ -26,7 +26,6 @@ services:
       timeout: 10s
       start_period: 60s
       retries: 3
-    user: "1000:1000"
     expose:
       - '9000'
 
