@@ -41,10 +41,9 @@ services:
       - wiki-webroot:/var/www/wiki:ro
       - ./wiki/mediawiki.conf:/etc/nginx/templates/mediawiki.conf.template:ro
       - ./wiki/default.conf:/etc/nginx/conf.d/default.conf:ro
-    ports:
-      - '3001:80'
     networks:
       - wiki-network
+      - proxy
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost/" ]
@@ -52,6 +51,8 @@ services:
       timeout: 10s
       start_period: 30s
       retries: 3
+    expose:
+      - '80'
 
   valkey:
     image: valkey/valkey:alpine
@@ -105,6 +106,8 @@ services:
 networks:
   wiki-network:
     driver: bridge
+  proxy:
+    external: true
 
 volumes:
   wiki-webroot:
