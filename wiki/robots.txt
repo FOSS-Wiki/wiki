@@ -7,9 +7,9 @@ Disallow:
 User-agent: archive.org_bot
 Disallow:
 
-###########################
-## Path Restrictions     ##
-###########################
+#######################
+## Path Restrictions ##
+#######################
 User-agent: *
 
 # index.php Blocking
@@ -18,12 +18,20 @@ Disallow: /index.php/
 
 # Block specific namespaces and internal directories
 Disallow: /Help
-Disallow: /MediaWiki
 Disallow: /mediawiki
+Disallow: /MediaWiki
 Disallow: /MediaWiki:
+Disallow: /special
+Disallow: /Special
 Disallow: /Special:
+Disallow: /template
 Disallow: /Template
+Disallow: /Template:
+Disallow: /user
+Disallow: /User
 Disallow: /User:
+Disallow: /file
+Disallow: /File
 Disallow: /File:
 Disallow: /skins/
 Disallow: /cdn-cgi/
