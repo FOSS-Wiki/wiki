@@ -169,10 +169,8 @@ COPY --chown=mediawiki:mediawiki wiki/robots.txt ./robots.txt
 COPY --chown=mediawiki:mediawiki wiki/.well-known ./.well-known
 COPY --chown=mediawiki:mediawiki wiki/LocalSettings.php ./mediawiki/LocalSettings.php
 COPY --chown=mediawiki:mediawiki wiki/configs/ ./configs/
-RUN ln -s ./.well-known/security.txt ./security.txt \
-    chmod 744 robots.txt \
-    chmod 744 security.txt \
-    chmod 744 .well-known/security.txt
+RUN ln -sf ./.well-known/security.txt ./security.txt && \
+    chmod 744 robots.txt ./security.txt .well-known/security.txt
 
 USER root
 COPY wiki/php.ini /usr/local/etc/php/conf.d/custom.ini
