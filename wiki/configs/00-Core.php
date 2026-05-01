@@ -26,7 +26,7 @@ if (file_exists('/var/www/wiki/vendor/autoload.php')) {
 $wgSitename = $_ENV['SITENAME'];
 
 // https://www.mediawiki.org/wiki/Manual:$wgMetaNamespace
-$wgMetaNamespace = "ATL";
+$wgMetaNamespace = "FW";
 
 // https://www.mediawiki.org/wiki/Manual:$wgUpgradeKey
 $wgUpgradeKey = $_ENV['UPGRADE_KEY'];

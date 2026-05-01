@@ -20,7 +20,7 @@ $wgAvailableRights[] = 'meta-editing';
 
 $wgNamespaceProtection[10] = ['template-editing']; // Template:
 $wgNamespaceProtection[828] = ['module-editing']; // Module:
-$wgNamespaceProtection[4] = ['meta-editing']; // ATL:
+$wgNamespaceProtection[4] = ['meta-editing']; // FW:
 
 define("NS_GUIDES", 3000);
 define("NS_GUIDES_TALK", 3001);
