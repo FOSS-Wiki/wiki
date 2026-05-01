@@ -96,8 +96,6 @@ wfLoadExtension('Scribunto');
 wfLoadExtension('SecureLinkFixer');
 // https://www.mediawiki.org/wiki/Extension:SimpleBatchUpload
 wfLoadExtension('SimpleBatchUpload');
-// https://www.mediawiki.org/wiki/Extension:SiteMetrics
-wfLoadExtension('SiteMetrics');
 // https://www.mediawiki.org/wiki/Extension:SpamBlacklist
 wfLoadExtension('SpamBlacklist');
 // https://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi
