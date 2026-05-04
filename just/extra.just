@@ -140,3 +140,33 @@ mediawiki-schema-update:
     # Run database schema updates
     docker compose exec mediawiki php /var/www/wiki/mediawiki/maintenance/update.php --quick
     echo "MediaWiki database schema update complete!"
+
+# Resetup after a clean stop or restart
+startup-tasks:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    just _verify-file compose.yaml
+    just _check-containers
+    just _check-sudo
+    ENV=$(just _detect-env)
+
+    echo "Running startup tasks for environment: $ENV"
+
+    echo "Starting sitemap timer..."
+    if [ "$ENV" = "local" ]; then
+        echo "Local environment detected, skipping sitemap timer..."
+    elif [ "$ENV" = "staging" ]; then
+        sudo systemctl start staging-wiki-sitemap.timer
+        sudo systemctl start staging-wiki-sitemap.service
+    else
+        sudo systemctl start wiki-sitemap.timer
+        sudo systemctl start wiki-sitemap.service
+    fi
+
+    echo "Updating OpenSearch index config..."
+    just opensearch-update
+
+    echo "Reindexing OpenSearch..."
+    just opensearch-reindex
+
+    echo "Startup tasks complete!"
