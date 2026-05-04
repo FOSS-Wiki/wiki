@@ -1,7 +1,7 @@
 # foss.wiki Mediawiki Configs
 
 > [!WARNING]
-> Currently this is hardcoded for foss.wiki, in our next release we aim to create a base Mediawiki image that can be easily customized for other deployments seperate from our own images.
+> Currently this is hardcoded for foss.wiki, in our next release we aim to create a base Mediawiki image that can be easily customized for other deployments separate from our own images.
 >
 > **We do not recommend using this for your own deployments at this time but we welcome any feedback or contributions.**
 
@@ -63,7 +63,7 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `UPGRADE_KEY` * | The key to access the upgrade page. Must be a 16-character alphanumeric string | *Generate using `openssl rand -hex 8`* |
 | `SECRET_KEY` * | The key used for various security-related functions within MediaWiki. Must be a 64-character alphanumeric string | *Generate using `openssl rand -hex 32`* |
 | `DB_SERVER` * | The IP address or hostname of your database server | `db.example.com` or `192.168.0.0` |
-| `DB_NAME` * | The name of the table in the database used by MediaWiki | `mediawiki` |
+| `DB_NAME` * | The name of the database used by MediaWiki | `mediawiki` |
 | `DB_USER` * | The username used by MediaWiki to connect to the database | `mediawiki` |
 | `DB_PASSWORD` * | The password used by MediaWiki to connect to the database | `0123456789abcdef` |
 | `SMTP_HOST` | The SMTP server host address | `smtp.gmail.com` |
@@ -133,7 +133,6 @@ graph LR
 
     Root["📖 wiki"]
 
-    Deployment --- Root
     Wiki --- Root
 
     Root --- Dockerfile["🐳 Dockerfile"]
@@ -144,7 +143,6 @@ graph LR
     Root --- Systemd["📁 systemd/"]
 
     style Root fill:#e1f5ff
-    style Deployment fill:#fff4e1
     style Just fill:#e8f5e9
     style Systemd fill:#f3e5f5
     style Wiki fill:#fff9c4
