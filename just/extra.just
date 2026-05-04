@@ -170,3 +170,20 @@ startup-tasks:
     just opensearch-reindex
 
     echo "Startup tasks complete!"
+
+# Fix directory and file permissions (root:admin 770, .env 774)
+fix-perms:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    just _check-sudo
+
+    echo "Setting ownership to root:admin..."
+    sudo chown -R root:admin .
+
+    echo "Setting permissions to 770..."
+    sudo chmod -R 770 .
+
+    echo "Setting .env to 774..."
+    sudo chmod 774 .env
+
+    echo "Permissions fixed!"

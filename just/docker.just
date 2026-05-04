@@ -69,5 +69,7 @@ update:
     # Copy environment-specific compose template
     echo "Updating compose.yaml for environment: $ENV"
     just _copy-file compose.${ENV}.yaml.example compose.yaml
+    echo "Resetting permissions"
+    just fix-perms
     echo "Restarting wiki containers..."
     just start
