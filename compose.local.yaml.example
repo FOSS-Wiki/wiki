@@ -74,7 +74,7 @@ services:
       - '6379'
 
   mariadb:
-    image: mariadb:latest
+    image: mariadb:10.11
     container_name: local-wiki-mariadb
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_PASSWORD}
