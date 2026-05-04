@@ -174,6 +174,7 @@ RUN ln -sf ./.well-known/security.txt ./security.txt && \
 
 USER root
 COPY wiki/php.ini /usr/local/etc/php/conf.d/custom.ini
+RUN chmod 744 /usr/local/etc/php/conf.d/custom.ini
 
 USER mediawiki
 
