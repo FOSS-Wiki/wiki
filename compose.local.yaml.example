@@ -39,7 +39,6 @@ services:
         condition: service_healthy
     environment:
       NGINX_SERVER_NAME: ${SITENAME}
-      NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx/conf.d
     volumes:
       - wiki-webroot:/var/www/wiki:ro
       - ./wiki/mediawiki.conf:/etc/nginx/templates/mediawiki.conf.template:ro
