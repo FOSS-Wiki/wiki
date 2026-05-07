@@ -102,6 +102,18 @@ Disallow: /*?title=Property%3A
 Disallow: /*?*&title=Property:
 Disallow: /*?*&title=Property%3A
 
+################
+## Bot Blocks ##
+################
+
+# Meta bots hammer the server with requests and are not useful for indexing content, so we block them entirely.
+User-agent: meta-webindexer
+Disallow: /
+User-agent: Meta-ExternalAgent
+Disallow: /
+User-agent: meta-externalads
+Disallow: /
+
 #################
 ## Sitemap URL ##
 #################
