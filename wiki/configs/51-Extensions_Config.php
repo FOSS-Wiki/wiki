@@ -153,3 +153,10 @@ $wgCirrusSearchServers = [
 
 // Keep search updates enabled so the job queue can index new edits.
 $wgDisableSearchUpdate = false;
+
+//######################################################// NewSignupPage
+// https://www.mediawiki.org/wiki/Extension:NewSignupPage
+
+$wgNewSignupPageToSURL = 'https://foss.wiki/FW:Code_of_Conduct';
+
+$wgNewSignupPagePPURL = 'https://foss.wiki/FW:Privacy_policy';

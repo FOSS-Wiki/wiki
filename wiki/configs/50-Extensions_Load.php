@@ -72,6 +72,8 @@ wfLoadExtension('LoginNotify');
 wfLoadExtension('Math');
 // https://www.mediawiki.org/wiki/Extension:MultimediaViewer
 wfLoadExtension('MultimediaViewer');
+// https://www.mediawiki.org/wiki/Extension:NewSignupPage
+wfLoadExtension('NewSignupPage');
 // https://www.mediawiki.org/wiki/Extension:Nuke
 wfLoadExtension('Nuke');
 // https://www.mediawiki.org/wiki/Extension:OATHAuth

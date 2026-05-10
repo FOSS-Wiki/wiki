@@ -137,10 +137,14 @@
     "extension_name": "Elastica",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Elastica",
     "install_type": "git",
-    "git_branch": "REL1_44",
     "post_install_commands": [
       "composer install --no-dev"
     ]
+  },
+  {
+    "extension_name": "NewSignupPage",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/NewSignupPage",
+    "install_type": "git"
   }
 ]
 
