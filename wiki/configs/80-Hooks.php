@@ -12,6 +12,7 @@
  * @link     https://foss.wiki
  */
 
+// Redirect /index.php?title=Page to /Page
 $wgHooks['SkinTemplateNavigation::Universal'][] = function ($skin, &$links) {
     foreach ($links as &$group) {
         foreach ($group as &$tab) {
@@ -29,4 +30,19 @@ $wgHooks['SkinTemplateNavigation::Universal'][] = function ($skin, &$links) {
         }
     }
     return true;
+};
+
+// Remove unused groups: 'suppress', 'checkuser', 'push-subscription-manager'
+$wgHooks['MediaWikiServices'][] = static function () {
+    global $wgGroupPermissions, $wgRevokePermissions, $wgAddGroups,
+           $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
+
+    foreach (['suppress', 'checkuser', 'push-subscription-manager'] as $group) {
+        unset($wgGroupPermissions[$group]);
+        unset($wgRevokePermissions[$group]);
+        unset($wgAddGroups[$group]);
+        unset($wgRemoveGroups[$group]);
+        unset($wgGroupsAddToSelf[$group]);
+        unset($wgGroupsRemoveFromSelf[$group]);
+    }
 };
