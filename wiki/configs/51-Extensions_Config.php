@@ -147,6 +147,7 @@ $wgSimpleBatchUploadMaxFilesPerBatch = [
 // https://www.mediawiki.org/wiki/Extension:CirrusSearch
 
 $wgSearchType = 'CirrusSearch';
+$wgCirrusSearchUseCompletionSuggester = 'yes';
 $wgCirrusSearchServers = [
     [ 'host' => 'opensearch', 'port' => 9200 ],
 ];
