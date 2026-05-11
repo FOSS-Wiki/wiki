@@ -27,6 +27,7 @@ RUN --mount=type=cache,target=/tmp/phpexts-cache \
         mysqli \
         pdo_mysql \
         redis \
+        sodium \
         wikidiff2 \
         xml \
         zip
@@ -134,6 +135,7 @@ RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
         libjpeg-turbo \
         libpng \
         librsvg \
+        libsodium \
         libthai \
         libxml2 \
         libzip \
