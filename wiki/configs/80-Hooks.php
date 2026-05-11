@@ -32,12 +32,20 @@ $wgHooks['SkinTemplateNavigation::Universal'][] = function ($skin, &$links) {
     return true;
 };
 
-// Remove unused groups: 'suppress', 'checkuser', 'push-subscription-manager', 'temporary-account-viewer
+// Remove unused groups: 'suppress', 'checkuser', 'push-subscription-manager', 'temporary-account-viewer', 'bureaucrat'
 $wgHooks['MediaWikiServices'][] = static function () {
     global $wgGroupPermissions, $wgRevokePermissions, $wgAddGroups,
            $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
-    foreach (['suppress', 'checkuser', 'push-subscription-manager', 'temporary-account-viewer'] as $group) {
+    $unusedGroups = [
+        'suppress',
+        'checkuser',
+        'push-subscription-manager',
+        'temporary-account-viewer',
+        'bureaucrat',
+    ];
+
+    foreach ($unusedGroups as $group) {
         unset($wgGroupPermissions[$group]);
         unset($wgRevokePermissions[$group]);
         unset($wgAddGroups[$group]);
