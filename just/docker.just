@@ -73,3 +73,6 @@ update:
     just fix-perms
     echo "Restarting wiki containers..."
     just start
+    echo "Applying startup tasks..."
+    just startup-tasks
+    echo "Update complete!"
