@@ -12,6 +12,10 @@
  * @link     https://foss.wiki
  */
 
+// For the footer stuff
+use MediaWiki\Html\Html;
+use MediaWiki\Title\Title;
+
 // Redirect /index.php?title=Page to /Page
 $wgHooks['SkinTemplateNavigation::Universal'][] = function ($skin, &$links) {
     foreach ($links as &$group) {
@@ -53,4 +57,43 @@ $wgHooks['MediaWikiServices'][] = static function () {
         unset($wgGroupsAddToSelf[$group]);
         unset($wgGroupsRemoveFromSelf[$group]);
     }
+};
+
+// Add custom footer links
+$wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
+    if ($key !== "places") {
+        return;
+    }
+    $rel = "nofollow noreferrer noopener";
+    $footerlinks["guidelines"] = Html::rawElement(
+        "a",
+        [
+                "href" => Title::newFromText("FW:Guidelines")->getFullURL(),
+        ],
+        $sk->msg("footer-guidelines")->escaped(),
+    );
+    $footerlinks["statuspage"] = Html::rawElement(
+        "a",
+        [
+            "href" => "https://status.foss.wiki",
+            "rel" => $rel,
+        ],
+        $sk->msg("footer-statuspage")->escaped(),
+    );
+    $footerlinks["github"] = Html::rawElement(
+        "a",
+        [
+            "href" => "https://github.com/foss-wiki",
+            "rel" => $rel,
+        ],
+        $sk->msg("footer-github")->escaped(),
+    );
+    $footerlinks["discord"] = Html::rawElement(
+        "a",
+        [
+            "href" => "https://discord.gg/pV67V6GBrg",
+            "rel" => $rel,
+        ],
+        $sk->msg("footer-discord")->escaped(),
+    );
 };
