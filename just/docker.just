@@ -74,6 +74,6 @@ update:
     echo "Restarting wiki containers..."
     just start
     echo "Applying startup tasks..."
-    sleep 10 # Wait for containers to be fully up before running startup tasks
+    sleep 30 # Wait for containers to be fully up before running startup tasks
     just startup-tasks
     echo "Update complete!"
