@@ -72,6 +72,14 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
         ],
         $sk->msg("footer-guidelines")->escaped(),
     );
+    $footerlinks["discord"] = Html::rawElement(
+        "a",
+        [
+            "href" => "https://discord.foss.wiki",
+            "rel" => $rel,
+        ],
+        $sk->msg("footer-discord")->escaped(),
+    );
     $footerlinks["statuspage"] = Html::rawElement(
         "a",
         [
@@ -80,6 +88,14 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
         ],
         $sk->msg("footer-statuspage")->escaped(),
     );
+    $footerlinks["transparency"] = Html::rawElement(
+        "a",
+        [
+            "href" => "https://open.foss.wiki",
+            "rel" => $rel,
+        ],
+        $sk->msg("footer-transparency")->escaped(),
+    );
     $footerlinks["github"] = Html::rawElement(
         "a",
         [
@@ -87,13 +103,5 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
             "rel" => $rel,
         ],
         $sk->msg("footer-github")->escaped(),
-    );
-    $footerlinks["discord"] = Html::rawElement(
-        "a",
-        [
-            "href" => "https://discord.foss.wiki",
-            "rel" => $rel,
-        ],
-        $sk->msg("footer-discord")->escaped(),
     );
 };
