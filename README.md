@@ -81,7 +81,7 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `S3_SECRET_ACCESS_KEY` * | The S3 secret access key | `0123456789abcdef` |
 | `S3_BUCKET_NAME` * | The S3 bucket name | `wiki-images` |
 | `S3_BUCKET_DOMAIN` * | The S3 bucket domain | `wiki-images.domain.tld` |
-| `SITENAME` * | The domain the wiki will be accessible from, without the protocol | `wiki.example.com` |
+| `SITENAME` * | The Full Wiki Name | `Example Wiki` |
 | `WG_SERVER` * | The full URL the wiki will be accessible from, including the protocol | `https://wiki.example.com` |
 | `DISCORD_WEBHOOK_URL` * | Discord Webhook URL | `https://discord.com/api/webhooks/0123456789/abcdef` |
 
