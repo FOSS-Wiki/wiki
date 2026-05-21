@@ -60,7 +60,6 @@ $wgHooks['MediaWikiServices'][] = static function () {
 };
 
 // Add custom footer links
-// Add custom footer links
 $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
     if ($key !== "places") {
         return;
