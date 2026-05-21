@@ -66,26 +66,12 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
     }
     $rel = "nofollow noreferrer noopener";
 
-    $footerlinks["about"] = Html::rawElement(
-        "a",
-        [
-            "href" => Title::newFromText("FW:About")->getFullURL(),
-        ],
-        $sk->msg("footer-about")->escaped(),
-    );
     $footerlinks["guidelines"] = Html::rawElement(
         "a",
         [
             "href" => Title::newFromText("FW:Guidelines")->getFullURL(),
         ],
         $sk->msg("footer-guidelines")->escaped(),
-    );
-    $footerlinks["disclaimer"] = Html::rawElement(
-        "a",
-        [
-            "href" => Title::newFromText("FW:Disclaimer")->getFullURL(),
-        ],
-        $sk->msg("footer-disclaimer")->escaped(),
     );
     $footerlinks["statuspage"] = Html::rawElement(
         "a",
@@ -102,13 +88,6 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
             "rel" => $rel,
         ],
         $sk->msg("footer-transparency")->escaped(),
-    );
-    $footerlinks["privacy"] = Html::rawElement(
-        "a",
-        [
-            "href" => Title::newFromText("FW:Privacy_policy")->getFullURL(),
-        ],
-        $sk->msg("footer-privacy")->escaped(),
     );
     $footerlinks["discord"] = Html::rawElement(
         "a",
