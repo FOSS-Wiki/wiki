@@ -60,25 +60,33 @@ $wgHooks['MediaWikiServices'][] = static function () {
 };
 
 // Add custom footer links
+// Add custom footer links
 $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
     if ($key !== "places") {
         return;
     }
     $rel = "nofollow noreferrer noopener";
+
+    $footerlinks["about"] = Html::rawElement(
+        "a",
+        [
+            "href" => Title::newFromText("FW:About")->getFullURL(),
+        ],
+        $sk->msg("footer-about")->escaped(),
+    );
     $footerlinks["guidelines"] = Html::rawElement(
         "a",
         [
-                "href" => Title::newFromText("FW:Guidelines")->getFullURL(),
+            "href" => Title::newFromText("FW:Guidelines")->getFullURL(),
         ],
         $sk->msg("footer-guidelines")->escaped(),
     );
-    $footerlinks["discord"] = Html::rawElement(
+    $footerlinks["disclaimer"] = Html::rawElement(
         "a",
         [
-            "href" => "https://discord.foss.wiki",
-            "rel" => $rel,
+            "href" => Title::newFromText("FW:Disclaimer")->getFullURL(),
         ],
-        $sk->msg("footer-discord")->escaped(),
+        $sk->msg("footer-disclaimer")->escaped(),
     );
     $footerlinks["statuspage"] = Html::rawElement(
         "a",
@@ -95,6 +103,29 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
             "rel" => $rel,
         ],
         $sk->msg("footer-transparency")->escaped(),
+    );
+    $footerlinks["privacy"] = Html::rawElement(
+        "a",
+        [
+            "href" => Title::newFromText("FW:Privacy_policy")->getFullURL(),
+        ],
+        $sk->msg("footer-privacy")->escaped(),
+    );
+    $footerlinks["discord"] = Html::rawElement(
+        "a",
+        [
+            "href" => "https://discord.foss.wiki",
+            "rel" => $rel,
+        ],
+        $sk->msg("footer-discord")->escaped(),
+    );
+    $footerlinks["donate"] = Html::rawElement(
+        "a",
+        [
+            "href" => "https://donate.foss.wiki",
+            "rel" => $rel,
+        ],
+        $sk->msg("footer-donate")->escaped(),
     );
     $footerlinks["github"] = Html::rawElement(
         "a",
