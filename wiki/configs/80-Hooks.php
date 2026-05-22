@@ -82,7 +82,7 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
     );
     $footerlinks["disclaimers"] = Html::rawElement(
         "a",
-        ["href" => Title::newFromText("FW:General_disclaimer")->getFullURL()],
+        ["href" => Title::newFromText("FW:Disclaimer")->getFullURL()],
         $sk->msg("footer-disclaimer")->escaped(),
     );
 
@@ -99,7 +99,7 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
     );
     $footerlinks["privacy"] = Html::rawElement(
         "a",
-        ["href" => Title::newFromText("FW:Privacy_policy")->getFullURL()],
+        ["href" => Title::newFromText("FW:Privacy_Policy")->getFullURL()],
         $sk->msg("footer-privacy")->escaped(),
     );
 
