@@ -92,9 +92,9 @@ Below are the extra options for **LOCAL** setups.
 
 | Variable* | Description      | Example |
 |-----------|------------------|---------|
-| `MARIADB_PASSWORD` * | The MariaDB root password. This needs to match `DB_PASSWORD` | `local-maria-password` |
-| `MARIADB_NAME` * | The MariaDB database name. This needs to match `DB_NAME` | `local-maria-db` |
-| `MARIADB_USER` * | The MariaDB username. This needs to match `DB_USER` | `local-maria-user` |
+| `MARIADB_PASSWORD` * | The MariaDB root password. This needs to match `DB_PASSWORD` | `local-mariadb-password` |
+| `MARIADB_NAME` * | The MariaDB database name. This needs to match `DB_NAME` | `local-mariadb` |
+| `MARIADB_USER` * | The MariaDB username. This needs to match `DB_USER` | `local-mariadb-user` |
 | `MINIO_USER` * | The MinIO username. This needs to match `S3_ACCESS_KEY_ID` | `local-minio-user` |
 | `MINIO_PASSWORD` * | The MinIO password. This needs to match `S3_SECRET_ACCESS_KEY` | `local-minio-password` |
 
