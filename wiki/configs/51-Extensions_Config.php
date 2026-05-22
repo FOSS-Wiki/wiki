@@ -114,6 +114,7 @@ if ($discordWebhook !== '') {
 
 $wgCheckUserLogSuccessfulBotLogins = false;
 $wgCheckUserLogLogins = true;
+$wgCUDMaxAge = 5184000; // 60 Days
 
 //######################################################// Description2
 // https://www.mediawiki.org/wiki/Extension:Description2
