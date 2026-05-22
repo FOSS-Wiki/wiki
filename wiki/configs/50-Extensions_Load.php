@@ -32,6 +32,8 @@ wfLoadExtension('CirrusSearch');
 wfLoadExtension('Cite');
 // https://www.mediawiki.org/wiki/Extension:CiteThisPage
 wfLoadExtension('CiteThisPage');
+// https://www.mediawiki.org/wiki/Extension:CloudflarePurge
+wfLoadExtension('CloudflarePurge');
 // https://www.mediawiki.org/wiki/Extension:CodeEditor
 wfLoadExtension('CodeEditor');
 // https://www.mediawiki.org/wiki/Extension:CodeMirror

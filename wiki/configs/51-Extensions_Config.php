@@ -162,3 +162,10 @@ $wgDisableSearchUpdate = false;
 $wgNewSignupPageToSURL = 'https://foss.wiki/FW:Code_of_Conduct';
 
 $wgNewSignupPagePPURL = 'https://foss.wiki/FW:Privacy_policy';
+
+//######################################################//  CloudflarePurge
+// https://www.mediawiki.org/wiki/Extension:CloudflarePurge
+
+$wgCloudflarePurgeZoneID = $env('CLOUDFLARE_ZONE_ID');
+
+$wgCloudflarePurgeToken = $env('CLOUDFLARE_PURGE_TOKEN');

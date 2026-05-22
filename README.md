@@ -69,9 +69,10 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `SMTP_HOST` | The SMTP server host address | `smtp.gmail.com` |
 | `SMTP_DOMAIN` | The SMTP domain you wish to use for sending emails | `example.com` |
 | `SMTP_PORT` | The SMTP server port (usually 587 for TLS or 465 for SSL) | `587` |
-| `SMTP_USERNAME` | The email address to send SMTP emails from for service notifications | `noreply@example.com` |
+| `SMTP_USERNAME` | The SMTP authentication username | `noreply@example.com` |
 | `SMTP_PASSWORD` | The password for the SMTP username | `0123456789abcdef` |
 | `EMERGENCY_EMAIL` | The email address to send emergency notifications to | `admin@example.com` |
+| `SMTP_SENDER` | The email address to send SMTP emails from for password reset emails | `noreply@example.com` |
 | `TURNSTILE_SITE_KEY` * | The site key for Cloudflare Turnstile | `0123456789abcdef` |
 | `TURNSTILE_SECRET_KEY` * | The secret key for Cloudflare Turnstile | `0123456789abcdef` |
 | `OPENID_CLIENT_ID` | The client ID for OpenID authentication from Okta | `0123456789abcdef` |
@@ -84,6 +85,8 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `SITENAME` * | The Full Wiki Name | `Example Wiki` |
 | `WG_SERVER` * | The full URL the wiki will be accessible from, including the protocol | `https://wiki.example.com` |
 | `DISCORD_WEBHOOK_URL` * | Discord Webhook URL | `https://discord.com/api/webhooks/0123456789/abcdef` |
+| `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge | `0123456789abcdef` |
+| `CLOUDFLARE_ZONE_ID` * | Cloudflare Zone ID for CloudflarePurge | `0123456789abcdef` |
 
 Below are the extra options for **LOCAL** setups.
 

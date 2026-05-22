@@ -145,6 +145,11 @@
     "extension_name": "NewSignupPage",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/NewSignupPage",
     "install_type": "git"
+  },
+  {
+    "extension_name": "CloudflarePurge",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CloudflarePurge",
+    "install_type": "git"
   }
 ]
 

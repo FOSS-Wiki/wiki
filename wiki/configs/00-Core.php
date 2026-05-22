@@ -85,10 +85,9 @@ $wgCdnServersNoPurge = [
 $wgCdnServers = [
     // nginx container (local reverse proxy)
     'nginx',
-    // Wiki server on Tailscale
-    '100.64.3.0',
-    // NPM server on Tailscale
-    '100.64.1.0',
+    'wiki-nginx',
+    'local-wiki-nginx',
+    'staging-wiki-nginx'
 ];
 
 // https://www.mediawiki.org/wiki/Manual:$wgUsePrivateIPs
@@ -238,3 +237,9 @@ $wgRestrictDisplayTitle = false;
 
 // https://www.mediawiki.org/wiki/Manual:$wgPasswordDefault
 $wgPasswordDefault = 'argon2';
+
+// https://www.mediawiki.org/wiki/Manual:$wgHiddenPrefs
+$wgHiddenPrefs[] = "realname";
+
+// https://www.mediawiki.org/wiki/Manual:$wgExternalLinkTarget
+$wgExternalLinkTarget = "_blank";
