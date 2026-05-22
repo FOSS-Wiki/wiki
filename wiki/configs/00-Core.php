@@ -101,7 +101,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 }
 
 // https://www.mediawiki.org/wiki/Manual:$wgCookieSameSite
-$wgCookieSameSite = 'Lax';
+$wgCookieSameSite = 'Strict';
 
 // https://www.mediawiki.org/wiki/Manual:$wgCookieSecure
 // Only use secure cookies if HTTPS is enabled
