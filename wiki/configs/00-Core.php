@@ -49,7 +49,7 @@ $wgMainPageIsDomainRoot = true;
 $wgUseCdn = true;
 
 // https://www.mediawiki.org/wiki/Manual:$wgCdnMaxAge
-$wgCdnMaxAge = 259200;
+$wgCdnMaxAge = 86400;
 
 // https://www.mediawiki.org/wiki/Manual:$wgCdnMatchParameterOrder
 $wgCdnMatchParameterOrder = false;
