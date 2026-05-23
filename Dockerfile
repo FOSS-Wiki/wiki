@@ -140,6 +140,7 @@ RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
         libxml2 \
         libzip \
         lua5.1-libs \
+        libxpm \
         lz4-libs \
         oniguruma \
         python3 \

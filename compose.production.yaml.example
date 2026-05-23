@@ -19,8 +19,6 @@ services:
       - .env:/var/www/wiki/.env:ro
     networks:
       - wiki-network
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "php-fpm", "-t" ]
