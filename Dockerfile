@@ -169,6 +169,7 @@ WORKDIR /var/www/wiki
 COPY --chown=mediawiki:mediawiki --from=mediawiki /var/www/wiki .
 
 COPY --chown=mediawiki:mediawiki wiki/robots.txt ./robots.txt
+COPY --chown=mediawiki:mediawiki wiki/security-at-fosswiki_public.asc ./security-at-fosswiki_public.asc
 COPY --chown=mediawiki:mediawiki wiki/.well-known ./.well-known
 COPY --chown=mediawiki:mediawiki wiki/LocalSettings.php ./mediawiki/LocalSettings.php
 COPY --chown=mediawiki:mediawiki wiki/configs/ ./configs/
