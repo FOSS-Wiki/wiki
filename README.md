@@ -6,7 +6,6 @@
 This repository contains Mediawiki configurations used for the deployment of [foss.wiki](https://foss.wiki). Including Docker configurations, environment settings, and other necessary files to run Mediawiki in a containerized environment with scripts to aid in the deployment and running of the application.
 
 # Deployment Instructions
-*These are currently just a basic overview, more detailed instructions will be added with the refactor in the next release.*
 
 > [!NOTE]
 > **This only applies if you are running a staging or production instance, local instances have these pre-configured as docker containers.** To deploy this service you will need:
@@ -44,6 +43,8 @@ This repository contains Mediawiki configurations used for the deployment of [fo
 7. Initialize the Mediawiki instance
 ```bash
     just mediawiki-init
+    just startup-tasks
+    just fix-perms
 ```
 
 8. Access the Mediawiki instance in your web browser at `https://{localhost:3000 | domain.tld}`
@@ -196,6 +197,11 @@ Before running any `just` commands, ensure you have read the `just help` command
 | `status` | Display comprehensive status of wiki deployment including containers, health, and database |
 | `stop` | Stop all running wiki containers |
 | `update` | Pull latest code, updates compose.yaml from template, and restarts wiki containers |
+| `fix-perms` | Fix directory and file permissions (root:admin 770, .env 774) |
+| `startup-tasks` | Resetup configurations and OpenSearch index a clean stop or restart |
+| `run-jobs` | Run pending jobs in MediaWiki |
+| `opensearch-reindex` | Reindex OpenSearch in MediaWiki |
+| `opensearch-update` | Update OpenSearch index configuration in MediaWiki |
 
 # License
 
@@ -214,13 +220,23 @@ We gratefully acknowledge the use of the following projects which are incorporat
 
 | Project | Link | License |
 |---------|------|---------|
+| Composer | [https://getcomposer.org](https://getcomposer.org) | MIT |
 | Docker | [https://www.docker.com](https://www.docker.com) | Apache-2.0 |
 | Docker Compose | [https://github.com/docker/compose](https://github.com/docker/compose) | Apache-2.0 |
 | Hadolint | [https://github.com/hadolint/hadolint](https://github.com/hadolint/hadolint) | GPL-3.0 |
 | just | [https://github.com/casey/just](https://github.com/casey/just) | CC0-1.0 |
+| MariaDB | [https://mariadb.org](https://mariadb.org) | GPL-2.0 |
 | MediaWiki | [https://www.mediawiki.org](https://www.mediawiki.org) | GPL-2.0-or-later |
+| NGINX | [https://www.nginx.com](https://www.nginx.com) | BSD-2-Clause |
+| OpenSearch | [https://opensearch.org](https://opensearch.org) | Apache-2.0 |
 | PHP | [https://www.php.net](https://www.php.net) | PHP-3.01 |
 | PHP_CodeSniffer | [https://github.com/PHPCSStandards/PHP_CodeSniffer/](https://github.com/PHPCSStandards/PHP_CodeSniffer/) | BSD3-Clause |
 | phpdotenv | [https://github.com/vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) | BSD-3-Clause |
 | Python | [https://www.python.org](https://www.python.org) | PSF-2.0 |
+| Pylint | [https://www.pylint.org](https://www.pylint.org) | GPL-2.0 |
 | Renovate | [https://www.mend.io/renovate](https://www.mend.io/renovate) | AGPL-3.0 |
+| Valkey | [https://valkey.io](https://valkey.io) | BSD-3-Clause |
+
+# Aknowledgements
+
+
