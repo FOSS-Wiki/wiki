@@ -1,9 +1,7 @@
 # foss.wiki Mediawiki Configs
 
 > [!WARNING]
-> Currently this is hardcoded for foss.wiki, in our next release we aim to create a base Mediawiki image that can be easily customized for other deployments separate from our own images.
->
-> **We do not recommend using this for your own deployments at this time but we welcome any feedback or contributions.**
+> This repository is mostly hardcoded for our setup and is not designed to be general purpose. Whilst we are trying to make it more reusable and provide a strong base for other wiki's infrastructure, it is not a current priority and we cannot guarantee any kind of support for your deployments. Please also note, outside contributions will not be accepted at this time as we are focusing on our own use case, however we will always welcome any feedback or suggestions you may have for the project.
 
 This repository contains Mediawiki configurations used for the deployment of [foss.wiki](https://foss.wiki). Including Docker configurations, environment settings, and other necessary files to run Mediawiki in a containerized environment with scripts to aid in the deployment and running of the application.
 
