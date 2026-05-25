@@ -174,7 +174,7 @@ COPY --chown=mediawiki:mediawiki wiki/.well-known ./.well-known
 COPY --chown=mediawiki:mediawiki wiki/LocalSettings.php ./mediawiki/LocalSettings.php
 COPY --chown=mediawiki:mediawiki wiki/configs/ ./configs/
 RUN ln -sf ./.well-known/security.txt ./security.txt && \
-    chmod 744 robots.txt ./security.txt .well-known/security.txt
+    chmod 744 robots.txt security-at-fosswiki_public.asc security.txt .well-known/security.txt
 
 USER root
 COPY wiki/php.ini /usr/local/etc/php/conf.d/custom.ini
