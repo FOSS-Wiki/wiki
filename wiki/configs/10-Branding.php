@@ -16,13 +16,15 @@
 
 // https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgLogos
 $wgLogos = [
-    '1x' => "https://images.foss.wiki/Logo.png",
-    'icon' => "https://images.foss.wiki/Logo.png",
-    'svg' => "https://images.foss.wiki/Logo.svg",
+    '1x' => "https://images.foss.wiki/logo-135.png",
+    'icon' => "https://images.foss.wiki/logo.png",
 ];
 
 // https://www.mediawiki.org/wiki/Manual:$wgFavicon
-$wgFavicon = "https://images.foss.wiki/Logo.png";
+$wgFavicon = "https://images.foss.wiki/favicon.png";
+
+// https://www.mediawiki.org/wiki/Manual:$wgAppleTouchIcon
+$wgAppleTouchIcon = "https://images.foss.wiki/apple-touch-icon.png";
 
 // https://www.mediawiki.org/wiki/Manual:$wgFooterIcons
 $wgFooterIcons = [
