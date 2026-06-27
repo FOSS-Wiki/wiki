@@ -120,7 +120,5 @@ wfLoadExtension('Thanks');
 wfLoadExtension('UserMerge');
 // https://www.mediawiki.org/wiki/Extension:VisualEditor
 wfLoadExtension('VisualEditor');
-// https://www.mediawiki.org/wiki/Extension:WebAuthn
-wfLoadExtension('WebAuthn');
 // https://www.mediawiki.org/wiki/Extension:WikiEditor
 wfLoadExtension('WikiEditor');
