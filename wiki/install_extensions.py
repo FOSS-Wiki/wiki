@@ -53,11 +53,6 @@ def main():
         if install_type == 'git':
             run(f"git clone \
                 --branch {git_branch} --single-branch --depth 1 {extension_url} {extension_name}")
-        elif install_type == 'zip':
-            zip_name = f"{extension_name}.zip"
-            run(f"curl -fsSL {extension_url} -o {zip_name}")
-            run(f"unzip -q {zip_name} -d {extension_name}")
-            run(f"rm {zip_name}")
         elif install_type == 'composer':
             continue
         else:
