@@ -97,7 +97,7 @@
   },
   {
     "extension_name": "TabberNeue",
-    "extension_url": "https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue.git",
+    "extension_url": "https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue",
     "install_type": "git",
     "git_branch": "main"
   },
@@ -108,7 +108,7 @@
   },
   {
     "extension_name": "TemplateStylesExtender",
-    "extension_url": "https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender/archive/refs/tags/v2.1.0.tar.gz",
+    "extension_url": "https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender/archive/refs/heads/master.zip",
     "install_type": "tarball"
   },
   {
