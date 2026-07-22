@@ -56,8 +56,6 @@ wfLoadExtension('Echo');
 wfLoadExtension('Editcount');
 // https://www.mediawiki.org/wiki/Extension:Elastica
 wfLoadExtension('Elastica');
-// https://www.mediawiki.org/wiki/Extension:FilterSpecialPages
-wfLoadExtension('FilterSpecialPages');
 // https://www.mediawiki.org/wiki/Extension:Gadgets
 wfLoadExtension('Gadgets');
 // https://www.mediawiki.org/wiki/Extension:ImageMap
