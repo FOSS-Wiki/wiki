@@ -20,7 +20,7 @@ This repository contains Mediawiki configurations used for the deployment of [fo
 
 2. Clone this repository, we recommend cloning the repository to `/opt/mediawiki`
 ```bash
-    git clone https://codeberg.org/FOSS-Wiki/wiki mediawiki
+    git clone https://github.com/FOSS-Wiki/wiki mediawiki
 ```
 
 3. Navigate to the cloned directory
