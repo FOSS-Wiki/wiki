@@ -109,7 +109,7 @@
   {
     "extension_name": "TemplateStylesExtender",
     "extension_url": "https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender/archive/refs/heads/master.zip",
-    "install_type": "tarball"
+    "install_type": "zip"
   },
   {
     "extension_name": "AWS",
