@@ -96,6 +96,11 @@
     "install_type": "git"
   },
   {
+    "extension_name": "TabberNeue",
+    "extension_url": "https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue.git",
+    "install_type": "git"
+  },
+  {
     "extension_name": "UserMerge",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/UserMerge",
     "install_type": "git"

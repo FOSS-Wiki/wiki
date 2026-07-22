@@ -104,6 +104,8 @@ wfLoadExtension('SimpleBatchUpload');
 wfLoadExtension('SpamBlacklist');
 // https://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi
 wfLoadExtension('SyntaxHighlight_GeSHi');
+// https://www.mediawiki.org/wiki/Extension:TabberNeue
+wfLoadExtension('TabberNeue');
 // https://www.mediawiki.org/wiki/Extension:TemplateData
 wfLoadExtension('TemplateData');
 // https://www.mediawiki.org/wiki/Extension:TemplateSandbox
