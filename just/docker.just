@@ -5,7 +5,7 @@ start:
     JUSTFILE_DIR="{{justfile_directory()}}"
     just _verify-file compose.yaml
 
-    cd "$JUSTFILE_DIR" && docker compose up -d
+    cd "$JUSTFILE_DIR" && docker compose up -d --build
 
 # Stop all running wiki containers
 stop:
