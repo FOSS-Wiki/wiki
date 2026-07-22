@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright 2025 FOSS Wiki and Contributors
+# Copyright 2026 FOSS Wiki and Contributors
 
 # Primary maintainer: Zoe (atmois) <info@atmois.com>
 
