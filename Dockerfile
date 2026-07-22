@@ -75,18 +75,19 @@ WORKDIR /var/www/wiki/mediawiki
 
 RUN --mount=type=cache,target=/tmp/mediawiki-cache \
     set -eux && \
-    curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz && \
-    curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz.sig" -o mediawiki.tar.gz.sig && \
+    curl -fSL --http1.1 --retry 10 --retry-all-errors --retry-delay 3 -C - \
+        "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz && \
+    curl -fSL --http1.1 --retry 10 --retry-all-errors --retry-delay 3 -C - \
+        "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz.sig" -o mediawiki.tar.gz.sig && \
     GNUPGHOME="$(mktemp -d)" && \
     export GNUPGHOME && \
-    curl -fsSL "https://www.mediawiki.org/keys/keys.txt" | gpg --import && \
+    curl -fsSL --http1.1 "https://www.mediawiki.org/keys/keys.txt" | gpg --import && \
     gpg --batch --verify mediawiki.tar.gz.sig mediawiki.tar.gz && \
     tar -x --strip-components=1 -f mediawiki.tar.gz && \
     gpgconf --kill all && \
     rm -rf "$GNUPGHOME" mediawiki.tar.gz.sig mediawiki.tar.gz
 
 # Install Additional Dependencies
-
 COPY wiki/extensions.json wiki/install_extensions.py /tmp/
 RUN --mount=type=cache,target=/root/.composer \
     set -eux && \
