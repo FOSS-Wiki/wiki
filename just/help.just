@@ -46,10 +46,10 @@ help:
     @echo "  mediawiki-schema-update Update MediaWiki database schema to latest version"
     @echo "                          \033[41mDESTRUCTIVE\033[0m: Modifies database schema, backup recommended"
     @echo ""
-
-fix perms
-startup-tasks
-
+    @echo "  fix perms               Set all directory permissions to root:admin and 770"
+    @echo ""
+    @echo "  startup-tasks           Runs relevant tasks on a fresh restart: Opensearch & SystemD"
+    @echo ""
     @echo "For detailed information about a specific command, refer to documentation."
     @echo ""
     @echo "=== MediaWiki Maintenance Scripts ==="
