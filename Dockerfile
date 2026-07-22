@@ -183,9 +183,6 @@ RUN chmod 744 /usr/local/etc/php/conf.d/custom.ini
 
 USER mediawiki
 
-# Fix MWCallbackStream.php return type declaration (TEMPORARY until Upstream Fixes it)
-RUN sed -i "s/public function write( \$string ) {/public function write( \$string ): int {/" /var/www/wiki/mediawiki/includes/http/MWCallbackStream.php
-
 # Expose Port for FastCGI
 EXPOSE 9000
 
