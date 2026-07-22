@@ -46,6 +46,10 @@ help:
     @echo "  mediawiki-schema-update Update MediaWiki database schema to latest version"
     @echo "                          \033[41mDESTRUCTIVE\033[0m: Modifies database schema, backup recommended"
     @echo ""
+
+fix perms
+startup-tasks
+
     @echo "For detailed information about a specific command, refer to documentation."
     @echo ""
     @echo "=== MediaWiki Maintenance Scripts ==="

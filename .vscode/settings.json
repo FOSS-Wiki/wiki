@@ -2,6 +2,6 @@
     "files.associations": {
         "*.yaml.*": "yaml",
         ".env*": "env",
-        "Justfile*": "just"
+        "*.just": "just"
     }
 }
