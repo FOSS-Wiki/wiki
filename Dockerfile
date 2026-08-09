@@ -91,6 +91,7 @@ RUN --mount=type=cache,target=/tmp/mediawiki-cache \
 COPY wiki/extensions.json wiki/install_extensions.py /tmp/
 RUN --mount=type=cache,target=/root/.composer \
     set -eux && \
+    composer config --global audit.block-insecure false && \
     python3 /tmp/install_extensions.py && \
     # Install Citizen skin
     git clone --branch v${CITIZEN_VERSION} --single-branch --depth 1 \
