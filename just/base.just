@@ -111,3 +111,9 @@ _destructive-warning reason="":
         echo "Aborting."
         exit 1
     fi
+
+_containers-running:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    CONTAINER_COUNT=$(docker compose ps --format "{{{{.Name}}}}\t{{{{.Status}}}}" | wc -l)
+    [ "$CONTAINER_COUNT" -gt 0 ]

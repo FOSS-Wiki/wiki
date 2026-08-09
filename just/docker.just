@@ -58,14 +58,18 @@ update:
     just _destructive-warning "This will pull the latest code and replace your compose.yaml, check the changelog before proceeding."
     just _check-sudo-dir
     just _verify-file compose.yaml
-    just _check-containers
     ENV=$(just _detect-env)
 
-    # Stop wiki containers and pull updates
-    echo "Stopping wiki containers..."
-    just clean-stop
+    # Stop if containers are running
+    if just _containers-running ; then
+        echo "Stopping wiki containers..."
+        just clean-stop
+    fi
+
+    # Pull updates
     echo "Pulling latest code from git..."
     git pull
+
     # Copy environment-specific compose template
     echo "Updating compose.yaml for environment: $ENV"
     just _copy-file compose.${ENV}.yaml.example compose.yaml
@@ -74,6 +78,8 @@ update:
     echo "Restarting wiki containers..."
     just start
     echo "Applying startup tasks..."
-    sleep 30 # Wait for containers to be fully up before running startup tasks
+
+    # Wait for containers to be fully up before running startup tasks
+    sleep 30
     just startup-tasks
     echo "Update complete!"
