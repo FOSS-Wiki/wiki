@@ -172,4 +172,7 @@ fix-perms:
     echo "Setting .env to 774..."
     sudo chmod 774 .env
 
+    echo "Setting nginx/tor.html to 774..."
+    sudo chmod 774 nginx/tor.html
+
     echo "Permissions fixed!"
