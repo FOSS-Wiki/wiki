@@ -41,6 +41,7 @@ ARG MEDIAWIKI_MAJOR_VERSION
 ARG MEDIAWIKI_VERSION
 ARG CITIZEN_VERSION
 ARG MEDIAWIKI_BRANCH
+ENV COMPOSER_NO_AUDIT=1
 
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
     set -eux && \
@@ -69,23 +70,31 @@ WORKDIR /var/www/wiki
 
 COPY wiki/composer.json /var/www/wiki/composer.json
 RUN --mount=type=cache,target=/root/.composer \
-    composer install --no-dev --optimize-autoloader --no-scripts
+    composer install --no-dev --optimize-autoloader --no-scripts --prefer-dist
 
 WORKDIR /var/www/wiki/mediawiki
 
 RUN --mount=type=cache,target=/tmp/mediawiki-cache \
     set -eux && \
-    curl -fSL --http1.1 --retry 10 --retry-all-errors --retry-delay 3 -C - \
-        "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz && \
-    curl -fSL --http1.1 --retry 10 --retry-all-errors --retry-delay 3 -C - \
-        "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz.sig" -o mediawiki.tar.gz.sig && \
+    TARBALL="/tmp/mediawiki-cache/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" && \
+    SIGFILE="/tmp/mediawiki-cache/mediawiki-${MEDIAWIKI_VERSION}.tar.gz.sig" && \
+    if [ ! -f "$TARBALL" ]; then \
+        curl -fSL --retry 3 --retry-all-errors --retry-delay 3 -C - \
+            "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o "$TARBALL.tmp" && \
+        mv "$TARBALL.tmp" "$TARBALL"; \
+    fi && \
+    if [ ! -f "$SIGFILE" ]; then \
+        curl -fSL --retry 3 --retry-all-errors --retry-delay 3 -C - \
+            "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz.sig" -o "$SIGFILE.tmp" && \
+        mv "$SIGFILE.tmp" "$SIGFILE"; \
+    fi && \
     GNUPGHOME="$(mktemp -d)" && \
     export GNUPGHOME && \
-    curl -fsSL --http1.1 "https://www.mediawiki.org/keys/keys.txt" | gpg --import && \
-    gpg --batch --verify mediawiki.tar.gz.sig mediawiki.tar.gz && \
-    tar -x --strip-components=1 -f mediawiki.tar.gz && \
+    curl -fsSL "https://www.mediawiki.org/keys/keys.txt" | gpg --import && \
+    gpg --batch --verify "$SIGFILE" "$TARBALL" && \
+    tar -x --strip-components=1 -f "$TARBALL" && \
     gpgconf --kill all && \
-    rm -rf "$GNUPGHOME" mediawiki.tar.gz.sig mediawiki.tar.gz
+    rm -rf "$GNUPGHOME"
 
 # Install Additional Dependencies
 COPY wiki/extensions.json wiki/install_extensions.py /tmp/
@@ -100,7 +109,7 @@ RUN --mount=type=cache,target=/root/.composer \
 COPY wiki/composer.local.json ./composer.local.json
 RUN --mount=type=cache,target=/root/.composer \
     composer config --global audit.block-insecure false && \
-    composer update --no-dev --optimize-autoloader --no-scripts
+    composer update --no-dev --optimize-autoloader --no-scripts --prefer-dist
 
 # Cleanup
 RUN rm -rf /var/www/wiki/mediawiki/tests/ \
@@ -165,24 +174,21 @@ RUN mkdir -p /var/www/wiki/mediawiki && \
     chmod -R 775 /var/www/wiki/sitemap && \
     chmod -R 770 /var/www/wiki/cache
 
-USER mediawiki
-WORKDIR /var/www/wiki
-
-COPY --chown=mediawiki:mediawiki --from=mediawiki /var/www/wiki .
-
-COPY --chown=mediawiki:mediawiki wiki/robots.txt ./robots.txt
-COPY --chown=mediawiki:mediawiki wiki/security-at-fosswiki_public.asc ./security-at-fosswiki_public.asc
-COPY --chown=mediawiki:mediawiki wiki/.well-known ./.well-known
-COPY --chown=mediawiki:mediawiki wiki/LocalSettings.php ./mediawiki/LocalSettings.php
-COPY --chown=mediawiki:mediawiki wiki/configs/ ./configs/
-RUN ln -sf ./.well-known/security.txt ./security.txt && \
-    chmod 744 robots.txt security-at-fosswiki_public.asc security.txt .well-known/security.txt
-
 USER root
 COPY wiki/php.ini /usr/local/etc/php/conf.d/custom.ini
 RUN chmod 744 /usr/local/etc/php/conf.d/custom.ini
 
 USER mediawiki
+WORKDIR /var/www/wiki
+
+COPY --chown=mediawiki:mediawiki --from=mediawiki /var/www/wiki .
+COPY --chown=mediawiki:mediawiki wiki/robots.txt ./robots.txt
+COPY --chown=mediawiki:mediawiki wiki/security-at-fosswiki_public.asc ./security-at-fosswiki_public.asc
+COPY --chown=mediawiki:mediawiki wiki/.well-known ./.well-known
+RUN ln -sf ./.well-known/security.txt ./security.txt && \
+    chmod 744 robots.txt security-at-fosswiki_public.asc security.txt .well-known/security.txt
+COPY --chown=mediawiki:mediawiki wiki/configs/ ./configs/
+COPY --chown=mediawiki:mediawiki wiki/LocalSettings.php ./mediawiki/LocalSettings.php
 
 # Expose Port for FastCGI
 EXPOSE 9000
