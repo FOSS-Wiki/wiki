@@ -150,7 +150,7 @@ startup-tasks:
 
     echo "Startup tasks complete!"
 
-# Fix directory and file permissions (root:admin 770, .env 774, nginx/tor.html 774)
+# Fix directory and file permissions (root:admin 770, .env 774, nginx/*.html 774)
 fix-perms:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -165,7 +165,7 @@ fix-perms:
     echo "Setting .env to 774..."
     sudo chmod 774 .env
 
-    echo "Setting nginx/tor.html to 774..."
-    sudo chmod 774 nginx/tor.html
+    echo "Setting nginx/*.html to 774..."
+    sudo chmod 774 nginx/*.html
 
     echo "Permissions fixed!"
