@@ -3,7 +3,7 @@
 # Display comprehensive help for all available commands
 help:
     @echo "=== Setup & Initialization ==="
-    @echo "  production-files              Setup production environment files (.env, compose.yaml)"
+    @echo "  production-files        Setup production environment files (.env, compose.yaml)"
     @echo "                          \033[41mDESTRUCTIVE\033[0m: Overwrites existing compose.yaml and .env files"
     @echo ""
     @echo "  staging-files           Setup staging environment files (.env, compose.yaml)"
@@ -26,8 +26,8 @@ help:
     @echo ""
     @echo "  clean-stop              Stop containers and remove all cache volumes"
     @echo ""
-    @echo "  update                  Pull latest code, update compose.yaml, and restart containers"
-    @echo "                          \033[41mDESTRUCTIVE\033[0m: Overwrites compose.yaml and updates containers, check changelog before running"
+    @echo "  update                  Pull latest code and restart containers"
+    @echo "                          \033[41mDESTRUCTIVE\033[0m: Pulls new code and updates containers, check changelog before running"
     @echo ""
     @echo "=== Status & Monitoring ==="
     @echo "  status                  Display comprehensive deployment status (containers, health, database)"
@@ -37,7 +37,7 @@ help:
     @echo "  db-status               Verify database connectivity for the wiki"
     @echo ""
     @echo "=== System Services ==="
-    @echo "  sitemap-production            Setup production sitemap generation as systemd timer"
+    @echo "  sitemap-production      Setup production sitemap generation as systemd timer"
     @echo "                          \033[43m\033[30mPrivileged\033[0m: Installs systemd service files"
     @echo ""
     @echo "  sitemap-staging         Setup staging sitemap generation as systemd timer"

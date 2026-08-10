@@ -1,0 +1,14 @@
+name: production-wiki
+
+services:
+  nginx:
+    networks: [wiki-network, proxy]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+networks:
+  proxy:
+    external: true

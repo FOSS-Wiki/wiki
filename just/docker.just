@@ -3,7 +3,7 @@ start:
     #!/usr/bin/env bash
     set -euo pipefail
     JUSTFILE_DIR="{{justfile_directory()}}"
-    just _verify-file compose.yaml
+    just _verify-file .env
 
     cd "$JUSTFILE_DIR" && docker compose up -d --build
 
@@ -12,7 +12,6 @@ stop:
     #!/usr/bin/env bash
     set -euo pipefail
     JUSTFILE_DIR="{{justfile_directory()}}"
-    just _verify-file compose.yaml
     just _check-containers
 
     cd "$JUSTFILE_DIR" && docker compose down
@@ -21,7 +20,6 @@ stop:
 restart:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _verify-file compose.yaml
     just _check-containers
 
     echo "Stopping wiki containers..."
@@ -33,7 +31,6 @@ restart:
 clean-restart:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _verify-file compose.yaml
     just _check-containers
 
     echo "Stopping wiki containers and removing cache volumes..."
@@ -46,19 +43,17 @@ clean-stop:
     #!/usr/bin/env bash
     set -euo pipefail
     JUSTFILE_DIR="{{justfile_directory()}}"
-    just _verify-file compose.yaml
     just _check-containers
 
     cd "$JUSTFILE_DIR" && docker compose down -v
 
-# Pull latest code, updates compose.yaml from template, and restarts wiki containers
+# Pull latest code and restart wiki containers
 update:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _destructive-warning "This will pull the latest code and replace your compose.yaml, check the changelog before proceeding."
+    just _verify-file .env
+    just _destructive-warning "This will pull the latest code, check the changelog before proceeding."
     just _check-sudo-dir
-    just _verify-file compose.yaml
-    ENV=$(just _detect-env)
 
     # Stop if containers are running
     if just _containers-running ; then
@@ -70,9 +65,6 @@ update:
     echo "Pulling latest code from git..."
     git pull
 
-    # Copy environment-specific compose template
-    echo "Updating compose.yaml for environment: $ENV"
-    just _copy-file compose.${ENV}.yaml.example compose.yaml
     echo "Resetting permissions"
     just fix-perms
     echo "Restarting wiki containers..."

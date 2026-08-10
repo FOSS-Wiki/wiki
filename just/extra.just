@@ -5,10 +5,6 @@ status:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    echo "Verifying compose.yaml..."
-    just _verify-file compose.yaml
-    echo "compose.yaml exists."
-
     echo "Detecting environment..."
     ENV=$(just _detect-env)
     echo "Environment: $ENV"
@@ -30,7 +26,6 @@ status:
 health:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _verify-file compose.yaml
     just _check-containers
 
     echo "Checking container health..."
@@ -56,7 +51,6 @@ health:
 db-status:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _verify-file compose.yaml
     just _check-containers
     ENV=$(just _detect-env)
 
@@ -131,7 +125,6 @@ sitemap-staging:
 startup-tasks:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _verify-file compose.yaml
     just _check-containers
     just _check-sudo
     ENV=$(just _detect-env)
@@ -157,7 +150,7 @@ startup-tasks:
 
     echo "Startup tasks complete!"
 
-# Fix directory and file permissions (root:admin 770, .env 774)
+# Fix directory and file permissions (root:admin 770, .env 774, nginx/tor.html 774)
 fix-perms:
     #!/usr/bin/env bash
     set -euo pipefail

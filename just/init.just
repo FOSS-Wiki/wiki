@@ -4,44 +4,47 @@
 production-files:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _destructive-warning "This will override your compose.yaml and .env files if they exist. Please back them up if needed."
+    just _destructive-warning "This will override your .env file if it exists. Please back it up if needed."
 
     echo "Setting up production environment files..."
-    just _copy-file compose.production.yaml.example compose.yaml
     just _copy-file .env.example .env
+    echo "# DO NOT EDIT THIS VARIABLE" >> .env
+    echo "COMPOSE_FILE=compose.yaml:compose.production.yaml" >> .env
     just sitemap-production
-    echo "Created .env from .env.example and compose.yaml from compose.production.yaml.example. Please review and modify as needed."
+    echo "Created .env from .env.example, please ensure .env is configured correctly."
 
 # Setup staging environment files and configure sitemap service
 staging-files:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _destructive-warning "This will override your compose.yaml and .env files if they exist. Please back them up if needed."
+    just _destructive-warning "This will override your .env file if it exists. Please back it up if needed."
 
     echo "Setting up staging environment files..."
-    just _copy-file compose.staging.yaml.example compose.yaml
-    just _copy-file .env.example .env
+    just _copy-file .env.staging.example .env
+    echo "# DO NOT EDIT THIS VARIABLE" >> .env
+    echo "COMPOSE_FILE=compose.yaml:compose.staging.yaml" >> .env
     just sitemap-staging
-    echo "Created .env from .env.example and compose.yaml from compose.staging.yaml.example. Please review and modify as needed."
+    echo "Created .env from .env.example, please ensure .env is configured correctly."
 
 # Setup local development environment files
 local-files:
     #!/usr/bin/env bash
     set -euo pipefail
-    just _destructive-warning "This will override your compose.yaml and .env files if they exist. Please back them up if needed."
+    just _destructive-warning "This will override your .env file if it exists. Please back it up if needed."
 
     echo "Setting up local development environment files..."
-    just _copy-file compose.local.yaml.example compose.yaml
     just _copy-file .env.local.example .env
-    echo "Created .env from .env.local.example and compose.yaml from compose.local.yaml.example. Please review and modify as needed."
+    echo "# DO NOT EDIT THIS VARIABLE" >> .env
+    echo "COMPOSE_FILE=compose.yaml:compose.local.yaml" >> .env
+    echo "Created .env from .env.local.example, please ensure .env is configured correctly."
 
 # Initialize MediaWiki database and create admin user
 mediawiki-init:
     #!/usr/bin/env bash
     set -euo pipefail
     just _destructive-warning "This will reset Mediawiki and your database if already initialized. Only run this on new installs of Mediawiki."
+    just _destructive-warning "Are you sure you want to do this? This will reset your entire MediaWiki installation and database."
     just _verify-file .env
-    just _verify-file compose.yaml
     just _check-containers
     ENV=$(just _detect-env)
 
@@ -71,4 +74,3 @@ mediawiki-init:
 
     # Run database schema updates
     docker compose exec mediawiki php /var/www/wiki/mediawiki/maintenance/update.php --quick
-

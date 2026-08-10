@@ -1,6 +1,5 @@
 .env
 composer.lock
-compose.yaml
 backups/
 database/
 images/

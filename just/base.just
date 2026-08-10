@@ -11,27 +11,29 @@ _verify-file file:
         exit 1
     fi
 
-# Detect the environment (local/staging/production) from compose.yaml name field
+# Detect the environment (local/staging/production) from the filename
 _detect-env:
     #!/usr/bin/env bash
     set -euo pipefail
     JUSTFILE_DIR="{{justfile_directory()}}"
-    just _verify-file compose.yaml >/dev/null 2>&1
+    compose_file=$(grep -m 1 "^COMPOSE_FILE=" "$JUSTFILE_DIR/.env" | cut -d'=' -f2- | tr -d ' "')
 
-    # Extract name field from compose.yaml
-    name=$(grep -m 1 "^name:" "$JUSTFILE_DIR/compose.yaml" | cut -d':' -f2 | tr -d ' ')
+    IFS=':' read -ra FILES <<< "$compose_file"
+    env=""
+    for f in "${FILES[@]}"; do
+        case "$f" in
+            compose.production.yaml) env="production" ;;
+            compose.staging.yaml)    env="staging" ;;
+            compose.local.yaml)      env="local" ;;
+        esac
+    done
 
-    # Match name pattern to determine environment
-    if [[ "$name" == *"local-wiki"* ]]; then
-        echo "local"
-    elif [[ "$name" == *"staging-wiki"* ]]; then
-        echo "staging"
-    elif [[ "$name" == *"production-wiki"* ]]; then
-        echo "production"
-    else
-        echo -e "\n\033[1;37m\033[41m ERROR \033[0m \033[1;31mCould not detect environment from compose.yaml\033[0m\n"
+    if [ -z "$env" ]; then
+        echo -e "\n\033[1;37m\033[41m ERROR \033[0m \033[1;31mCould not detect environment from COMPOSE_FILE in .env\033[0m\n"
         exit 1
     fi
+
+    echo "$env"
 
 # Check if containers for the detected environment are running
 _check-containers:
