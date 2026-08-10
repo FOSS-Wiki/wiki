@@ -1,7 +1,6 @@
 {
     "files.associations": {
-        "*.yaml.*": "yaml",
-        ".env*": "env",
+        ".env.local.example": "env",
         "*.just": "just"
     }
 }
