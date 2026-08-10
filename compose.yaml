@@ -74,7 +74,7 @@ services:
       - "6379"
 
   opensearch:
-    image: ${OPENSEARCH_IMAGE}
+    image: docker-registry.wikimedia.org/repos/search-platform/cirrussearch-opensearch-image:v1.3.20-12
     container_name: ${STACK_NAME}-opensearch
     restart: unless-stopped
     environment:

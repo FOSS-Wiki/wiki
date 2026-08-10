@@ -9,8 +9,9 @@ production-files:
     echo "Setting up production environment files..."
     just _copy-file .env.example .env
     echo "" >> .env
-    echo "# DO NOT EDIT THIS VARIABLE" >> .env
+    echo "# DO NOT EDIT THESE VARIABLES" >> .env
     echo "COMPOSE_FILE=compose.yaml:compose.production.yaml" >> .env
+    echo "STACK_NAME=production-wiki" >> .env
     just sitemap-production
     echo "Created .env from .env.example, please ensure .env is configured correctly."
 
@@ -23,8 +24,9 @@ staging-files:
     echo "Setting up staging environment files..."
     just _copy-file .env.example .env
     echo "" >> .env
-    echo "# DO NOT EDIT THIS VARIABLE" >> .env
+    echo "# DO NOT EDIT THESE VARIABLES" >> .env
     echo "COMPOSE_FILE=compose.yaml:compose.staging.yaml" >> .env
+    echo "STACK_NAME=staging-wiki" >> .env
     just sitemap-staging
     echo "Created .env from .env.example, please ensure .env is configured correctly."
 
@@ -37,8 +39,9 @@ local-files:
     echo "Setting up local development environment files..."
     just _copy-file .env.local.example .env
     echo "" >> .env
-    echo "# DO NOT EDIT THIS VARIABLE" >> .env
+    echo "# DO NOT EDIT THESE VARIABLES" >> .env
     echo "COMPOSE_FILE=compose.yaml:compose.local.yaml" >> .env
+    echo "STACK_NAME=local-wiki" >> .env
     echo "Created .env from .env.local.example, please ensure .env is configured correctly."
 
 # Initialize MediaWiki database and create admin user
