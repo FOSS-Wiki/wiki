@@ -8,6 +8,7 @@ production-files:
 
     echo "Setting up production environment files..."
     just _copy-file .env.example .env
+    echo "" >> .env
     echo "# DO NOT EDIT THIS VARIABLE" >> .env
     echo "COMPOSE_FILE=compose.yaml:compose.production.yaml" >> .env
     just sitemap-production
@@ -20,7 +21,8 @@ staging-files:
     just _destructive-warning "This will override your .env file if it exists. Please back it up if needed."
 
     echo "Setting up staging environment files..."
-    just _copy-file .env.staging.example .env
+    just _copy-file .env.example .env
+    echo "" >> .env
     echo "# DO NOT EDIT THIS VARIABLE" >> .env
     echo "COMPOSE_FILE=compose.yaml:compose.staging.yaml" >> .env
     just sitemap-staging
@@ -34,6 +36,7 @@ local-files:
 
     echo "Setting up local development environment files..."
     just _copy-file .env.local.example .env
+    echo "" >> .env
     echo "# DO NOT EDIT THIS VARIABLE" >> .env
     echo "COMPOSE_FILE=compose.yaml:compose.local.yaml" >> .env
     echo "Created .env from .env.local.example, please ensure .env is configured correctly."

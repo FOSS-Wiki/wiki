@@ -1,5 +1,5 @@
 [Unit]
-Description=Generate foss.wiki Sitemap
+Description=Generate foss.wiki Sitemap (Production)
 After=docker.service
 Requires=docker.service
 

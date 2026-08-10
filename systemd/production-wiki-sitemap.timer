@@ -1,6 +1,6 @@
 [Unit]
 Description=Run sitemap generator daily at 6:00 AM
-Requires=wiki-sitemap.service
+Requires=production-wiki-sitemap.service
 
 [Timer]
 OnCalendar=*-*-* 06:00:00

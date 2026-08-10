@@ -90,15 +90,15 @@ sitemap-production:
     just _check-sudo
 
     echo "Installing production systemd service files..."
-    sudo cp systemd/wiki-sitemap.service /etc/systemd/system/
-    sudo cp systemd/wiki-sitemap.timer /etc/systemd/system/
+    sudo cp systemd/production-wiki-sitemap.service /etc/systemd/system/
+    sudo cp systemd/production-wiki-sitemap.timer /etc/systemd/system/
 
     echo "Reloading systemd daemon..."
     sudo systemctl daemon-reload
 
     echo "Enabling and starting production sitemap timer..."
-    sudo systemctl enable wiki-sitemap.timer
-    sudo systemctl start wiki-sitemap.timer
+    sudo systemctl enable production-wiki-sitemap.timer
+    sudo systemctl start production-wiki-sitemap.timer
 
     echo "Production sitemap timer setup complete!"
 
@@ -138,8 +138,8 @@ startup-tasks:
         sudo systemctl start staging-wiki-sitemap.timer
         sudo systemctl start staging-wiki-sitemap.service
     else
-        sudo systemctl start wiki-sitemap.timer
-        sudo systemctl start wiki-sitemap.service
+        sudo systemctl start production-wiki-sitemap.timer
+        sudo systemctl start production-wiki-sitemap.service
     fi
 
     echo "Updating OpenSearch index config..."
