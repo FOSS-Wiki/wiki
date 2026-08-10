@@ -7,7 +7,8 @@ services:
         condition: service_healthy
 
   nginx:
-    ports: ['3000:80']
+    ports:
+      - "3000:80"
 
   mariadb:
     image: mariadb:10.11
@@ -17,8 +18,10 @@ services:
       MARIADB_DATABASE: ${MARIADB_NAME}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
-    volumes: [./database:/var/lib/mysql]
-    networks: [wiki-network]
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      - wiki-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
@@ -26,7 +29,8 @@ services:
       timeout: 10s
       start_period: 60s
       retries: 3
-    expose: ['3306']
+    expose:
+      - "3306"
 
   minio:
     image: minio/minio:latest
@@ -34,8 +38,10 @@ services:
     environment:
       MINIO_ROOT_USER: ${MINIO_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
-    volumes: [./images:/data]
-    networks: [wiki-network]
+    volumes:
+      - ./images:/data
+    networks:
+      - wiki-network
     command: server /data
     restart: unless-stopped
     healthcheck:
@@ -44,4 +50,5 @@ services:
       timeout: 10s
       start_period: 30s
       retries: 3
-    expose: ['9000']
+    expose:
+      - "9000"

@@ -2,7 +2,9 @@ name: staging-wiki
 
 services:
   nginx:
-    networks: [wiki-network, proxy]
+    networks:
+      - wiki-network
+      - proxy
     logging:
       driver: json-file
       options:

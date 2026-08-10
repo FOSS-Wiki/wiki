@@ -15,7 +15,8 @@ services:
     volumes:
       - wiki-webroot:/var/www/wiki
       - .env:/var/www/wiki/.env:ro
-    networks: [wiki-network]
+    networks:
+      - wiki-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "php-fpm", "-t"]
@@ -23,7 +24,8 @@ services:
       timeout: 10s
       start_period: 60s
       retries: 3
-    expose: ['9000']
+    expose:
+      - "9000"
 
   nginx:
     image: nginx:stable-alpine
@@ -41,7 +43,8 @@ services:
       - ./nginx/403.html:/var/www/errors/403.html:ro
       - ./nginx/404.html:/var/www/errors/404.html:ro
       - /var/log/nginx/wiki:/var/log/nginx
-    networks: [wiki-network]
+    networks:
+      - wiki-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
@@ -49,13 +52,16 @@ services:
       timeout: 10s
       start_period: 30s
       retries: 3
-    expose: ['80']
+    expose:
+      - "80"
 
   valkey:
     image: valkey/valkey:alpine
     container_name: ${STACK_NAME}-valkey
-    volumes: [valkey-data:/data]
-    networks: [wiki-network]
+    volumes:
+      - valkey-data:/data
+    networks:
+      - wiki-network
     command: valkey-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
     restart: unless-stopped
     healthcheck:
@@ -64,7 +70,8 @@ services:
       timeout: 10s
       start_period: 30s
       retries: 3
-    expose: ['6379']
+    expose:
+      - "6379"
 
   opensearch:
     image: ${OPENSEARCH_IMAGE}
@@ -77,22 +84,31 @@ services:
       - bootstrap.memory_lock=true
       - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
     ulimits:
-      memlock: {soft: -1, hard: -1}
-      nofile: {soft: 65536, hard: 65536}
-    volumes: [./opensearch:/usr/share/opensearch/data${OPENSEARCH_VOL_FLAG:-}]
-    networks: [wiki-network]
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - "./opensearch:/usr/share/opensearch/data${OPENSEARCH_VOL_FLAG:-}"
+    networks:
+      - wiki-network
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 30s
-    expose: ['9200']
+    expose:
+      - "9200"
 
 networks:
   wiki-network:
     driver: bridge
 
 volumes:
-  wiki-webroot: {driver: local}
-  valkey-data: {driver: local}
+  wiki-webroot:
+    driver: local
+  valkey-data:
+    driver: local
