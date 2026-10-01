@@ -55,23 +55,23 @@ Variables marked with a `*` are required. The function they provide may be optio
 
 | Variable | Description      | Example |
 |----------|------------------|---------|
-| `MEDIAWIKI_MAJOR_VERSION` * | The major version number of MediaWiki you want to use | `1.44` |
-| `MEDIAWIKI_VERSION` * | The full version number of MediaWiki you want to use | `1.44.2` |
-| `MEDIAWIKI_BRANCH` * | The branch of MediaWiki you want to use for extensions | `REL1_44` |
-| `CITIZEN_VERSION` * | The version of the Citizen skin you want to use | `3.11.0` |
+| `MEDIAWIKI_MAJOR_VERSION` * | The major version number of MediaWiki you want to use | `1.46` |
+| `MEDIAWIKI_VERSION` * | The full version number of MediaWiki you want to use | `1.46` |
+| `MEDIAWIKI_BRANCH` * | The branch of MediaWiki you want to use for extensions | `REL1_46` |
+| `CITIZEN_VERSION` * | The version of the Citizen skin you want to use | `3.23.0` |
 | `UPGRADE_KEY` * | The key to access the upgrade page. Must be a 16-character alphanumeric string | *Generate using `openssl rand -hex 8`* |
 | `SECRET_KEY` * | The key used for various security-related functions within MediaWiki. Must be a 64-character alphanumeric string | *Generate using `openssl rand -hex 32`* |
-| `DB_SERVER` * | The IP address or hostname of your database server | `db.example.com` or `192.168.0.0` |
+| `DB_SERVER` * | The IP address or hostname of your database server | `db.domain.tld` or `192.168.0.0` |
 | `DB_NAME` * | The name of the database used by MediaWiki | `mediawiki` |
 | `DB_USER` * | The username used by MediaWiki to connect to the database | `mediawiki` |
 | `DB_PASSWORD` * | The password used by MediaWiki to connect to the database | `0123456789abcdef` |
 | `SMTP_HOST` | The SMTP server host address | `smtp.gmail.com` |
-| `SMTP_DOMAIN` | The SMTP domain you wish to use for sending emails | `example.com` |
+| `SMTP_DOMAIN` | The SMTP domain you wish to use for sending emails | `domain.tld` |
 | `SMTP_PORT` | The SMTP server port (usually 587 for TLS or 465 for SSL) | `587` |
-| `SMTP_USERNAME` | The SMTP authentication username | `noreply@example.com` |
+| `SMTP_USERNAME` | The SMTP authentication username | `noreply@domain.tld` |
 | `SMTP_PASSWORD` | The password for the SMTP username | `0123456789abcdef` |
-| `EMERGENCY_EMAIL` | The email address to send emergency notifications to | `admin@example.com` |
-| `SMTP_SENDER` | The email address to send SMTP emails from for password reset emails | `noreply@example.com` |
+| `EMERGENCY_EMAIL` | The email address to send emergency notifications to | `admin@domain.tld` |
+| `SMTP_SENDER` | The email address to send SMTP emails from for password reset emails | `noreply@edomain.tld` |
 | `TURNSTILE_SITE_KEY` * | The site key for Cloudflare Turnstile | `0123456789abcdef` |
 | `TURNSTILE_SECRET_KEY` * | The secret key for Cloudflare Turnstile | `0123456789abcdef` |
 | `OPENID_CLIENT_ID` | The client ID for OpenID authentication from Okta | `0123456789abcdef` |
@@ -82,9 +82,9 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `S3_BUCKET_NAME` * | The S3 bucket name | `wiki-images` |
 | `S3_BUCKET_DOMAIN` * | The S3 bucket domain | `wiki-images.domain.tld` |
 | `SITENAME` * | The Full Wiki Name | `Example Wiki` |
-| `WG_SERVER` * | The full URL the wiki will be accessible from, including the protocol | `https://wiki.example.com` |
+| `WG_SERVER` * | The full URL the wiki will be accessible from, including the protocol | `https://wiki.domain.tld` |
 | `DISCORD_WEBHOOK_URL` * | Discord Webhook URL | `https://discord.com/api/webhooks/0123456789/abcdef` |
-| `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge | `0123456789abcdef` |
+| `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge, the token must have Permissions: Zone → Cache Purge → Purge for your Zone | `0123456789abcdef` |
 | `CLOUDFLARE_ZONE_ID` * | Cloudflare Zone ID for CloudflarePurge | `0123456789abcdef` |
 
 Below are the extra options for **LOCAL** setups.
@@ -99,57 +99,12 @@ Below are the extra options for **LOCAL** setups.
 
 # Notes for System Administrators
 
-- Please DO NOT modify your generated `compose.yaml`, it will be overridden on any update and may cause unexpected behavior. The **only two supported exceptions** is changing the NGINX external port from `3000` or if you use an external database, cache or S3 provider where you can comment out the relevant service lines, but please be aware you will need to manage those services yourself AND it will still be overridden on updates.
+- We do not suggest editing the compose files, they will be replaced on updates. If you update using our Just scripts you will be warned of this on an update.
 - If possible avoid running `docker compose` commands directly, instead use the provided `just` commands to ensure proper operation. These are designed to handle checks and ensure smooth operation of the wiki deployment.
 - Any changes to files in the `wiki/` directory will require a clean restart to take effect. Use `just clean-restart` to perform this action safely.
 - To fully utilise the image you will require a host OS which utilises Systemd as its init system. You can still run without systemd but certain features will not be available.
 
 ## Project Overview
-
-### Directory Diagram
-
-```mermaid
-graph LR
-    ComposerJson["📦 composer.json"]
-    ComposerLocal["📦 composer.local.json"]
-    DefaultConf["⚙️ default.conf"]
-    ExtensionsJson["🔌 extensions.json"]
-    InstallPy["🐍 install_extensions.py"]
-    LocalSettings["⚙️ LocalSettings.php"]
-    MediawikiConf["⚙️ mediawiki.conf"]
-    PhpIni["⚙️ php.ini"]
-    Robots["🤖 robots.txt"]
-    Configs["📁 configs/"]
-    Wiki["📁 wiki/"]
-
-    ComposerJson --- Wiki
-    ComposerLocal --- Wiki
-    DefaultConf --- Wiki
-    ExtensionsJson --- Wiki
-    InstallPy --- Wiki
-    LocalSettings --- Wiki
-    MediawikiConf --- Wiki
-    PhpIni --- Wiki
-    Robots --- Wiki
-    Configs --- Wiki
-
-    Root["📖 wiki"]
-
-    Wiki --- Root
-
-    Root --- Dockerfile["🐳 Dockerfile"]
-    Root --- Justfile["⚙️ Justfile"]
-    Root --- ComposeExample["📄 compose.yaml.example"]
-    Root --- EnvExample["📄 .env.example"]
-    Root --- Just["📁 just/"]
-    Root --- Systemd["📁 systemd/"]
-
-    style Root fill:#e1f5ff
-    style Just fill:#e8f5e9
-    style Systemd fill:#f3e5f5
-    style Wiki fill:#fff9c4
-    style Configs fill:#ffebee
-```
 
 ### Directory Map
 
@@ -158,50 +113,52 @@ graph LR
 | `wiki/` | MediaWiki and NGINX application configurations |
 | `wiki/composer.json` | PHP dependencies for MediaWiki extensions |
 | `wiki/composer.local.json` | Local PHP dependency overrides for environment setup |
-| `wiki/default.conf` | Not important, just exists because of NGINX quirk |
 | `wiki/extensions.json` | MediaWiki extension manifest |
 | `wiki/install_extensions.py` | Python script for extension installation |
 | `wiki/LocalSettings.php` | MediaWiki configuration file which loads config modules in `wiki/configs/` |
-| `wiki/mediawiki.conf` | MediaWiki NGINX configurations |
 | `wiki/php.ini` | PHP runtime configuration |
 | `wiki/robots.txt` | Crawler instructions |
 | `wiki/.well-known/security.txt` | Security reporting instructions |
+| `wiki/security-at-fosswiki_public.asc` | FOSS Wiki PGP public key |
 | `wiki/configs/` | Numbered configuration modules (00-99) ensuring correct load order |
-| `compose.yaml.example` | Docker Compose configuration template (environment specific versions available) |
-| `env.example` | Environment variables template (environment specific versions available) |
+| `wiki/.well-known` | Symlinked files for RFC compliance |
+| `compose.yaml` | Docker Compose configuration template (environment specific extensions available) |
+| `env.example` | Environment variables template (`.env.local.example` available for local configs)  |
 | `Dockerfile` | MediaWiki container build configuration |
 | `Justfile` | Main task runner entry point for Just scripts in `just/` |
 | `just/` | Modular task automation recipes for operations and setup |
 | `systemd/` | Automated maintenance tasks service and timer files |
+| `nginx/` | NGINX configuration files and error code pages |
 
 # Just Commands
 Before running any `just` commands, ensure you have read the `just help` command for important information and the dangers of certain commands.
+
+To see all commands and their descriptions just type `just` when in the wiki directory and you will see all the commands listed out!
 
 | Command | Description |
 |---------|-------------|
 | `clean-restart` | Restart all wiki containers and removes cache volumes |
 | `clean-stop` | Stop all wiki containers and removes cache volumes |
 | `db-status` | Verify database connectivity for the wiki |
-| `default` | Show available recipes |
+| `fix-perms` | Fix directory and file permissions (root:admin 770, .env 774) |
 | `health` | Check health status of all wiki containers |
 | `help` | Display comprehensive help for all available commands |
 | `local-files` | Setup local development environment files |
 | `mediawiki-init` | Initialize MediaWiki database and create admin user |
 | `mediawiki-schema-update` | Update MediaWiki database schema to latest version |
+| `opensearch-reindex` | Reindex OpenSearch in MediaWiki |
+| `opensearch-update` | Update OpenSearch index configuration in MediaWiki |
 | `production-files` | Setup production environment files and configure sitemap service |
 | `restart` | Restart all wiki containers |
+| `run-jobs` | Run pending jobs in MediaWiki |
 | `sitemap-production` | Setup production sitemap generation as a systemd timer service |
 | `sitemap-staging` | Setup staging sitemap generation as a systemd timer service |
 | `staging-files` | Setup staging environment files and configure sitemap service |
 | `start` | Start all wiki containers |
+| `startup-tasks` | Resetup configurations and OpenSearch index a clean stop or restart |
 | `status` | Display comprehensive status of wiki deployment including containers, health, and database |
 | `stop` | Stop all running wiki containers |
 | `update` | Pull latest code, updates compose.yaml from template, and restarts wiki containers |
-| `fix-perms` | Fix directory and file permissions (root:admin 770, .env 774) |
-| `startup-tasks` | Resetup configurations and OpenSearch index a clean stop or restart |
-| `run-jobs` | Run pending jobs in MediaWiki |
-| `opensearch-reindex` | Reindex OpenSearch in MediaWiki |
-| `opensearch-update` | Update OpenSearch index configuration in MediaWiki |
 
 # License
 
