@@ -84,7 +84,7 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `SITENAME` * | The Full Wiki Name | `Example Wiki` |
 | `WG_SERVER` * | The full URL the wiki will be accessible from, including the protocol | `https://wiki.domain.tld` |
 | `DISCORD_WEBHOOK_URL` * | Discord Webhook URL | `https://discord.com/api/webhooks/0123456789/abcdef` |
-| `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge, the token must have Permissions: Zone → Cache Purge → Purge for your Zone | `0123456789abcdef` |
+| `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge, the token must have Permissions: `Zone → Cache Purge → Purge` for your Zone | `0123456789abcdef` |
 | `CLOUDFLARE_ZONE_ID` * | Cloudflare Zone ID for CloudflarePurge | `0123456789abcdef` |
 
 Below are the extra options for **LOCAL** setups.
