@@ -164,7 +164,7 @@ To see all commands and their descriptions just type `just` when in the wiki dir
 
 Copyright 2026 FOSS Wiki and Contributors
 
-Primary maintainer: Zoe (atmois) <info@atmois.com>
+Primary maintainer: atmois <info@atmois.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this project except in compliance with the License.
