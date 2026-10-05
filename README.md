@@ -65,13 +65,13 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `DB_NAME` * | The name of the database used by MediaWiki | `mediawiki` |
 | `DB_USER` * | The username used by MediaWiki to connect to the database | `mediawiki` |
 | `DB_PASSWORD` * | The password used by MediaWiki to connect to the database | `0123456789abcdef` |
-| `SMTP_HOST` | The SMTP server host address | `smtp.gmail.com` |
+| `SMTP_HOST` | The SMTP server host address | `smtp.domain.tld` |
 | `SMTP_DOMAIN` | The SMTP domain you wish to use for sending emails | `domain.tld` |
 | `SMTP_PORT` | The SMTP server port (usually 587 for TLS or 465 for SSL) | `587` |
 | `SMTP_USERNAME` | The SMTP authentication username | `noreply@domain.tld` |
 | `SMTP_PASSWORD` | The password for the SMTP username | `0123456789abcdef` |
 | `EMERGENCY_EMAIL` | The email address to send emergency notifications to | `admin@domain.tld` |
-| `SMTP_SENDER` | The email address to send SMTP emails from for password reset emails | `noreply@edomain.tld` |
+| `SMTP_SENDER` | The email address to send SMTP emails from for password reset emails | `noreply@domain.tld` |
 | `TURNSTILE_SITE_KEY` * | The site key for Cloudflare Turnstile | `0123456789abcdef` |
 | `TURNSTILE_SECRET_KEY` * | The secret key for Cloudflare Turnstile | `0123456789abcdef` |
 | `OPENID_CLIENT_ID` | The client ID for OpenID authentication from Okta | `0123456789abcdef` |
