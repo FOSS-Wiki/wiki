@@ -42,6 +42,13 @@ $wgFooterIcons = [
             "alt" => "Powered by MediaWiki",
         ]
     ],
+    "supportedby" => [
+        "foss" => [
+            "src" => "https://images.foss.wiki/fyrastack.svg",
+            "url" => "https://fyrastack.com",
+            "alt" => "Supported by Fyra Stack",
+        ]
+    ]
 ];
 
 //######################################################// CC License
