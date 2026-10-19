@@ -30,9 +30,8 @@ $wgUseInstantCommons = true;
 
 // https://www.mediawiki.org/wiki/Manual:$wgFileExtensions
 $wgFileExtensions = array_merge(
-    $wgFileExtensions = [ 'bmp', 'gif', 'jpeg','jpg', 'pdf', 'png', 'tiff', 'svg', 'webp' ]
+    $wgFileExtensions = [ 'gif', 'jpeg', 'jpg', 'pdf', 'png', 'svg', 'webp' ]
 );
-
 
 // https://www.mediawiki.org/wiki/Manual:$wgTrustedMediaFormats
 $wgTrustedMediaFormats = [
