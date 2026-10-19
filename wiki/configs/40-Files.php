@@ -30,7 +30,7 @@ $wgUseInstantCommons = true;
 
 // https://www.mediawiki.org/wiki/Manual:$wgFileExtensions
 $wgFileExtensions = array_merge(
-    $wgFileExtensions = [ 'png', 'gif', 'jpg', 'jpeg', 'pdf', 'tiff', 'bmp', 'svg']
+    $wgFileExtensions = [ 'bmp', 'gif', 'jpeg','jpg', 'pdf', 'png', 'tiff', 'svg', 'webp' ]
 );
 
 
