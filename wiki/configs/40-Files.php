@@ -55,3 +55,6 @@ $wgMaxShellMemory = 524288;
 
 // https://www.mediawiki.org/wiki/Manual:$wgNativeImageLazyLoading
 $wgNativeImageLazyLoading = false;
+
+// https://www.mediawiki.org/wiki/Manual:$wgSVGNativeRendering
+$wgSVGNativeRendering = false;
