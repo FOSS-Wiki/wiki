@@ -29,7 +29,10 @@ $wgHashedUploadDirectory = false;
 $wgUseInstantCommons = true;
 
 // https://www.mediawiki.org/wiki/Manual:$wgFileExtensions
-$wgFileExtensions = [ 'png', 'gif', 'jpg', 'jpeg', 'pdf', 'tiff', 'bmp', 'svg'];
+$wgFileExtensions = array_merge(
+    $wgFileExtensions = [ 'png', 'gif', 'jpg', 'jpeg', 'pdf', 'tiff', 'bmp', 'svg']
+);
+
 
 // https://www.mediawiki.org/wiki/Manual:$wgTrustedMediaFormats
 $wgTrustedMediaFormats = [
