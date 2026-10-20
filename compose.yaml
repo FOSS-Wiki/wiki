@@ -41,7 +41,7 @@ services:
     container_name: ${STACK_NAME}-nginx
     depends_on:
       mediawiki:
-        condition: service_healthy
+        condition: service_started
     environment:
       NGINX_SERVER_NAME: ${SITENAME}
     volumes:
@@ -88,8 +88,8 @@ services:
     restart: unless-stopped
     environment:
       - discovery.type=single-node
-      - cluster.name=mediwiki-cluster
-      - node.name=mediwiki-node
+      - cluster.name=mediawiki-cluster
+      - node.name=mediawiki-node
       - bootstrap.memory_lock=true
       - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
     ulimits:
@@ -106,9 +106,10 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
       interval: 30s
-      timeout: 10s
+      start_period: 60s
+      start_interval: 2s
+      timeout: 5s
       retries: 3
-      start_period: 30s
     expose:
       - "9200"
 
