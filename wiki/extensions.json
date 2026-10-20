@@ -6,6 +6,12 @@
     "post_install_commands": ["composer install --no-dev"]
   },
   {
+    "extension_name": "AWS",
+    "extension_url": "https://github.com/edwardspec/mediawiki-aws-s3",
+    "install_type": "git",
+    "git_branch": "master"
+  },
+  {
     "extension_name": "BulkBlock",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/BulkBlock",
     "install_type": "git"
@@ -20,6 +26,11 @@
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CirrusSearch",
     "install_type": "git",
     "post_install_commands": ["composer install --no-dev"]
+  },
+  {
+    "extension_name": "CloudflarePurge",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CloudflarePurge",
+    "install_type": "git"
   },
   {
     "extension_name": "CodeMirror",
@@ -54,8 +65,19 @@
     "install_type": "git"
   },
   {
+    "extension_name": "Elastica",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Elastica",
+    "install_type": "git",
+    "post_install_commands": ["composer install --no-dev"]
+  },
+  {
     "extension_name": "LastModified",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/LastModified",
+    "install_type": "git"
+  },
+  {
+    "extension_name": "NewSignupPage",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/NewSignupPage",
     "install_type": "git"
   },
   {
@@ -80,13 +102,14 @@
     "install_type": "git"
   },
   {
-    "extension_name": "SiteMetrics",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/SiteMetrics",
-    "install_type": "git"
+    "extension_name": "SimpleBatchUpload",
+    "extension_url": "https://github.com/ProfessionalWiki/SimpleBatchUpload",
+    "install_type": "composer",
+    "post_install_commands": ["php composer.phar update mediawiki/simple-batch-upload"]
   },
   {
-    "extension_name": "TemplateSandbox",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateSandbox",
+    "extension_name": "SiteMetrics",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/SiteMetrics",
     "install_type": "git"
   },
   {
@@ -96,8 +119,8 @@
     "git_branch": "main"
   },
   {
-    "extension_name": "UserMerge",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/UserMerge",
+    "extension_name": "TemplateSandbox",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateSandbox",
     "install_type": "git"
   },
   {
@@ -107,31 +130,8 @@
     "git_branch": "master"
   },
   {
-    "extension_name": "AWS",
-    "extension_url": "https://github.com/edwardspec/mediawiki-aws-s3",
-    "install_type": "git",
-    "git_branch": "master"
-  },
-  {
-    "extension_name": "SimpleBatchUpload",
-    "extension_url": "https://github.com/ProfessionalWiki/SimpleBatchUpload",
-    "install_type": "composer",
-    "post_install_commands": ["php composer.phar update mediawiki/simple-batch-upload"]
-  },
-  {
-    "extension_name": "Elastica",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Elastica",
-    "install_type": "git",
-    "post_install_commands": ["composer install --no-dev"]
-  },
-  {
-    "extension_name": "NewSignupPage",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/NewSignupPage",
-    "install_type": "git"
-  },
-  {
-    "extension_name": "CloudflarePurge",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CloudflarePurge",
+    "extension_name": "UserMerge",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/UserMerge",
     "install_type": "git"
   }
 ]
