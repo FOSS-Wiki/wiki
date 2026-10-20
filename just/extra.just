@@ -121,7 +121,7 @@ sitemap-staging:
 
     echo "Staging sitemap timer setup complete!"
 
-# Resetup after a clean stop or restart
+# Resetup all the wiki configurations
 startup-tasks:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -137,9 +137,11 @@ startup-tasks:
     elif [ "$ENV" = "staging" ]; then
         sudo systemctl start staging-wiki-sitemap.timer
         sudo systemctl start staging-wiki-sitemap.service
-    else
+    elif [ "$ENV" = "production" ]; then
         sudo systemctl start production-wiki-sitemap.timer
         sudo systemctl start production-wiki-sitemap.service
+    else
+        echo "Invalid ${ENV} detected."
     fi
 
     echo "Updating OpenSearch index config..."
