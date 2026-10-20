@@ -1,29 +1,29 @@
 [
   {
     "extension_name": "AntiSpoof",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-AntiSpoof",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/AntiSpoof",
     "install_type": "git",
     "post_install_commands": ["composer install --no-dev"]
   },
   {
     "extension_name": "BulkBlock",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-BulkBlock",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/BulkBlock",
     "install_type": "git"
   },
   {
     "extension_name": "Capiunto",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-Capiunto",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Capiunto",
     "install_type": "git"
   },
   {
     "extension_name": "CirrusSearch",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-CirrusSearch",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CirrusSearch",
     "install_type": "git",
     "post_install_commands": ["composer install --no-dev"]
   },
   {
     "extension_name": "CodeMirror",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-CodeMirror",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeMirror",
     "install_type": "git"
   },
   {
@@ -34,7 +34,7 @@
   },
   {
     "extension_name": "Description2",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-Description2",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Description2",
     "install_type": "git"
   },
   {
@@ -45,48 +45,48 @@
   },
   {
     "extension_name": "Drafts",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-Drafts",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Drafts",
     "install_type": "git"
   },
   {
     "extension_name": "Editcount",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-Editcount",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Editcount",
     "install_type": "git"
   },
   {
     "extension_name": "LastModified",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-LastModified",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/LastModified",
     "install_type": "git"
   },
   {
     "extension_name": "OAuth",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-OAuth",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/OAuth",
     "install_type": "git",
     "post_install_commands": ["composer install --no-dev"]
   },
   {
     "extension_name": "OpenGraphMeta",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-OpenGraphMeta",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/OpenGraphMeta",
     "install_type": "git"
   },
   {
     "extension_name": "OpenIDConnect",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-OpenIDConnect",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/OpenIDConnect",
     "install_type": "git"
   },
   {
     "extension_name": "PluggableAuth",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-PluggableAuth",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/PluggableAuth",
     "install_type": "git"
   },
   {
     "extension_name": "SiteMetrics",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-SiteMetrics",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/SiteMetrics",
     "install_type": "git"
   },
   {
     "extension_name": "TemplateSandbox",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateSandbox",
     "install_type": "git"
   },
   {
@@ -97,7 +97,7 @@
   },
   {
     "extension_name": "UserMerge",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-UserMerge",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/UserMerge",
     "install_type": "git"
   },
   {
@@ -120,18 +120,18 @@
   },
   {
     "extension_name": "Elastica",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-Elastica",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Elastica",
     "install_type": "git",
     "post_install_commands": ["composer install --no-dev"]
   },
   {
     "extension_name": "NewSignupPage",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-NewSignupPage",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/NewSignupPage",
     "install_type": "git"
   },
   {
     "extension_name": "CloudflarePurge",
-    "extension_url": "https://github.com/wikimedia/mediawiki-extensions-CloudflarePurge",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CloudflarePurge",
     "install_type": "git"
   }
 ]
