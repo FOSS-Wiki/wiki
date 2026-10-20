@@ -51,8 +51,7 @@ def main():
         print(f"Installing {extension_name}...")
 
         if install_type == 'git':
-            run(f"git clone \
-                --branch {git_branch} --single-branch --depth 1 {extension_url} {extension_name}")
+            run(f"git clone --branch {git_branch} --single-branch --depth 1 {extension_url} {extension_name}")
         elif install_type == 'composer':
             continue
         else:
