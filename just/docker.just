@@ -1,3 +1,13 @@
+# Build wiki images
+build:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    JUSTFILE_DIR="{{justfile_directory()}}"
+    just _verify-file .env
+
+    echo "Building wiki images..."
+    cd "$JUSTFILE_DIR" && docker compose build --pull
+
 # Start all wiki containers
 start:
     #!/usr/bin/env bash
@@ -5,7 +15,9 @@ start:
     JUSTFILE_DIR="{{justfile_directory()}}"
     just _verify-file .env
 
-    cd "$JUSTFILE_DIR" && docker compose up -d --build
+    just build
+
+    cd "$JUSTFILE_DIR" && docker compose up -d
 
 # Stop all running wiki containers
 stop:
@@ -41,13 +53,16 @@ update:
     echo "Pulling latest code from git..."
     git pull
 
-    echo "Building new images..."
-    docker compose build --pull
+    echo "Building the new images..."
+    just build
 
-    echo "Resetting permissions"
+    echo "Pulling updated images..."
+    docker compose pull --ignore-buildable
+
+    echo "Resetting permissions..."
     just fix-perms
 
-    echo "Recreating updated containers"
+    echo "Recreating updated containers..."
     docker compose up -d --remove-orphans
 
     # Ensures containers have started before running tasks
