@@ -32,6 +32,7 @@ mediawiki-schema-update:
     #!/usr/bin/env bash
     set -euo pipefail
     just _destructive-warning "This will update the MediaWiki database schema to the latest version. Ensure you have a backup before proceeding."
+    just _destructive-warning "Please ensure editing is disabled before running this to prevent potential corruption to the database."
     just _verify-file .env
     just _verify-file compose.yaml
     just _check-containers
