@@ -31,27 +31,31 @@ restart:
 update:
     #!/usr/bin/env bash
     set -euo pipefail
+    JUSTFILE_DIR="{{justfile_directory()}}"
     just _verify-file .env
     just _destructive-warning "This will pull the latest code, check the changelog before proceeding."
     just _check-sudo-dir
 
-    # Stop if containers are running
-    if just _containers-running ; then
-        echo "Stopping wiki containers..."
-        just clean-stop
-    fi
+    cd "$JUSTFILE_DIR"
 
-    # Pull updates
     echo "Pulling latest code from git..."
     git pull
 
+    echo "Building new images..."
+    docker compose build --pull
+
     echo "Resetting permissions"
     just fix-perms
-    echo "Restarting wiki containers..."
-    just start
-    echo "Applying startup tasks..."
 
-    # Wait for containers to be fully up before running startup tasks
-    sleep 30
+    echo "Recreating updated containers"
+    docker compose up -d --remove-orphans
+
+    # Ensures containers have started before running tasks
+    echo "Applying startup tasks..."
+    for i in {1..60}; do
+        if just _containers-running; then break; fi
+        sleep 2
+    done
+    sleep 5
     just startup-tasks
     echo "Update complete!"
