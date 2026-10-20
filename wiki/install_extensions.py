@@ -19,6 +19,7 @@ import sys
 MEDIAWIKI_BRANCH = os.environ.get('MEDIAWIKI_BRANCH')
 EXTENSIONS_JSON = '/tmp/extensions.json'
 EXTENSIONS_DIR = '/var/www/wiki/mediawiki/extensions'
+USER_AGENT = 'FOSSWikiBuildScript/0.0 (https://foss.wiki/FW:Contact; admin@foss.wiki)'
 
 def run(command):
     """
@@ -51,7 +52,7 @@ def main():
         print(f"Installing {extension_name}...")
 
         if install_type == 'git':
-            run(f"git clone --branch {git_branch} --single-branch --depth 1 {extension_url} {extension_name}")
+            run(f"git -c http.userAgent='{USER_AGENT}' clone --branch {git_branch} --single-branch --depth 1 {extension_url} {extension_name}")
         elif install_type == 'composer':
             continue
         else:
