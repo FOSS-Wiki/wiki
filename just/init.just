@@ -76,7 +76,7 @@ mediawiki-init:
     docker compose exec mediawiki php /var/www/wiki/mediawiki/maintenance/run.php installPreConfigured \
       --dbuser="${DB_USER}" --dbpass="${DB_PASSWORD}"
 
-    just clean-restart
+    just restart
 
     # Run database schema updates
     docker compose exec mediawiki php /var/www/wiki/mediawiki/maintenance/update.php --quick

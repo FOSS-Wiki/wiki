@@ -5,3 +5,6 @@ database/
 images/
 vendor/
 opensearch/
+
+overrides/*
+!overrides/README.md

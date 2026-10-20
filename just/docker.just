@@ -27,27 +27,7 @@ restart:
     echo "Starting wiki containers..."
     just start
 
-# Restart all wiki containers and removes cache volumes
-clean-restart:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    just _check-containers
-
-    echo "Stopping wiki containers and removing cache volumes..."
-    just clean-stop
-    echo "Starting wiki containers..."
-    just start
-
-# Stop all wiki containers and removes cache volumes
-clean-stop:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    JUSTFILE_DIR="{{justfile_directory()}}"
-    just _check-containers
-
-    cd "$JUSTFILE_DIR" && docker compose down -v
-
-# Pull latest code and restart wiki containers
+# Pull latest code, build while running, then swap containers
 update:
     #!/usr/bin/env bash
     set -euo pipefail

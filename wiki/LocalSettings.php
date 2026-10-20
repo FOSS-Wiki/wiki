@@ -22,3 +22,12 @@ sort($configFiles);
 foreach ($configFiles as $configFile) {
     include_once $configFile;
 }
+
+// Include run-time overrides
+foreach (glob('/var/www/wiki/overrides/*.php') ?: [] as $file) {
+    try {
+        include $file;
+    } catch (\Throwable $e) {
+        error_log(basename($file) . ' skipped: ' . $e->getMessage());
+    }
+}
