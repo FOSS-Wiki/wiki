@@ -169,3 +169,10 @@ $wgNewSignupPagePPURL = 'https://foss.wiki/FW:Privacy_policy';
 $wgCloudflarePurgeZoneID = $env('CLOUDFLARE_ZONE_ID');
 
 $wgCloudflarePurgeToken = $env('CLOUDFLARE_PURGE_TOKEN');
+
+//######################################################// OAuth
+// https://www.mediawiki.org/wiki/Extension:OAuth
+
+// Has to exist or else load.php breaks?
+$wgMWOAuthSharedUserIDs = true;
+$wgMWOAuthSharedUserSource = 'local';
