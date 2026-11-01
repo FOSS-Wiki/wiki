@@ -32,12 +32,12 @@ services:
     expose:
       - "3306"
 
-  minio:
-    image: minio/minio:latest
-    container_name: ${STACK_NAME}-minio
+  silo:
+    image: pgsty/silo:latest
+    container_name: ${STACK_NAME}-silo
     environment:
-      MINIO_ROOT_USER: ${MINIO_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
+      SILO_ROOT_USER: ${SILO_USER}
+      SILO_ROOT_PASSWORD: ${SILO_PASSWORD}
     volumes:
       - ./images:/data
     networks:
@@ -45,7 +45,7 @@ services:
     command: server /data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: ["CMD", "curl", "-f", "http://localhost:9000/silo/health/live"]
       interval: 30s
       timeout: 10s
       start_period: 30s

@@ -94,8 +94,8 @@ Below are the extra options for **LOCAL** setups.
 | `MARIADB_PASSWORD` * | The MariaDB root password. This needs to match `DB_PASSWORD` | `local-mariadb-password` |
 | `MARIADB_NAME` * | The MariaDB database name. This needs to match `DB_NAME` | `local-mariadb` |
 | `MARIADB_USER` * | The MariaDB username. This needs to match `DB_USER` | `local-mariadb-user` |
-| `MINIO_USER` * | The MinIO username. This needs to match `S3_ACCESS_KEY_ID` | `local-minio-user` |
-| `MINIO_PASSWORD` * | The MinIO password. This needs to match `S3_SECRET_ACCESS_KEY` | `local-minio-password` |
+| `SILO_USER` * | The Silo username. This needs to match `S3_ACCESS_KEY_ID` | `local-silo-user` |
+| `SILO_PASSWORD` * | The Silo password. This needs to match `S3_SECRET_ACCESS_KEY` | `local-silo-password` |
 
 # Notes for System Administrators
 
