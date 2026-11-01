@@ -15,8 +15,6 @@ start:
     JUSTFILE_DIR="{{justfile_directory()}}"
     just _verify-file .env
 
-    just build
-
     cd "$JUSTFILE_DIR" && docker compose up -d
 
 # Stop all running wiki containers
