@@ -18,6 +18,8 @@ Don't use an editor with auto-save in this directory. A half-written file may lo
 <?php
 
 // Runtime-only tweaks or overrides
+
+?>
 ```
 
 ## Maintenance Mode
@@ -26,6 +28,21 @@ Useful for database upgrades or other maintenance tasks. This will display a mai
 
 ```php
 <?php
-// 10-readonly.php
+
 $wgReadOnly = 'Maintenance in progress';
+
+?>
+```
+
+## Debug Settings
+
+```php
+<?php
+
+$wgShowExceptionDetails = true;
+$wgShowDBErrorBacktrace = true;
+error_reporting( -1 );
+ini_set( 'display_errors', 1 );
+
+?>
 ```
