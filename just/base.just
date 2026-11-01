@@ -116,6 +116,6 @@ _destructive-warning reason="":
 
 _containers-running:
     #!/usr/bin/env bash
-    set -euo p`ipefail
+    set -euo pipefail
     CONTAINER_COUNT=$(docker compose ps --format "{{{{.Name}}}}\t{{{{.Status}}}}" | wc -l)
     [ "$CONTAINER_COUNT" -gt 0 ]
