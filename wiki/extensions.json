@@ -55,6 +55,12 @@
     "git_branch": "main"
   },
   {
+    "extension_name": "DiscordEmbed",
+    "extension_url": "https://github.com/FOSS-Wiki/DiscordEmbed",
+    "install_type": "git",
+    "git_branch": "main"
+  },
+  {
     "extension_name": "Drafts",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Drafts",
     "install_type": "git"

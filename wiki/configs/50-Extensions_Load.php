@@ -46,6 +46,8 @@ wfLoadExtension('ConsoleOutput');
 wfLoadExtension('Description2');
 // https://www.mediawiki.org/wiki/Extension:Discord
 wfLoadExtension('Discord');
+// https://github.com/FOSS-Wiki/DiscordEmbed
+wfLoadExtension('DiscordEmbed');
 // https://www.mediawiki.org/wiki/Extension:DiscussionTools
 wfLoadExtension('DiscussionTools');
 // https://www.mediawiki.org/wiki/Extension:Drafts
