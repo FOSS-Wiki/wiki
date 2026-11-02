@@ -17,11 +17,15 @@
 
 // * ~ Everyone
 $wgGroupPermissions['*']['createaccount'] = true;
-$wgGroupPermissions['*']['edit'] = false;
+$wgGroupPermissions['*']['edit'] = true;
+$wgGroupPermissions['*']['createpage'] = false;
+$wgGroupPermissions["*"]["createtalk"] = false;
 
 // user ~ Registered Users
 $wgGroupPermissions['user']['edit'] = true;
 $wgGroupPermissions['user']['writeapi'] = true; // For visual editor
+$wgGroupPermissions['user']['createpage'] = true;
+$wgGroupPermissions["user"]["createtalk"] = true;
 $wgGroupPermissions['user']['move'] = false;
 $wgGroupPermissions['user']['move-subpages'] = false;
 $wgGroupPermissions['user']['move-categorypages'] = false;
@@ -31,6 +35,7 @@ $wgGroupPermissions['user']['movefile'] = false;
 // autoconfirmed ~ Wiki Editor Role
 $wgAutoConfirmAge = 259200;
 $wgAutoConfirmCount = 10;
+$wgGroupPermissions['autoconfirmed']['autopatrol'] = true;
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = false;
 $wgGroupPermissions['autoconfirmed']['editsemiprotected'] = false;
 
@@ -39,6 +44,7 @@ $wgGroupPermissions['template-editor']['template-editing'] = true;
 $wgGroupPermissions['template-editor']['module-editing'] = true;
 
 // wiki-team ~ FOSS Wiki Staff
+$wgGroupPermissions['wiki-team']['autopatrol'] = true;
 $wgGroupPermissions['wiki-team']['template-editing'] = true;
 $wgGroupPermissions['wiki-team']['module-editing'] = true;
 $wgGroupPermissions['wiki-team']['meta-editing'] = true;
@@ -55,6 +61,7 @@ $wgAddGroups['wiki-team'] = array('template-editor', 'autoconfirmed');
 $wgRemoveGroups['wiki-team'] = array('template-editor', 'autoconfirmed', "wiki-team");
 
 // sysop ~ FOSS Wiki Leadership
+$wgGroupPermissions['sysop']['autopatrol'] = true;
 $wgGroupPermissions['sysop']['checkuser'] = true;
 $wgGroupPermissions['sysop']['checkuser-log'] = true;
 $wgGroupPermissions['sysop']['investigate'] = true;

@@ -214,15 +214,6 @@ $wgLocaltimezone = "UTC";
 // https://www.mediawiki.org/wiki/Manual:$wgDiffEngine
 $wgDiffEngine = 'wikidiff2';
 
-// https://www.mediawiki.org/wiki/Manual:$wgUseRCPatrol
-$wgUseRCPatrol = false;
-
-// https://www.mediawiki.org/wiki/Manual:$wgUseNPPatrol
-$wgUseNPPatrol = false;
-
-// https://www.mediawiki.org/wiki/Manual:$wgUseFilePatrol
-$wgUseFilePatrol = false;
-
 // https://www.mediawiki.org/wiki/Manual:$wgEnableCanonicalServerLink
 $wgEnableCanonicalServerLink = true;
 
@@ -243,3 +234,10 @@ $wgHiddenPrefs[] = "realname";
 
 // https://www.mediawiki.org/wiki/Manual:$wgExternalLinkTarget
 $wgExternalLinkTarget = "_blank";
+
+// https://www.mediawiki.org/wiki/Manual:$wgAutoCreateTempUser
+
+// Enable temp accounts with 30 day lifespan and warning after 14 days
+$wgAutoCreateTempUser['enabled'] = true;
+$wgAutoCreateTempUser['expireAfterDays'] = 28;
+$wgAutoCreateTempUser['notifyBeforeExpirationDays'] = 14;
