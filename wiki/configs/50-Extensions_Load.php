@@ -50,6 +50,8 @@ wfLoadExtension('Discord');
 wfLoadExtension('DiscordEmbed');
 // https://www.mediawiki.org/wiki/Extension:DiscussionTools
 wfLoadExtension('DiscussionTools');
+// https://www.mediawiki.org/wiki/Extension:DismissableSiteNotice
+wfLoadExtension('DismissableSiteNotice');
 // https://www.mediawiki.org/wiki/Extension:Drafts
 wfLoadExtension('Drafts');
 // https://www.mediawiki.org/wiki/Extension:Echo

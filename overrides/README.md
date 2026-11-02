@@ -46,3 +46,14 @@ ini_set( 'display_errors', 1 );
 
 ?>
 ```
+
+## Extension:DismissableSiteNotice ID
+
+```php
+<?php
+
+// Increment when you want to change the notice - you can also increment MediaWiki:Sitenotice_id
+$wgMajorSiteNoticeID = 1;
+
+?>
+```

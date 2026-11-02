@@ -61,6 +61,11 @@
     "git_branch": "main"
   },
   {
+    "extension_name": "DismissableSiteNotice",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/DismissableSiteNotice",
+    "install_type": "git"
+  },
+  {
     "extension_name": "Drafts",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Drafts",
     "install_type": "git"
