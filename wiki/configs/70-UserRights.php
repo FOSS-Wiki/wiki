@@ -19,13 +19,13 @@
 $wgGroupPermissions['*']['createaccount'] = true;
 $wgGroupPermissions['*']['edit'] = true;
 $wgGroupPermissions['*']['createpage'] = false;
-$wgGroupPermissions["*"]["createtalk"] = false;
+$wgGroupPermissions['*']['createtalk'] = false;
 
 // user ~ Registered Users
 $wgGroupPermissions['user']['edit'] = true;
 $wgGroupPermissions['user']['writeapi'] = true; // For visual editor
 $wgGroupPermissions['user']['createpage'] = true;
-$wgGroupPermissions["user"]["createtalk"] = true;
+$wgGroupPermissions['user']['createtalk'] = true;
 $wgGroupPermissions['user']['move'] = false;
 $wgGroupPermissions['user']['move-subpages'] = false;
 $wgGroupPermissions['user']['move-categorypages'] = false;
@@ -43,22 +43,22 @@ $wgGroupPermissions['autoconfirmed']['editsemiprotected'] = false;
 $wgGroupPermissions['template-editor']['template-editing'] = true;
 $wgGroupPermissions['template-editor']['module-editing'] = true;
 
-// wiki-team ~ FOSS Wiki Staff
-$wgGroupPermissions['wiki-team']['autopatrol'] = true;
-$wgGroupPermissions['wiki-team']['template-editing'] = true;
-$wgGroupPermissions['wiki-team']['module-editing'] = true;
-$wgGroupPermissions['wiki-team']['meta-editing'] = true;
-$wgGroupPermissions['wiki-team']['move'] = true;
-$wgGroupPermissions['wiki-team']['move-subpages'] = true;
-$wgGroupPermissions['wiki-team']['move-categorypages'] = true;
-$wgGroupPermissions['wiki-team']['move-rootuserpages'] = true;
-$wgGroupPermissions['wiki-team']['editsemiprotected'] = true;
-$wgGroupPermissions['wiki-team']['movefile'] = true;
-$wgGroupPermissions['wiki-team']['block'] = true;
-$wgGroupPermissions['wiki-team']['rollback'] = true;
+// steward ~ FOSS Wiki Staff
+$wgGroupPermissions['steward']['autopatrol'] = true;
+$wgGroupPermissions['steward']['template-editing'] = true;
+$wgGroupPermissions['steward']['module-editing'] = true;
+$wgGroupPermissions['steward']['meta-editing'] = true;
+$wgGroupPermissions['steward']['move'] = true;
+$wgGroupPermissions['steward']['move-subpages'] = true;
+$wgGroupPermissions['steward']['move-categorypages'] = true;
+$wgGroupPermissions['steward']['move-rootuserpages'] = true;
+$wgGroupPermissions['steward']['editsemiprotected'] = true;
+$wgGroupPermissions['steward']['movefile'] = true;
+$wgGroupPermissions['steward']['block'] = true;
+$wgGroupPermissions['steward']['rollback'] = true;
 
-$wgAddGroups['wiki-team'] = array('template-editor', 'autoconfirmed');
-$wgRemoveGroups['wiki-team'] = array('template-editor', 'autoconfirmed', "wiki-team");
+$wgAddGroups['steward'] = array('template-editor', 'autoconfirmed');
+$wgRemoveGroups['steward'] = array('template-editor', 'autoconfirmed', 'steward');
 
 // sysop ~ FOSS Wiki Leadership
 $wgGroupPermissions['sysop']['autopatrol'] = true;
