@@ -16,15 +16,15 @@
 
 // https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgLogos
 $wgLogos = [
-    '1x' => "https://images.foss.wiki/logo-135.png",
-    'icon' => "https://images.foss.wiki/logo.png",
+    '1x' => "https://images.foss.wiki/Logo-135.png",
+    'icon' => "https://images.foss.wiki/Logo.png",
 ];
 
 // https://www.mediawiki.org/wiki/Manual:$wgFavicon
-$wgFavicon = "https://images.foss.wiki/favicon.png";
+$wgFavicon = "https://images.foss.wiki/Favicon.png";
 
 // https://www.mediawiki.org/wiki/Manual:$wgAppleTouchIcon
-$wgAppleTouchIcon = "https://images.foss.wiki/apple-touch-icon.png";
+$wgAppleTouchIcon = "https://images.foss.wiki/Apple-touch-icon.png";
 
 // https://www.mediawiki.org/wiki/Manual:$wgFooterIcons
 $wgFooterIcons = [
@@ -44,7 +44,7 @@ $wgFooterIcons = [
     ],
     "supportedby" => [
         "foss" => [
-            "src" => "https://images.foss.wiki/fyrastack.svg",
+            "src" => "https://images.foss.wiki/Badge-fyrastack.svg",
             "url" => "https://fyrastack.com",
             "alt" => "Supported by Fyra Stack",
         ]
