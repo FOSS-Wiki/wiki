@@ -65,58 +65,32 @@ $wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
         return;
     }
 
+    // Remove existing footers
     unset($footerlinks["about"], $footerlinks["privacy"], $footerlinks["disclaimers"]);
 
     $rel = "nofollow noreferrer noopener";
 
-    // Column 1
-    $footerlinks["about"] = Html::rawElement(
-        "a",
-        ["href" => Title::newFromText("FW:About")->getFullURL()],
-        $sk->msg("footer-about")->escaped(),
-    );
-    $footerlinks["guidelines"] = Html::rawElement(
-        "a",
-        ["href" => Title::newFromText("FW:Guidelines")->getFullURL()],
-        $sk->msg("footer-guidelines")->escaped(),
-    );
-    $footerlinks["disclaimers"] = Html::rawElement(
-        "a",
-        ["href" => Title::newFromText("FW:Disclaimer")->getFullURL()],
-        $sk->msg("footer-disclaimer")->escaped(),
-    );
+    $links = [
+        // Column 1
+        "about"        => ["footer-about",        "FW:About"],
+        "guidelines"   => ["footer-guidelines",   "FW:Guidelines"],
+        "disclaimers"  => ["footer-disclaimer",   "FW:Disclaimer"],
+        // Column 2
+        "statuspage"   => ["footer-statuspage",   "https://status.foss.wiki"],
+        "transparency" => ["footer-transparency", "https://open.foss.wiki"],
+        "privacy"      => ["footer-privacy",      "FW:Privacy_Policy"],
+        // Column 3
+        "discord"      => ["footer-discord",      "https://discord.foss.wiki"],
+        "donate"       => ["footer-donate",       "https://donate.foss.wiki"],
+        "github"       => ["footer-github",       "https://github.foss.wiki"],
+    ];
 
-    // Column 2
-    $footerlinks["statuspage"] = Html::rawElement(
-        "a",
-        ["href" => "https://status.foss.wiki", "rel" => $rel],
-        $sk->msg("footer-statuspage")->escaped(),
-    );
-    $footerlinks["transparency"] = Html::rawElement(
-        "a",
-        ["href" => "https://open.foss.wiki", "rel" => $rel],
-        $sk->msg("footer-transparency")->escaped(),
-    );
-    $footerlinks["privacy"] = Html::rawElement(
-        "a",
-        ["href" => Title::newFromText("FW:Privacy_Policy")->getFullURL()],
-        $sk->msg("footer-privacy")->escaped(),
-    );
+    foreach ($links as $id => [$msg, $target]) {
+        $external = str_starts_with($target, "https://");
+        $attrs = $external
+            ? ["href" => $target, "rel" => $rel]
+            : ["href" => Title::newFromText($target)->getFullURL()];
 
-    // Column 3
-    $footerlinks["discord"] = Html::rawElement(
-        "a",
-        ["href" => "https://discord.foss.wiki", "rel" => $rel],
-        $sk->msg("footer-discord")->escaped(),
-    );
-    $footerlinks["donate"] = Html::rawElement(
-        "a",
-        ["href" => "https://donate.foss.wiki", "rel" => $rel],
-        $sk->msg("footer-donate")->escaped(),
-    );
-    $footerlinks["github"] = Html::rawElement(
-        "a",
-        ["href" => "https://github.foss.wiki", "rel" => $rel],
-        $sk->msg("footer-github")->escaped(),
-    );
+        $footerlinks[$id] = Html::rawElement("a", $attrs, $sk->msg($msg)->escaped());
+    }
 };
