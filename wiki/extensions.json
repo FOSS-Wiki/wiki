@@ -33,11 +33,6 @@
     "install_type": "git"
   },
   {
-    "extension_name": "CodeMirror",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeMirror",
-    "install_type": "git"
-  },
-  {
     "extension_name": "ConsoleOutput",
     "extension_url": "https://github.com/BreezyOps/MediaWiki-ConsoleOutput",
     "install_type": "git",
