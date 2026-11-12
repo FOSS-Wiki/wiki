@@ -41,12 +41,6 @@ $wgVisualEditorUseSingleEditTab = true;
 $wgDefaultUserOptions['visualeditor-enable'] = 1;
 $wgDefaultUserOptions['visualeditor-editor'] = 'visualeditor';
 
-//######################################################// Interwiki
-// https://www.mediawiki.org/wiki/Extension:Interwiki
-
-// https://www.mediawiki.org/wiki/Manual:$wgUserrightsInterwikiDelimiter
-$wgUserrightsInterwikiDelimiter = '#';
-
 //######################################################// ConfirmEdit
 // https://www.mediawiki.org/wiki/Extension:ConfirmEdit
 
