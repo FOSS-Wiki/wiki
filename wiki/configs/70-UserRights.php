@@ -56,6 +56,7 @@ $wgGroupPermissions['steward']['editsemiprotected'] = true;
 $wgGroupPermissions['steward']['movefile'] = true;
 $wgGroupPermissions['steward']['block'] = true;
 $wgGroupPermissions['steward']['rollback'] = true;
+$wgGroupPermissions['steward']['editalluserpages'] = true;
 
 $wgAddGroups['steward'] = array('template-editor', 'autoconfirmed');
 $wgRemoveGroups['steward'] = array('template-editor', 'autoconfirmed', 'steward');
@@ -95,4 +96,5 @@ $wgGroupPermissions['sysop']['mwoauthsuppress'] = true;
 $wgGroupPermissions['sysop']['mwoauthviewsuppressed'] = true;
 $wgGroupPermissions['sysop']['mwoauthviewprivate'] = true;
 $wgGroupPermissions['sysop']['mwoauthmanagemygrants'] = true;
+$wgGroupPermissions['sysop']['editalluserpages'] = true;
 $wgGroupPermissions['sysop']['import'] = false;

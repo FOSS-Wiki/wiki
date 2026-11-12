@@ -238,6 +238,9 @@ $wgExternalLinkTarget = "_blank";
 // https://www.mediawiki.org/wiki/Manual:$wgAllowSiteCSSOnRestrictedPages
 $wgAllowSiteCSSOnRestrictedPages = true;
 
+// https://www.mediawiki.org/wiki/Manual:$wgRestrictUserPageEditing
+$wgRestrictUserPageEditing = true;
+
 // https://www.mediawiki.org/wiki/Manual:$wgAutoCreateTempUser
 
 // Enable temp accounts with 30 day lifespan and warning after 14 days
