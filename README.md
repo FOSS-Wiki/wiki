@@ -192,3 +192,10 @@ We gratefully acknowledge the use of the following projects which are incorporat
 | Python | [https://www.python.org](https://www.python.org) | PSF-2.0 |
 | Silo | [https://silo.pgsty.com](https://silo.pgsty.com) | AGPL-3.0 |
 | Valkey | [https://valkey.io](https://valkey.io) | BSD-3-Clause |
+
+# Aknowledgements
+
+We have built this project with massive help from the open source nature of the wiki community. We are ever grateful to the maintainers of the following projects which we have used as a reference when building our configuraitions:
+
+- [Star Citizen Wiki](https://github.com/StarCitizenTools/sct-docker-images)
+- [WikimediaCustomizations](https://github.com/wikimedia/mediawiki-extensions-WikimediaCustomizations)
