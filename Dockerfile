@@ -93,7 +93,7 @@ RUN --mount=type=cache,target=/root/.composer/cache \
 
 # Install Citizen
 ARG CITIZEN_VERSION
-RUN git clone --branch "v${CITIZEN_VERSION}" --single-branch --depth 1 \
+RUN git clone --branch "${CITIZEN_VERSION}" --single-branch --depth 1 \
         https://github.com/StarCitizenTools/mediawiki-skins-Citizen.git \
         /var/www/wiki/mediawiki/skins/Citizen
 

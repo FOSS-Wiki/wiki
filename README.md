@@ -55,10 +55,10 @@ Variables marked with a `*` are required. The function they provide may be optio
 
 | Variable | Description      | Example |
 |----------|------------------|---------|
-| `MEDIAWIKI_MAJOR_VERSION` * | The major version number of MediaWiki you want to use | `1.46` |
-| `MEDIAWIKI_VERSION` * | The full version number of MediaWiki you want to use | `1.46` |
-| `MEDIAWIKI_BRANCH` * | The branch of MediaWiki you want to use for extensions | `REL1_46` |
-| `CITIZEN_VERSION` * | The version of the Citizen skin you want to use | `3.23.0` |
+| `MEDIAWIKI_MAJOR_VERSION` * | The major version number of MediaWiki you want to use | `1.23` |
+| `MEDIAWIKI_VERSION` * | The full version number of MediaWiki you want to use | `1.23` |
+| `MEDIAWIKI_BRANCH` * | The branch of MediaWiki you want to use for extensions | `REL1_23` |
+| `CITIZEN_VERSION` * | The version of the Citizen skin you want to use | `v1.2.3` |
 | `UPGRADE_KEY` * | The key to access the upgrade page. Must be a 16-character alphanumeric string | *Generate using `openssl rand -hex 8`* |
 | `SECRET_KEY` * | The key used for various security-related functions within MediaWiki. Must be a 64-character alphanumeric string | *Generate using `openssl rand -hex 32`* |
 | `DB_SERVER` * | The IP address or hostname of your database server | `db.domain.tld` or `192.168.0.0` |
@@ -110,7 +110,7 @@ Below are the extra options for **LOCAL** setups.
 
 | Path | Description |
 |------|-------------|
-| `wiki/` | MediaWiki and NGINX application configurations |
+| `wiki/` | MediaWiki configurations |
 | `wiki/composer.json` | PHP dependencies for MediaWiki extensions |
 | `wiki/composer.local.json` | Local PHP dependency overrides for environment setup |
 | `wiki/extensions.json` | MediaWiki extension manifest |
@@ -118,8 +118,8 @@ Below are the extra options for **LOCAL** setups.
 | `wiki/LocalSettings.php` | MediaWiki configuration file which loads config modules in `wiki/configs/` |
 | `wiki/php.ini` | PHP runtime configuration |
 | `wiki/robots.txt` | Crawler instructions |
-| `wiki/.well-known/security.txt` | Security reporting instructions |
 | `wiki/security-at-fosswiki_public.asc` | FOSS Wiki PGP public key |
+| `wiki/.well-known/security.txt` | Security reporting instructions |
 | `wiki/configs/` | Numbered configuration modules (00-99) ensuring correct load order |
 | `wiki/.well-known` | Symlinked files for RFC compliance |
 | `compose.yaml` | Docker Compose configuration template (environment specific extensions available) |
@@ -190,10 +190,5 @@ We gratefully acknowledge the use of the following projects which are incorporat
 | PHP_CodeSniffer | [https://github.com/PHPCSStandards/PHP_CodeSniffer/](https://github.com/PHPCSStandards/PHP_CodeSniffer/) | BSD3-Clause |
 | phpdotenv | [https://github.com/vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) | BSD-3-Clause |
 | Python | [https://www.python.org](https://www.python.org) | PSF-2.0 |
-| Pylint | [https://www.pylint.org](https://www.pylint.org) | GPL-2.0 |
-| Renovate | [https://www.mend.io/renovate](https://www.mend.io/renovate) | AGPL-3.0 |
+| Silo | [https://silo.pgsty.com](https://silo.pgsty.com) | AGPL-3.0 |
 | Valkey | [https://valkey.io](https://valkey.io) | BSD-3-Clause |
-
-# Aknowledgements
-
-coming soon!
