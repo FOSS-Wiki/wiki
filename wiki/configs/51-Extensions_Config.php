@@ -170,3 +170,9 @@ $wgCloudflarePurgeToken = $env('CLOUDFLARE_PURGE_TOKEN');
 // Has to exist or else load.php breaks?
 $wgMWOAuthSharedUserIDs = true;
 $wgMWOAuthSharedUserSource = 'local';
+
+//#####################################################// SearchDigest
+// https://www.mediawiki.org/wiki/Extension:SearchDigest
+
+$wgSearchDigestMinimumMisses = 1;
+$wgSearchDigestDateThreshold = 6048001; // 2 Weeks

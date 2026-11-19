@@ -98,6 +98,8 @@ wfLoadExtension('Poem');
 wfLoadExtension('ReplaceText');
 // https://www.mediawiki.org/wiki/Extension:Scribunto
 wfLoadExtension('Scribunto');
+// https://www.mediawiki.org/wiki/Extension:SearchDigest
+wfLoadExtension('SearchDigest');
 // https://www.mediawiki.org/wiki/Extension:SecureLinkFixer
 wfLoadExtension('SecureLinkFixer');
 // https://www.mediawiki.org/wiki/Extension:SimpleBatchUpload

@@ -108,6 +108,12 @@
     "install_type": "git"
   },
   {
+    "extension_name": "SearchDigest",
+    "extension_url": "https://github.com/weirdgloop/mediawiki-extensions-SearchDigest",
+    "install_type": "git",
+    "git_branch": "main"
+  },
+  {
     "extension_name": "SimpleBatchUpload",
     "extension_url": "https://github.com/ProfessionalWiki/SimpleBatchUpload",
     "install_type": "composer",
