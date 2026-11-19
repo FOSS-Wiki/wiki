@@ -155,6 +155,7 @@ RUN set -eux && \
 COPY --link --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
 COPY --link --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 COPY --link --chmod=644 wiki/php.ini /usr/local/etc/php/conf.d/custom.ini
+COPY --link --chmod=644 wiki/zzz-fpm-pool.conf /usr/local/etc/php-fpm.d/zzz-fpm-pool.conf
 
 # Fail the build if php can't load extensions
 RUN out="$(php -m 2>&1 >/dev/null)"; \
