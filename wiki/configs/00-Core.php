@@ -79,8 +79,8 @@ $wgCdnServersNoPurge = [
   '2405:8100::/32',
   '2a06:98c0::/29',
   '2c0f:f248::/32',
-  // NPM Subnet
-  '172.20.0.0/16'
+  // NPM Prod
+  '172.20.0.5'
 ];
 
 // https://www.mediawiki.org/wiki/Manual:$wgCookieSameSite
