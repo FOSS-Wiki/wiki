@@ -158,7 +158,7 @@ RUN out="$(php -m 2>&1 >/dev/null)"; \
 # Create mediawiki:mediawiki and setup permissions
 RUN addgroup -g 1000 -S mediawiki && \
     adduser -u 1000 -S mediawiki -G mediawiki && \
-    mkdir -p /var/www/wiki/cache /var/www/wiki/sitemap && \
+    mkdir -p /var/www/wiki/cache/gitinfo /var/www/wiki/sitemap && \
     touch /var/www/wiki/sitemap/sitemap-index-foss.wiki.xml && \
     ln -s /var/www/wiki/sitemap/sitemap-index-foss.wiki.xml /var/www/wiki/sitemap.xml && \
     chown -R mediawiki:mediawiki /var/www/wiki && \
