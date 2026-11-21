@@ -180,7 +180,7 @@ $wgMainStash = 'redis';
 $wgMainCacheType = 'redis';
 
 // https://www.mediawiki.org/wiki/Manual:$wgParserCacheType
-$wgParserCacheType  = 'redis';
+$wgParserCacheType = CACHE_DB;
 
 // https://www.mediawiki.org/wiki/Manual:$wgSessionCacheType
 $wgSessionCacheType = 'redis';
