@@ -51,13 +51,14 @@ RUN set -eux && \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN mkdir -p /var/www/wiki/mediawiki
 WORKDIR /var/www/wiki
 
 COPY wiki/composer.json /var/www/wiki/composer.json
 RUN --mount=type=cache,target=/root/.composer/cache \
-    composer install --no-dev --optimize-autoloader --no-scripts --prefer-dist
+    composer install --no-dev --optimize-autoloader --no-scripts --prefer-dist && \
+    rm -f composer.json composer.lock
 
+RUN mkdir -p /var/www/wiki/mediawiki
 WORKDIR /var/www/wiki/mediawiki
 
 # Download and verify MediaWiki
