@@ -79,26 +79,9 @@ $wgCdnServersNoPurge = [
   '2405:8100::/32',
   '2a06:98c0::/29',
   '2c0f:f248::/32',
+  // NPM Subnet
+  '172.20.0.0/16'
 ];
-
-// https://www.mediawiki.org/wiki/Manual:$wgCdnServers
-$wgCdnServers = [
-    // nginx container (local reverse proxy)
-    'nginx',
-    'wiki-nginx',
-    'local-wiki-nginx',
-    'staging-wiki-nginx'
-];
-
-// https://www.mediawiki.org/wiki/Manual:$wgUsePrivateIPs
-$wgUsePrivateIPs = true;
-
-// Trust the IP forwarded by the proxy (NPM and Cloudflare)
-if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $forwardedIps = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-    // The first IP in the list is the original client IP
-    $_SERVER['REMOTE_ADDR'] = trim($forwardedIps[0]);
-}
 
 // https://www.mediawiki.org/wiki/Manual:$wgCookieSameSite
 $wgCookieSameSite = 'Lax';

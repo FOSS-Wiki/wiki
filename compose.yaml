@@ -127,6 +127,9 @@ services:
 networks:
   wiki-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
 
 volumes:
   wiki-sitemap:
