@@ -140,9 +140,6 @@ $wgDBssl = false;
 // https://www.mediawiki.org/wiki/Manual:$wgDBTableOptions
 $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=binary";
 
-// https://www.mediawiki.org/wiki/Manual:$wgSharedTables
-$wgSharedTables[] = "actor";
-
 $wgDBserver = $_ENV['DB_SERVER'];
 $wgDBname = $_ENV['DB_NAME'];
 $wgDBuser = $_ENV['DB_USER'];
@@ -223,17 +220,11 @@ $wgEnableEditRecovery = true;
 // https://www.mediawiki.org/wiki/Manual:$wgEditRecoveryExpiry
 $wgEditRecoveryExpiry = 604800; // 7 Days
 
-// https://www.mediawiki.org/wiki/Manual:$wgRestrictDisplayTitle
-$wgRestrictDisplayTitle = false;
-
 // https://www.mediawiki.org/wiki/Manual:$wgPasswordDefault
 $wgPasswordDefault = 'argon2';
 
 // https://www.mediawiki.org/wiki/Manual:$wgHiddenPrefs
 $wgHiddenPrefs[] = "realname";
-
-// https://www.mediawiki.org/wiki/Manual:$wgExternalLinkTarget
-$wgExternalLinkTarget = "_blank";
 
 // https://www.mediawiki.org/wiki/Manual:$wgAllowSiteCSSOnRestrictedPages
 $wgAllowSiteCSSOnRestrictedPages = true;
