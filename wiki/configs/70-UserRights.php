@@ -6,7 +6,7 @@
  * checkuser, supress, interface-admin & push-subscription-manager are dead
  * groups are in order of increasing rank
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki

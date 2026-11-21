@@ -3,7 +3,7 @@
 /**
  * The Mediawiki Hooks Configuration
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki

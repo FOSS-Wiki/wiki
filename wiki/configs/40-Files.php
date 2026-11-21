@@ -4,7 +4,7 @@
  * Upload Configuration
  * https://www.mediawiki.org/wiki/Manual:Configuring_file_uploads#Configuring_file_types
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki
