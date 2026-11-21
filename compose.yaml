@@ -12,7 +12,7 @@ services:
     container_name: ${STACK_NAME}-mediawiki
     depends_on:
       valkey:
-        condition: service_started
+        condition: service_healthy
     volumes:
       - .env:/var/www/wiki/.env:ro
       - ./overrides:/var/www/wiki/overrides:ro
@@ -23,8 +23,9 @@ services:
     healthcheck:
       test: ["CMD", "php-fpm", "-t"]
       interval: 30s
-      timeout: 10s
       start_period: 60s
+      start_interval: 2s
+      timeout: 10s
       retries: 3
     expose:
       - "9000"
@@ -41,7 +42,7 @@ services:
     container_name: ${STACK_NAME}-nginx
     depends_on:
       mediawiki:
-        condition: service_started
+        condition: service_healthy
     environment:
       NGINX_SERVER_NAME: ${SITENAME}
     volumes:
@@ -56,10 +57,11 @@ services:
       - wiki-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/"]
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/nginx-health"]
       interval: 30s
+      start_period: 60s
+      start_interval: 2s
       timeout: 10s
-      start_period: 30s
       retries: 3
     expose:
       - "80"
@@ -76,8 +78,9 @@ services:
     healthcheck:
       test: ["CMD", "valkey-cli", "ping"]
       interval: 30s
+      start_period: 60s
+      start_interval: 2s
       timeout: 10s
-      start_period: 30s
       retries: 3
     expose:
       - "6379"
@@ -104,11 +107,11 @@ services:
     networks:
       - wiki-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      test: ["CMD", "curl", "-fs", "http://127.0.0.1:9200/_cluster/health?wait_for_status=yellow&timeout=3s"]
       interval: 30s
       start_period: 60s
       start_interval: 2s
-      timeout: 5s
+      timeout: 10s
       retries: 3
     expose:
       - "9200"
