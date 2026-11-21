@@ -80,3 +80,22 @@ mediawiki-init:
 
     # Run database schema updates
     docker compose exec mediawiki php /var/www/wiki/mediawiki/maintenance/update.php --quick
+
+local-s3-init:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    just _check-containers
+    ENV=$(just _detect-env)
+
+    if [ "$ENV" = "local" ]; then
+        docker run --rm --network local-wiki_wiki-network \
+        --entrypoint /bin/sh pgsty/mc:latest -c "\
+        mc alias set local http://silo:9000 local-silo-user local-silo-password && \
+        mc mb --ignore-existing local/wiki && \
+        mc anonymous set download local/wiki"
+    else
+        echo "This can only be run on local environments!"
+    fi
+
+
+

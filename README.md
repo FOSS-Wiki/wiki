@@ -159,7 +159,7 @@ To see all commands and their descriptions just type `just` when in the wiki dir
 | `status` | Display comprehensive status of wiki deployment including containers, health, and database |
 | `stop` | Stop all running wiki containers |
 | `update` | Pull latest code, updates compose.yaml from template, and restarts wiki containers |
-
+| `local-s3-init` | Initialize Silo S3 Instance Bucket |
 # License
 
 Copyright 2026 FOSS Wiki and Contributors
