@@ -104,25 +104,18 @@ RUN --mount=type=cache,target=/root/.composer/cache \
 
 # Cleanup
 RUN rm -rf \
-        tests/ \
-        docs/ \
-        mw-config/ \
-        maintenance/dev/ \
-        maintenance/benchmarks/ \
-        vendor/*/*/tests/ \
-        vendor/*/*/test/ \
-        vendor/*/*/.git* \
-        skins/*/.git* \
-        skins/*/tests/ \
-        extensions/*/.git* \
-        extensions/*/tests/ \
-        extensions/*/composer.phar \
-        extensions/*/vendor/*/*/tests/ \
-        extensions/*/vendor/*/*/test/ \
-        extensions/*/vendor/*/*/.git* \
+        tests/ images/ docs/ mw-config/ serialized/ cache/ \
+        maintenance/dev/ maintenance/benchmarks/ \
+        .git* .phan* .eslintrc* .stylelintrc* .editorconfig .gitreview \
+        jsdoc.json bundlesize.config.json composer.local.json-sample \
+        COPYING CREDITS FAQ HISTORY INSTALL RELEASE-NOTES-* SECURITY UPGRADE \
+        vendor/*/*/tests/ vendor/*/*/test/ vendor/*/*/.git* \
+        skins/*/.git* skins/*/.phan* skins/*/tests/ skins/*/dev-scripts/ skins/*/node_modules/ \
+        extensions/*/.phan* extensions/*/tests/ extensions/*/node_modules/ extensions/*/composer.phar  \
+        extensions/*/vendor/*/*/test/ extensions/*/vendor/*/*/tests/ \
+        extensions/*/vendor/*/*/.git* extensions/*/.git* \
         extensions/Scribunto/includes/Engines/LuaStandalone/binaries \
-        composer.local.json \
-        composer.lock && \
+        composer.local.json composer.lock && \
     find . -name "*.md" -delete && \
     find . -name "*.txt" -not -path "*/i18n/*" -not -path "./vendor/*" -delete
 
