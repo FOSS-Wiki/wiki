@@ -116,8 +116,7 @@ RUN rm -rf \
         extensions/*/vendor/*/*/.git* extensions/*/.git* \
         extensions/Scribunto/includes/Engines/LuaStandalone/binaries \
         composer.local.json composer.lock && \
-    find . -name "*.md" -delete && \
-    find . -name "*.txt" -not -path "*/i18n/*" -not -path "./vendor/*" -delete
+    find . -name "*.md" -delete
 
 # Final Stage
 FROM php:8.5-fpm-alpine3.24 AS final
