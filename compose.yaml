@@ -35,7 +35,7 @@ services:
     build:
       context: .
       dockerfile_inline: |
-        FROM nginx:stable-alpine
+        FROM nginx:stable-alpine-slim
         COPY --from=mediawiki /var/www/wiki /var/www/wiki
       additional_contexts:
         mediawiki: service:mediawiki
@@ -53,7 +53,6 @@ services:
       - ./nginx/tor.html:/var/www/errors/tor.html:ro
       - ./nginx/403.html:/var/www/errors/403.html:ro
       - ./nginx/404.html:/var/www/errors/404.html:ro
-      - /var/log/nginx/wiki:/var/log/nginx
     networks:
       - wiki-network
     restart: unless-stopped
