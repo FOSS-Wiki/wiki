@@ -17,6 +17,7 @@ services:
       - .env:/var/www/wiki/.env:ro
       - ./overrides:/var/www/wiki/overrides:ro
       - wiki-sitemap:/var/www/wiki/sitemap
+      - wiki-cache:/var/www/wiki/cache
     networks:
       - wiki-network
     restart: unless-stopped
@@ -122,3 +123,4 @@ networks:
 
 volumes:
   wiki-sitemap:
+  wiki-cache:
