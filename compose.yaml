@@ -78,7 +78,7 @@ services:
       - ./valkey:/data:Z
     networks:
       - wiki-network
-    command: valkey-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    command: valkey-server --appendonly yes --maxmemory 512mb --maxmemory-policy volatile-lru
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "valkey-cli", "ping"]
@@ -94,6 +94,9 @@ services:
     image: docker-registry.wikimedia.org/repos/search-platform/cirrussearch-opensearch-image:v3.8.0-5
     container_name: ${STACK_NAME}-opensearch
     restart: unless-stopped
+    mem_limit: 1g
+    memswap_limit: 1g
+    oom_score_adj: -500
     environment:
       - discovery.type=single-node
       - cluster.name=mediawiki-cluster
