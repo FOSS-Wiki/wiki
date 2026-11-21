@@ -68,7 +68,7 @@ services:
     image: valkey/valkey:alpine
     container_name: ${STACK_NAME}-valkey
     volumes:
-      - valkey-data:/data
+      - ./valkey:/data:Z
     networks:
       - wiki-network
     command: valkey-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
@@ -100,7 +100,7 @@ services:
         soft: 65536
         hard: 65536
     volumes:
-      - "./opensearch:/usr/share/opensearch/data${OPENSEARCH_VOL_FLAG:-}"
+      - ./opensearch:/usr/share/opensearch/data:Z
     networks:
       - wiki-network
     healthcheck:
@@ -119,5 +119,3 @@ networks:
 
 volumes:
   wiki-sitemap:
-  valkey-data:
-    driver: local
