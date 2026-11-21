@@ -37,13 +37,13 @@ services:
     image: pgsty/silo:latest
     container_name: ${STACK_NAME}-silo
     environment:
-      SILO_ROOT_USER: ${SILO_USER}
-      SILO_ROOT_PASSWORD: ${SILO_PASSWORD}
+      MINIO_ROOT_USER: ${SILO_USER}
+      MINIO_ROOT_PASSWORD: ${SILO_PASSWORD}
     volumes:
       - ./images:/data
     networks:
       - wiki-network
-    command: server /data
+    command: server /data --console-address ":9001"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "silo", "healthcheck", "ready"]
@@ -52,5 +52,6 @@ services:
       start_interval: 2s
       timeout: 10s
       retries: 3
-    expose:
-      - "9000"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
