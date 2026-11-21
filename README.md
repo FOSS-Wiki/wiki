@@ -87,7 +87,7 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge, the token must have Permissions: `Zone → Cache Purge → Purge` for your Zone | `0123456789abcdef` |
 | `CLOUDFLARE_ZONE_ID` * | Cloudflare Zone ID for CloudflarePurge | `0123456789abcdef` |
 
-Below are the extra options for **LOCAL** setups.
+Below are the extra options for **LOCAL** setups. We reccommend not changing any preset values in local setups.
 
 | Variable* | Description      | Example |
 |-----------|------------------|---------|
