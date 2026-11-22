@@ -215,13 +215,6 @@ $wgAllowSiteCSSOnRestrictedPages = true;
 // https://www.mediawiki.org/wiki/Manual:$wgRestrictUserPageEditing
 $wgRestrictUserPageEditing = true;
 
-// https://www.mediawiki.org/wiki/Manual:$wgAutoCreateTempUser
-
-// Enable temp accounts with 30 day lifespan and warning after 14 days
-$wgAutoCreateTempUser['enabled'] = true;
-$wgAutoCreateTempUser['expireAfterDays'] = 28;
-$wgAutoCreateTempUser['notifyBeforeExpirationDays'] = 14;
-
 //######################################################// CSP
 
 // https://www.mediawiki.org/wiki/Manual:$wgCSPHeader
