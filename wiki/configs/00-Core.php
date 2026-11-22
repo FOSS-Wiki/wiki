@@ -221,3 +221,21 @@ $wgRestrictUserPageEditing = true;
 $wgAutoCreateTempUser['enabled'] = true;
 $wgAutoCreateTempUser['expireAfterDays'] = 28;
 $wgAutoCreateTempUser['notifyBeforeExpirationDays'] = 14;
+
+//######################################################// CSP
+
+// https://www.mediawiki.org/wiki/Manual:$wgCSPHeader
+$wgCSPHeader = [
+    'default-src' => [
+        'images.foss.wiki', // Our images S3
+        'upload.wikimedia.org', // Wikimedia Commons
+        'thumb.wikimedia.org', // Wikimedia Commons
+        'fonts.googleapis.com', // Google Fonts
+        'fonts.gstatic.com', // Google Fonts
+        'challenges.cloudflare.com' // Cloudflare Turnstile
+    ],
+    'script-src' => [ 'challenges.cloudflare.com' ],
+    'includeCORS'    => true,
+    'unsafeFallback' => true,
+    'useNonces'      => false,
+];
