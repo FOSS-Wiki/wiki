@@ -176,3 +176,8 @@ $wgMWOAuthSharedUserSource = 'local';
 
 $wgSearchDigestMinimumMisses = 1;
 $wgSearchDigestDateThreshold = 6048001; // 2 Weeks
+
+//######################################################// DiscordEmbed
+// https://github.com/FOSS-Wiki/DiscordEmbed
+
+$wgDiscordServerInvite = $env('DISCORD_INVITE_URL');
