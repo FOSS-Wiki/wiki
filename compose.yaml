@@ -22,8 +22,7 @@ services:
       - wiki-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "php-fpm", "-t"]
-      interval: 30s
+      test: ["CMD-SHELL", "SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping REQUEST_METHOD=GET cgi-fcgi -bind -connect 127.0.0.1:9000 | grep -q pong"]
       start_period: 60s
       start_interval: 2s
       timeout: 10s

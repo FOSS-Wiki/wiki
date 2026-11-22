@@ -8,7 +8,7 @@
 #     http://www.apache.org/licenses/LICENSE-2.0
 
 # Builder Stage
-FROM php:8.5-fpm-alpine3.24 AS builder
+FROM php:8.5-fpm-alpine3.24 AS mw-builder
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 # Install PHP Extensions
@@ -32,7 +32,7 @@ RUN set -eux && \
     apk del .strip-deps
 
 # Mediawiki Setup Stage
-FROM php:8.5-fpm-alpine3.24 AS mediawiki
+FROM php:8.5-fpm-alpine3.24 AS mw-src
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 ENV COMPOSER_NO_AUDIT=1 \
@@ -119,7 +119,7 @@ RUN rm -rf \
     find . -name "*.md" -delete
 
 # Final Stage
-FROM php:8.5-fpm-alpine3.24 AS final
+FROM php:8.5-fpm-alpine3.24 AS mw-final
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 LABEL maintainer="info@atmois.com" \
@@ -129,6 +129,7 @@ LABEL maintainer="info@atmois.com" \
 # Install Runtime Dependencies
 RUN set -eux && \
     apk add --no-cache \
+        fcgi \
         freetype \
         icu-libs \
         imagemagick \
@@ -145,8 +146,8 @@ RUN set -eux && \
         python3 \
         rsvg-convert
 
-COPY --link --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
-COPY --link --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
+COPY --link --from=mw-builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
+COPY --link --from=mw-builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 COPY --link --chmod=644 wiki/php.ini /usr/local/etc/php/conf.d/custom.ini
 COPY --link --chmod=644 wiki/zzz-fpm-pool.conf /usr/local/etc/php-fpm.d/zzz-fpm-pool.conf
 
@@ -164,10 +165,10 @@ RUN addgroup -g 1000 -S mediawiki && \
     chmod -R 775 /var/www/wiki/sitemap && \
     chmod -R 770 /var/www/wiki/cache
 
-USER mediawiki
+USER 1000:1000
 WORKDIR /var/www/wiki
 
-COPY --link --chown=1000:1000 --from=mediawiki /var/www/wiki .
+COPY --link --chown=1000:1000 --from=mw-src /var/www/wiki .
 COPY --link --chown=1000:1000 --chmod=744 wiki/robots.txt ./robots.txt
 COPY --link --chown=1000:1000 --chmod=744 wiki/security-at-fosswiki_public.asc ./security-at-fosswiki_public.asc
 COPY --link --chown=1000:1000 --chmod=744 wiki/.well-known ./.well-known
@@ -178,6 +179,3 @@ RUN ln -sf ./.well-known/security.txt ./security.txt
 
 # Expose Port for FastCGI
 EXPOSE 9000
-
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD ["php-fpm", "-t"]
