@@ -1,0 +1,9 @@
+import /etc/caddy/wiki.snippet
+
+{
+    auto_https off
+}
+
+http://localhost {
+    import wiki
+}

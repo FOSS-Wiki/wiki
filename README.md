@@ -83,9 +83,11 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `S3_BUCKET_DOMAIN` * | The S3 bucket domain | `wiki-images.domain.tld` |
 | `SITENAME` * | The Full Wiki Name | `Example Wiki` |
 | `WG_SERVER` * | The full URL the wiki will be accessible from, including the protocol | `https://wiki.domain.tld` |
+| `WIKI_DOMAIN` * | The domain the wiki will be accessible from, without trailing slashes or the protocol | `wiki.domain.tld` |
 | `DISCORD_WEBHOOK_URL` * | Discord Webhook URL | `https://discord.com/api/webhooks/0123456789/abcdef` |
 | `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge, the token must have Permissions: `Zone → Cache Purge → Purge` for your Zone | `0123456789abcdef` |
 | `CLOUDFLARE_ZONE_ID` * | Cloudflare Zone ID for CloudflarePurge | `0123456789abcdef` |
+| `CLOUDFLARE_DNS_TOKEN` * | Cloudflare API token for DNS management, the token must have Permissions: `Zone → DNS → Edit` for your Zone | `0123456789abcdef` |
 
 Below are the extra options for **LOCAL** setups. We reccommend not changing any preset values in local setups.
 
@@ -128,7 +130,7 @@ Below are the extra options for **LOCAL** setups. We reccommend not changing any
 | `Justfile` | Main task runner entry point for Just scripts in `just/` |
 | `just/` | Modular task automation recipes for operations and setup |
 | `systemd/` | Automated maintenance tasks service and timer files |
-| `nginx/` | NGINX configuration files and error code pages |
+| `caddy/` | Caddy configuration files and error page |
 
 # Just Commands
 Before running any `just` commands, ensure you have read the `just help` command for important information and the dangers of certain commands.
@@ -177,6 +179,7 @@ We gratefully acknowledge the use of the following projects which are incorporat
 
 | Project | Link | License |
 |---------|------|---------|
+| Caddy | [https://caddyserver.com](https://caddyserver.com) | Apache-2.0 |
 | Composer | [https://getcomposer.org](https://getcomposer.org) | MIT |
 | Docker | [https://www.docker.com](https://www.docker.com) | Apache-2.0 |
 | Docker Compose | [https://github.com/docker/compose](https://github.com/docker/compose) | Apache-2.0 |
@@ -184,7 +187,6 @@ We gratefully acknowledge the use of the following projects which are incorporat
 | just | [https://github.com/casey/just](https://github.com/casey/just) | CC0-1.0 |
 | MariaDB | [https://mariadb.org](https://mariadb.org) | GPL-2.0 |
 | MediaWiki | [https://www.mediawiki.org](https://www.mediawiki.org) | GPL-2.0-or-later |
-| NGINX | [https://www.nginx.com](https://www.nginx.com) | BSD-2-Clause |
 | OpenSearch | [https://opensearch.org](https://opensearch.org) | Apache-2.0 |
 | PHP | [https://www.php.net](https://www.php.net) | PHP-3.01 |
 | PHP_CodeSniffer | [https://github.com/PHPCSStandards/PHP_CodeSniffer/](https://github.com/PHPCSStandards/PHP_CodeSniffer/) | BSD3-Clause |

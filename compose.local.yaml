@@ -1,14 +1,15 @@
 name: local-wiki
 
 services:
+  caddy:
+    ports:
+      - "3000:80"
+    volumes:
+      - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile:ro
   mediawiki:
     depends_on:
       mariadb:
         condition: service_healthy
-
-  nginx:
-    ports:
-      - "3000:80"
 
   mariadb:
     image: mariadb:10.11

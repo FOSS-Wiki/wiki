@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://images.foss.wiki/Favicon.png">
-    <title>Error | FOSS Wiki</title>
+    {{$code := printf "%v" (placeholder "http.error.status_code")}}
+    <title>{{$code}} | FOSS Wiki</title>
     <style>
         body {
             margin: 0;
@@ -80,9 +81,49 @@
 
 <body>
     <div class="container">
-        <h1>403</h1>
+        <h1>{{$code}}</h1>
+
+                {{if eq $code "400"}}
+        <h2>Bad request</h2>
+        <p>Your browser sent a request the server couldn't understand.</p>
+        {{else if eq $code "403"}}
         <h2>Access denied</h2>
         <p>You don't have permission to access this page.</p>
+        {{else if eq $code "404"}}
+        <h2>Page not found</h2>
+        <p>That page doesn't exist or has been moved.</p>
+        {{else if eq $code "405"}}
+        <h2>Method not allowed</h2>
+        <p>That action isn't allowed on this page.</p>
+        {{else if eq $code "408"}}
+        <h2>Request timed out</h2>
+        <p>The request took too long. Please try again.</p>
+        {{else if eq $code "413"}}
+        <h2>Upload too large</h2>
+        <p>That file or request is over the 64 MB limit.</p>
+        {{else if eq $code "416"}}
+        <h2>Bad range request</h2>
+        <p>The requested part of that file isn't available.</p>
+        {{else if eq $code "421"}}
+        <h2>Misdirected request</h2>
+        <p>That request was sent to the wrong server name.</p>
+        {{else if eq $code "429"}}
+        <h2>Too many requests</h2>
+        <p>You're going a bit fast. Please wait a moment and try again.</p>
+        {{else if eq $code "431"}}
+        <h2>Request too large</h2>
+        <p>Your browser sent more header data than the server accepts.</p>
+        {{else if eq $code "500"}}
+        <h2>Server error</h2>
+        <p>Something broke on our side. Please try again shortly.</p>
+        {{else if or (eq $code "502") (eq $code "503") (eq $code "504")}}
+        <h2>Temporarily unavailable</h2>
+        <p>The wiki is down for a moment. Please try again shortly.</p>
+        {{else}}
+        <h2>{{placeholder "http.error.status_text"}}</h2>
+        <p>Something went wrong.</p>
+        {{end}}
+
         <p>
             If you think this is a mistake, please email <a href="mailto:admin@foss.wiki">admin@foss.wiki</a>.<br>
             If you have security concerns, please <a href="https://foss.wiki/FW:Security">read here</a>.

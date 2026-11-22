@@ -152,7 +152,7 @@ startup-tasks:
 
     echo "Startup tasks complete!"
 
-# Fix directory and file permissions (root:admin 770, .env 774, nginx/*.html 774)
+# Fix directory and file permissions (root:admin 770, .env 774, caddy/*.html 774)
 fix-perms:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -167,7 +167,7 @@ fix-perms:
     echo "Setting .env to 774..."
     sudo chmod 774 .env
 
-    echo "Setting nginx/*.html to 774..."
-    sudo chmod 774 nginx/*.html
+    echo "Setting caddy to 774..."
+    sudo chmod -R 774 caddy
 
     echo "Permissions fixed!"

@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        ".env.local.example": "env",
-        "*.just": "just"
+        ".env.local.example": "dotenv",
+        "*.just": "just",
+        "Caddyfile.dev": "caddyfile",
+        "wiki.snippet": "caddyfile"
     }
 }

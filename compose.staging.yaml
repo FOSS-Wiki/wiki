@@ -1,11 +1,8 @@
 name: staging-wiki
 
 services:
-  nginx:
-    networks:
-      - wiki-network
-      - proxy
-
-networks:
-  proxy:
-    external: true
+  caddy:
+    ports:
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro

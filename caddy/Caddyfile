@@ -1,0 +1,23 @@
+import /etc/caddy/wiki.snippet
+
+{
+    auto_https disable_redirects
+    servers {
+        trusted_proxies cloudflare
+        client_ip_headers CF-Connecting-IP
+    }
+}
+
+{$WIKI_DOMAIN} {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_DNS_TOKEN}
+        resolvers 1.1.1.1
+    }
+
+    header {
+        Strict-Transport-Security "max-age=63072000; includeSubDomains"
+        Onion-Location http://wiki3wvl74osnnuzsb3hdkn4b64jkjwjursi3bowr2xdeinhfmvlzyad.onion{uri}
+    }
+
+    import wiki
+}

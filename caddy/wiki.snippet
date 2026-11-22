@@ -1,0 +1,82 @@
+(wiki) {
+    root * /var/www/wiki
+    encode zstd gzip
+
+    request_body {
+        max_size 64MB
+    }
+
+    header {
+        -Server
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+
+    log {
+        output stdout
+        format console
+    }
+
+    @denied_paths path /vendor/* /configs/* /overrides/* /cache/* /composer.json /composer.lock \
+        /mediawiki/maintenance/* /mediawiki/mw-config/* /mediawiki/vendor/* /mediawiki/includes/* \
+        /mediawiki/cache/* /mediawiki/tests/* /mediawiki/docs/* /mediawiki/languages/* \
+        /mediawiki/serialized/* /mediawiki/sql/* /mediawiki/images/*
+
+    @denied_re path_regexp denied (?i)^/mediawiki/(skins/[^/]+/dev-scripts/|extensions/[^/]+/tests/)|^/mediawiki/(COPYING|CREDITS|FAQ|HISTORY|INSTALL|RELEASE-NOTES.*|SECURITY|UPGRADE|composer\.(json|lock)|composer\.local\.json-sample|jsdoc\.json|bundlesize\.config\.json|autoload\.php|LocalSettings\.php)$
+
+    @dotfiles {
+        path_regexp dot (^|/)\.
+        not path /.well-known/*
+    }
+
+    @php path_regexp php (?i)^/mediawiki/(index|load|api|rest|thumb|thumb_handler|img_auth|opensearch_desc)\.php(/|$)
+    @other_php path_regexp otherphp (?i)\.php(/|$)
+
+    route {
+        respond /health "ok" 200
+
+        rewrite /                 /mediawiki/index.php
+        rewrite /index.php        /mediawiki{uri}
+        rewrite /api.php          /mediawiki{uri}
+        rewrite /load.php         /mediawiki{uri}
+        rewrite /rest.php*        /mediawiki{uri}
+        uri path_regexp ^/Extensions/ /mediawiki/extensions/
+        uri path_regexp ^/skins/      /mediawiki/skins/
+
+        error @denied_paths 403
+        error @denied_re    403
+        error @dotfiles     403
+
+        try_files {path} /mediawiki/index.php?{query}
+
+        reverse_proxy @php mediawiki:9000 {
+            transport fastcgi {
+                root /var/www/wiki
+                split .php
+                read_timeout 80s
+            }
+        }
+
+        error @other_php 403
+
+        file_server
+    }
+
+    handle_errors {
+        root * /srv
+        rewrite * /error.html
+        header Cache-Control "no-store"
+        templates
+        file_server {
+            status {err.status_code}
+        }
+    }
+}
+
+{
+    auto_https disable_redirects
+    servers {
+        trusted_proxies cloudflare
+        client_ip_headers CF-Connecting-IP
+    }
+}
