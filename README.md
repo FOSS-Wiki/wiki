@@ -8,7 +8,7 @@ This repository contains Mediawiki configurations used for the deployment of [fo
 # Deployment Instructions
 
 > [!NOTE]
-> **This only applies if you are running a staging or production instance, local instances have these pre-configured as docker containers.** To deploy this service you will need:
+> **This only applies if you are running a production instance, local instances have these pre-configured as docker containers.** To deploy this service you will need:
 > - A running and accessible [MariaDB](https://mariadb.org) server which is version 10.3 or higher, we recommend having this either as a managed service or having a dedicated server running MariaDB.
 > - A running and accessible S3 server or configured provider, we recommend [Cloudflare's R2 service](https://www.cloudflare.com/en-gb/developer-platform/products/r2/).
 
@@ -23,31 +23,31 @@ This repository contains Mediawiki configurations used for the deployment of [fo
     git clone https://github.com/FOSS-Wiki/wiki mediawiki
 ```
 
-3. Navigate to the cloned directory
+1. Navigate to the cloned directory
 ```bash
     cd /opt/mediawiki
 ```
 
-4. Run the file setup scripts, switch {ENV} with local, staging or production.
+1. Run the file setup scripts, switch {ENV} with local or production.
 ```bash
     just {ENV}-files
 ```
 
-5. Fill out the `.env` file as required with the values explained below.
+1. Fill out the `.env` file as required with the values explained below.
 
-6. Start the Mediawiki instance
+2. Start the Mediawiki instance
 ```bash
     just start
 ```
 
-7. Initialize the Mediawiki instance
+1. Initialize the Mediawiki instance
 ```bash
     just mediawiki-init
     just startup-tasks
     just fix-perms
 ```
 
-8. Access the Mediawiki instance in your web browser at `https://{localhost:3000 | domain.tld}`
+1. Access the Mediawiki instance in your web browser at `https://{localhost:3000 | domain.tld}`
 
 # Environment Variables
 
@@ -151,9 +151,7 @@ To see all commands and their descriptions just type `just` when in the wiki dir
 | `production-files` | Setup production environment files and configure sitemap service |
 | `restart` | Restart all wiki containers |
 | `run-jobs` | Run pending jobs in MediaWiki |
-| `sitemap-production` | Setup production sitemap generation as a systemd timer service |
-| `sitemap-staging` | Setup staging sitemap generation as a systemd timer service |
-| `staging-files` | Setup staging environment files and configure sitemap service |
+| `sitemap` | Setup production sitemap generation as a systemd timer service |
 | `start` | Start all wiki containers |
 | `startup-tasks` | Resetup configurations and OpenSearch index a clean stop or restart |
 | `status` | Display comprehensive status of wiki deployment including containers, health, and database |

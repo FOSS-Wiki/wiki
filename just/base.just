@@ -11,7 +11,7 @@ _verify-file file:
         exit 1
     fi
 
-# Detect the environment (local/staging/production) from the filename
+# Detect the environment (local/production) from the filename
 _detect-env:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -23,7 +23,6 @@ _detect-env:
     for f in "${FILES[@]}"; do
         case "$f" in
             compose.production.yaml) env="production" ;;
-            compose.staging.yaml)    env="staging" ;;
             compose.local.yaml)      env="local" ;;
         esac
     done

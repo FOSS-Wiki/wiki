@@ -12,22 +12,7 @@ production-files:
     echo "# DO NOT EDIT THESE VARIABLES" >> .env
     echo "COMPOSE_FILE=compose.yaml:compose.production.yaml" >> .env
     echo "STACK_NAME=production-wiki" >> .env
-    just sitemap-production
-    echo "Created .env from .env.example, please ensure .env is configured correctly."
-
-# Setup staging environment files and configure sitemap service
-staging-files:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    just _destructive-warning "This will override your .env file if it exists. Please back it up if needed."
-
-    echo "Setting up staging environment files..."
-    just _copy-file .env.example .env
-    echo "" >> .env
-    echo "# DO NOT EDIT THESE VARIABLES" >> .env
-    echo "COMPOSE_FILE=compose.yaml:compose.staging.yaml" >> .env
-    echo "STACK_NAME=staging-wiki" >> .env
-    just sitemap-staging
+    just sitemap
     echo "Created .env from .env.example, please ensure .env is configured correctly."
 
 # Setup local development environment files
