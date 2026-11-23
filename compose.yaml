@@ -27,6 +27,8 @@ services:
       start_interval: 2s
       timeout: 10s
       retries: 3
+    security_opt:
+      - no-new-privileges:true
     expose:
       - "9000"
 
@@ -67,6 +69,8 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+    security_opt:
+      - no-new-privileges:true
     expose:
       - "80"
 
