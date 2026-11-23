@@ -17,17 +17,17 @@ if (!defined('MEDIAWIKI')) {
 }
 
 // Loads the config files in order
-$configFiles = glob('/var/www/wiki/configs/*.php');
-sort($configFiles);
+$configFiles = glob('/var/www/wiki/configs/*.php') ?: [];
 foreach ($configFiles as $configFile) {
     include_once $configFile;
 }
 
-// Include run-time overrides
-foreach (glob('/var/www/wiki/overrides/*.php') ?: [] as $file) {
+foreach (glob('/var/www/wiki/overrides/*.php') ?: [] as $overrideFile) {
     try {
-        include $file;
+        include $overrideFile;
     } catch (\Throwable $e) {
-        error_log(basename($file) . ' skipped: ' . $e->getMessage());
+        error_log(basename($overrideFile) . ' skipped: ' . $e->getMessage());
     }
 }
+
+unset($configFiles, $configFile, $overrideFile, $e);
