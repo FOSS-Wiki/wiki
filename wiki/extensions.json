@@ -108,6 +108,11 @@
     "install_type": "git"
   },
   {
+    "extension_name": "Popups",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Popups",
+    "install_type": "git"
+  },
+  {
     "extension_name": "SearchDigest",
     "extension_url": "https://github.com/weirdgloop/mediawiki-extensions-SearchDigest",
     "install_type": "git",

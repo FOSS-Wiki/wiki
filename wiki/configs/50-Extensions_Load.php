@@ -94,6 +94,8 @@ wfLoadExtension('ParserFunctions');
 wfLoadExtension('PdfHandler');
 // https://www.mediawiki.org/wiki/Extension:Poem
 wfLoadExtension('Poem');
+// https://www.mediawiki.org/wiki/Extension:Popups
+wfLoadExtension('Popups');
 // https://www.mediawiki.org/wiki/Extension:ReplaceText
 wfLoadExtension('ReplaceText');
 // https://www.mediawiki.org/wiki/Extension:Scribunto
