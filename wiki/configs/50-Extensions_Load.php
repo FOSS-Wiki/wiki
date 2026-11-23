@@ -90,8 +90,6 @@ wfLoadExtension('OpenGraphMeta');
 wfLoadExtension('PageImages');
 // https://www.mediawiki.org/wiki/Extension:ParserFunctions
 wfLoadExtension('ParserFunctions');
-// https://www.mediawiki.org/wiki/Extension:PdfHandler
-wfLoadExtension('PdfHandler');
 // https://www.mediawiki.org/wiki/Extension:Poem
 wfLoadExtension('Poem');
 // https://www.mediawiki.org/wiki/Extension:Popups

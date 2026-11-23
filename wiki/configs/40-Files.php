@@ -38,14 +38,11 @@ $wgTrustedMediaFormats = [
     MEDIATYPE_BITMAP, // All bitmap formats
     MEDIATYPE_AUDIO, // All audio formats
     MEDIATYPE_VIDEO, // All plain video formats
-    "image/svg+xml", // svg
-    "application/pdf", // PDF
+    "image/svg+xml" // svg
 ];
 
 // https://www.mediawiki.org/wiki/Manual:$wgSVGConverters
-$wgSVGConverters = [
-    'rsvg' => '/usr/bin/rsvg-convert -w $width -h $height -o $output $input',
-];
+$wgSVGConverters = ['rsvg' => '/usr/bin/rsvg-convert -w $width -h $height -o $output $input'];
 
 // https://www.mediawiki.org/wiki/Manual:$wgSVGConverter
 $wgSVGConverter = 'rsvg';
