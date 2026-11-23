@@ -38,11 +38,11 @@ Disallow: /cdn-cgi/
 Disallow: /cors/
 Disallow: /geoip$
 Disallow: /rest_v1/
-Disallow: /rest.php/
 Disallow: /tags/
 
 # Block direct API access
 Disallow: /api.php
+Disallow: /rest.php
 
 # Block query parameters related to actions and views
 Disallow: /*?action=
@@ -105,12 +105,6 @@ Disallow: /*?*&title=Property%3A
 ################
 ## Bot Blocks ##
 ################
-
-# Meta bots hammer the server with requests and are not useful for indexing content, so we block them entirely.
-User-agent: meta-webindexer
-User-agent: Meta-ExternalAgent
-User-agent: meta-externalads
-Disallow: /
 
 # AI Bot list from https://github.com/TecharoHQ/anubis/blob/main/web/static/robots.txt
 User-agent: AddSearchBot
@@ -217,6 +211,7 @@ User-agent: Meta-ExternalAgent
 User-agent: meta-externalfetcher
 User-agent: Meta-ExternalFetcher
 User-agent: meta-webindexer
+User-agent: meta-externalads
 User-agent: MistralAI-User
 User-agent: MistralAI-User/1.0
 User-agent: Mozilla-Tabstack
