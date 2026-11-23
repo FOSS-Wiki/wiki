@@ -26,8 +26,9 @@ services:
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 30s
-      timeout: 10s
       start_period: 60s
+      start_interval: 2s
+      timeout: 10s
       retries: 3
     expose:
       - "3306"
@@ -36,19 +37,21 @@ services:
     image: pgsty/silo:latest
     container_name: ${STACK_NAME}-silo
     environment:
-      SILO_ROOT_USER: ${SILO_USER}
-      SILO_ROOT_PASSWORD: ${SILO_PASSWORD}
+      MINIO_ROOT_USER: ${SILO_USER}
+      MINIO_ROOT_PASSWORD: ${SILO_PASSWORD}
     volumes:
       - ./images:/data
     networks:
       - wiki-network
-    command: server /data
+    command: server /data --console-address ":9001"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/silo/health/live"]
+      test: ["CMD", "silo", "healthcheck", "ready"]
       interval: 30s
+      start_period: 60s
+      start_interval: 2s
       timeout: 10s
-      start_period: 30s
       retries: 3
-    expose:
-      - "9000"
+    ports:
+      - "9000:9000"
+      - "9001:9001"

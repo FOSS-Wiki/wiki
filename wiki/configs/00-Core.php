@@ -3,7 +3,7 @@
 /**
  * Core Wiki Configuration
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki
@@ -79,33 +79,16 @@ $wgCdnServersNoPurge = [
   '2405:8100::/32',
   '2a06:98c0::/29',
   '2c0f:f248::/32',
+  // NPM Production
+  '172.20.0.5'
 ];
-
-// https://www.mediawiki.org/wiki/Manual:$wgCdnServers
-$wgCdnServers = [
-    // nginx container (local reverse proxy)
-    'nginx',
-    'wiki-nginx',
-    'local-wiki-nginx',
-    'staging-wiki-nginx'
-];
-
-// https://www.mediawiki.org/wiki/Manual:$wgUsePrivateIPs
-$wgUsePrivateIPs = true;
-
-// Trust the IP forwarded by the proxy (NPM and Cloudflare)
-if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $forwardedIps = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-    // The first IP in the list is the original client IP
-    $_SERVER['REMOTE_ADDR'] = trim($forwardedIps[0]);
-}
 
 // https://www.mediawiki.org/wiki/Manual:$wgCookieSameSite
 $wgCookieSameSite = 'Lax';
 
 // https://www.mediawiki.org/wiki/Manual:$wgCookieSecure
 // Only use secure cookies if HTTPS is enabled
-$wgCookieSecure = (strpos($_ENV['WG_SERVER'], 'https://') === 0);
+$wgCookieSecure = str_starts_with($wgServer, 'https://');
 
 // https://www.mediawiki.org/wiki/Manual:$wgExternalLinkTarget
 $wgExternalLinkTarget = '_blank';
@@ -124,7 +107,7 @@ $wgArticlePath = "/$1";
 
 // https://www.mediawiki.org/wiki/Manual:$wgForceHTTPS
 // Only force HTTPS if the server URL uses HTTPS
-$wgForceHTTPS = (strpos($_ENV['WG_SERVER'], 'https://') === 0);
+$wgForceHTTPS = str_starts_with($wgServer, 'https://');
 
 //######################################################// DB Config
 
@@ -139,9 +122,6 @@ $wgDBssl = false;
 
 // https://www.mediawiki.org/wiki/Manual:$wgDBTableOptions
 $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=binary";
-
-// https://www.mediawiki.org/wiki/Manual:$wgSharedTables
-$wgSharedTables[] = "actor";
 
 $wgDBserver = $_ENV['DB_SERVER'];
 $wgDBname = $_ENV['DB_NAME'];
@@ -183,7 +163,7 @@ $wgMainStash = 'redis';
 $wgMainCacheType = 'redis';
 
 // https://www.mediawiki.org/wiki/Manual:$wgParserCacheType
-$wgParserCacheType  = 'redis';
+$wgParserCacheType = CACHE_DB;
 
 // https://www.mediawiki.org/wiki/Manual:$wgSessionCacheType
 $wgSessionCacheType = 'redis';
@@ -223,24 +203,32 @@ $wgEnableEditRecovery = true;
 // https://www.mediawiki.org/wiki/Manual:$wgEditRecoveryExpiry
 $wgEditRecoveryExpiry = 604800; // 7 Days
 
-// https://www.mediawiki.org/wiki/Manual:$wgRestrictDisplayTitle
-$wgRestrictDisplayTitle = false;
-
 // https://www.mediawiki.org/wiki/Manual:$wgPasswordDefault
 $wgPasswordDefault = 'argon2';
 
 // https://www.mediawiki.org/wiki/Manual:$wgHiddenPrefs
 $wgHiddenPrefs[] = "realname";
 
-// https://www.mediawiki.org/wiki/Manual:$wgExternalLinkTarget
-$wgExternalLinkTarget = "_blank";
-
 // https://www.mediawiki.org/wiki/Manual:$wgAllowSiteCSSOnRestrictedPages
 $wgAllowSiteCSSOnRestrictedPages = true;
 
-// https://www.mediawiki.org/wiki/Manual:$wgAutoCreateTempUser
+// https://www.mediawiki.org/wiki/Manual:$wgRestrictUserPageEditing
+$wgRestrictUserPageEditing = true;
 
-// Enable temp accounts with 30 day lifespan and warning after 14 days
-$wgAutoCreateTempUser['enabled'] = true;
-$wgAutoCreateTempUser['expireAfterDays'] = 28;
-$wgAutoCreateTempUser['notifyBeforeExpirationDays'] = 14;
+//######################################################// CSP
+
+// https://www.mediawiki.org/wiki/Manual:$wgCSPHeader
+$wgCSPHeader = [
+    'default-src' => [
+        'images.foss.wiki', // Our images S3
+        'upload.wikimedia.org', // Wikimedia Commons
+        'thumb.wikimedia.org', // Wikimedia Commons
+        'fonts.googleapis.com', // Google Fonts
+        'fonts.gstatic.com', // Google Fonts
+        'challenges.cloudflare.com' // Cloudflare Turnstile
+    ],
+    'script-src' => [ 'challenges.cloudflare.com' ],
+    'includeCORS'    => true,
+    'unsafeFallback' => true,
+    'useNonces'      => false,
+];

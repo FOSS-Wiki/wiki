@@ -8,7 +8,7 @@ This repository contains Mediawiki configurations used for the deployment of [fo
 # Deployment Instructions
 
 > [!NOTE]
-> **This only applies if you are running a staging or production instance, local instances have these pre-configured as docker containers.** To deploy this service you will need:
+> **This only applies if you are running a production instance, local instances have these pre-configured as docker containers.** To deploy this service you will need:
 > - A running and accessible [MariaDB](https://mariadb.org) server which is version 10.3 or higher, we recommend having this either as a managed service or having a dedicated server running MariaDB.
 > - A running and accessible S3 server or configured provider, we recommend [Cloudflare's R2 service](https://www.cloudflare.com/en-gb/developer-platform/products/r2/).
 
@@ -23,31 +23,31 @@ This repository contains Mediawiki configurations used for the deployment of [fo
     git clone https://github.com/FOSS-Wiki/wiki mediawiki
 ```
 
-3. Navigate to the cloned directory
+1. Navigate to the cloned directory
 ```bash
     cd /opt/mediawiki
 ```
 
-4. Run the file setup scripts, switch {ENV} with local, staging or production.
+1. Run the file setup scripts, switch {ENV} with local or production.
 ```bash
     just {ENV}-files
 ```
 
-5. Fill out the `.env` file as required with the values explained below.
+1. Fill out the `.env` file as required with the values explained below.
 
-6. Start the Mediawiki instance
+2. Start the Mediawiki instance
 ```bash
     just start
 ```
 
-7. Initialize the Mediawiki instance
+1. Initialize the Mediawiki instance
 ```bash
     just mediawiki-init
     just startup-tasks
     just fix-perms
 ```
 
-8. Access the Mediawiki instance in your web browser at `https://{localhost:3000 | domain.tld}`
+1. Access the Mediawiki instance in your web browser at `https://{localhost:3000 | domain.tld}`
 
 # Environment Variables
 
@@ -55,10 +55,10 @@ Variables marked with a `*` are required. The function they provide may be optio
 
 | Variable | Description      | Example |
 |----------|------------------|---------|
-| `MEDIAWIKI_MAJOR_VERSION` * | The major version number of MediaWiki you want to use | `1.46` |
-| `MEDIAWIKI_VERSION` * | The full version number of MediaWiki you want to use | `1.46` |
-| `MEDIAWIKI_BRANCH` * | The branch of MediaWiki you want to use for extensions | `REL1_46` |
-| `CITIZEN_VERSION` * | The version of the Citizen skin you want to use | `3.23.0` |
+| `MEDIAWIKI_MAJOR_VERSION` * | The major version number of MediaWiki you want to use | `1.23` |
+| `MEDIAWIKI_VERSION` * | The full version number of MediaWiki you want to use | `1.23` |
+| `MEDIAWIKI_BRANCH` * | The branch of MediaWiki you want to use for extensions | `REL1_23` |
+| `CITIZEN_VERSION` * | The version of the Citizen skin you want to use | `v1.2.3` |
 | `UPGRADE_KEY` * | The key to access the upgrade page. Must be a 16-character alphanumeric string | *Generate using `openssl rand -hex 8`* |
 | `SECRET_KEY` * | The key used for various security-related functions within MediaWiki. Must be a 64-character alphanumeric string | *Generate using `openssl rand -hex 32`* |
 | `DB_SERVER` * | The IP address or hostname of your database server | `db.domain.tld` or `192.168.0.0` |
@@ -84,10 +84,11 @@ Variables marked with a `*` are required. The function they provide may be optio
 | `SITENAME` * | The Full Wiki Name | `Example Wiki` |
 | `WG_SERVER` * | The full URL the wiki will be accessible from, including the protocol | `https://wiki.domain.tld` |
 | `DISCORD_WEBHOOK_URL` * | Discord Webhook URL | `https://discord.com/api/webhooks/0123456789/abcdef` |
+| `DISCORD_INVITE_URL` * | Discord Invite URL | `https://discord.gg/0123456789` |
 | `CLOUDFLARE_PURGE_TOKEN` * | Cloudflare API token for CloudflarePurge, the token must have Permissions: `Zone → Cache Purge → Purge` for your Zone | `0123456789abcdef` |
 | `CLOUDFLARE_ZONE_ID` * | Cloudflare Zone ID for CloudflarePurge | `0123456789abcdef` |
 
-Below are the extra options for **LOCAL** setups.
+Below are the extra options for **LOCAL** setups. We reccommend not changing any preset values in local setups.
 
 | Variable* | Description      | Example |
 |-----------|------------------|---------|
@@ -110,7 +111,7 @@ Below are the extra options for **LOCAL** setups.
 
 | Path | Description |
 |------|-------------|
-| `wiki/` | MediaWiki and NGINX application configurations |
+| `wiki/` | MediaWiki configurations |
 | `wiki/composer.json` | PHP dependencies for MediaWiki extensions |
 | `wiki/composer.local.json` | Local PHP dependency overrides for environment setup |
 | `wiki/extensions.json` | MediaWiki extension manifest |
@@ -118,8 +119,8 @@ Below are the extra options for **LOCAL** setups.
 | `wiki/LocalSettings.php` | MediaWiki configuration file which loads config modules in `wiki/configs/` |
 | `wiki/php.ini` | PHP runtime configuration |
 | `wiki/robots.txt` | Crawler instructions |
-| `wiki/.well-known/security.txt` | Security reporting instructions |
 | `wiki/security-at-fosswiki_public.asc` | FOSS Wiki PGP public key |
+| `wiki/.well-known/security.txt` | Security reporting instructions |
 | `wiki/configs/` | Numbered configuration modules (00-99) ensuring correct load order |
 | `wiki/.well-known` | Symlinked files for RFC compliance |
 | `compose.yaml` | Docker Compose configuration template (environment specific extensions available) |
@@ -151,15 +152,13 @@ To see all commands and their descriptions just type `just` when in the wiki dir
 | `production-files` | Setup production environment files and configure sitemap service |
 | `restart` | Restart all wiki containers |
 | `run-jobs` | Run pending jobs in MediaWiki |
-| `sitemap-production` | Setup production sitemap generation as a systemd timer service |
-| `sitemap-staging` | Setup staging sitemap generation as a systemd timer service |
-| `staging-files` | Setup staging environment files and configure sitemap service |
+| `sitemap` | Setup production sitemap generation as a systemd timer service |
 | `start` | Start all wiki containers |
 | `startup-tasks` | Resetup configurations and OpenSearch index a clean stop or restart |
 | `status` | Display comprehensive status of wiki deployment including containers, health, and database |
 | `stop` | Stop all running wiki containers |
 | `update` | Pull latest code, updates compose.yaml from template, and restarts wiki containers |
-
+| `local-s3-init` | Initialize Silo S3 Instance Bucket |
 # License
 
 Copyright 2026 FOSS Wiki and Contributors
@@ -190,10 +189,12 @@ We gratefully acknowledge the use of the following projects which are incorporat
 | PHP_CodeSniffer | [https://github.com/PHPCSStandards/PHP_CodeSniffer/](https://github.com/PHPCSStandards/PHP_CodeSniffer/) | BSD3-Clause |
 | phpdotenv | [https://github.com/vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) | BSD-3-Clause |
 | Python | [https://www.python.org](https://www.python.org) | PSF-2.0 |
-| Pylint | [https://www.pylint.org](https://www.pylint.org) | GPL-2.0 |
-| Renovate | [https://www.mend.io/renovate](https://www.mend.io/renovate) | AGPL-3.0 |
+| Silo | [https://silo.pgsty.com](https://silo.pgsty.com) | AGPL-3.0 |
 | Valkey | [https://valkey.io](https://valkey.io) | BSD-3-Clause |
 
 # Aknowledgements
 
-coming soon!
+We have built this project with massive help from the open source nature of the wiki community. We are ever grateful to the maintainers of the following projects which we have used as a reference when building our configuraitions:
+
+- [Star Citizen Wiki](https://github.com/StarCitizenTools/sct-docker-images)
+- [WikimediaCustomizations](https://github.com/wikimedia/mediawiki-extensions-WikimediaCustomizations)

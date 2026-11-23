@@ -33,11 +33,6 @@
     "install_type": "git"
   },
   {
-    "extension_name": "CodeMirror",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeMirror",
-    "install_type": "git"
-  },
-  {
     "extension_name": "ConsoleOutput",
     "extension_url": "https://github.com/BreezyOps/MediaWiki-ConsoleOutput",
     "install_type": "git",
@@ -111,6 +106,17 @@
     "extension_name": "PluggableAuth",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/PluggableAuth",
     "install_type": "git"
+  },
+  {
+    "extension_name": "Popups",
+    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/Popups",
+    "install_type": "git"
+  },
+  {
+    "extension_name": "SearchDigest",
+    "extension_url": "https://github.com/weirdgloop/mediawiki-extensions-SearchDigest",
+    "install_type": "git",
+    "git_branch": "main"
   },
   {
     "extension_name": "SimpleBatchUpload",

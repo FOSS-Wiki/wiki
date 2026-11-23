@@ -6,7 +6,7 @@
  * checkuser, supress, interface-admin & push-subscription-manager are dead
  * groups are in order of increasing rank
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki
@@ -15,15 +15,20 @@
  * @link     https://foss.wiki
  */
 
-// * ~ Everyone
-$wgGroupPermissions['*']['createaccount'] = true;
-$wgGroupPermissions['*']['edit'] = true;
+// https://www.mediawiki.org/wiki/Manual:$wgAutoCreateTempUser
+// Enable temp accounts with 30 day lifespan and warning after 14 days
+$wgAutoCreateTempUser['enabled'] = true;
+$wgAutoCreateTempUser['expireAfterDays'] = 28;
+$wgAutoCreateTempUser['notifyBeforeExpirationDays'] = 14;
+
+// https://www.mediawiki.org/wiki/Manual:$wgPrivilegedGroups
+$wgPrivilegedGroups = ['bureaucrat', 'interface-admin', 'sysop', 'steward'];
+
+// everyone
 $wgGroupPermissions['*']['createpage'] = false;
 $wgGroupPermissions['*']['createtalk'] = false;
 
-// user ~ Registered Users
-$wgGroupPermissions['user']['edit'] = true;
-$wgGroupPermissions['user']['writeapi'] = true; // For visual editor
+// user
 $wgGroupPermissions['user']['createpage'] = true;
 $wgGroupPermissions['user']['createtalk'] = true;
 $wgGroupPermissions['user']['move'] = false;
@@ -32,18 +37,17 @@ $wgGroupPermissions['user']['move-categorypages'] = false;
 $wgGroupPermissions['user']['move-rootuserpages'] = false;
 $wgGroupPermissions['user']['movefile'] = false;
 
-// autoconfirmed ~ Wiki Editor Role
+// autoconfirmed
 $wgAutoConfirmAge = 259200;
 $wgAutoConfirmCount = 10;
 $wgGroupPermissions['autoconfirmed']['autopatrol'] = true;
-$wgGroupPermissions['autoconfirmed']['autoconfirmed'] = false;
-$wgGroupPermissions['autoconfirmed']['editsemiprotected'] = false;
+$wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
 
-// template-editor ~ Template and Module Editors
+// template-editor
 $wgGroupPermissions['template-editor']['template-editing'] = true;
 $wgGroupPermissions['template-editor']['module-editing'] = true;
 
-// steward ~ FOSS Wiki Staff
+// steward
 $wgGroupPermissions['steward']['autopatrol'] = true;
 $wgGroupPermissions['steward']['template-editing'] = true;
 $wgGroupPermissions['steward']['module-editing'] = true;
@@ -56,30 +60,18 @@ $wgGroupPermissions['steward']['editsemiprotected'] = true;
 $wgGroupPermissions['steward']['movefile'] = true;
 $wgGroupPermissions['steward']['block'] = true;
 $wgGroupPermissions['steward']['rollback'] = true;
+$wgGroupPermissions['steward']['editalluserpages'] = true;
+$wgAddGroups['steward'] = array('template-editor');
+$wgRemoveGroups['steward'] = array('template-editor', 'steward');
 
-$wgAddGroups['steward'] = array('template-editor', 'autoconfirmed');
-$wgRemoveGroups['steward'] = array('template-editor', 'autoconfirmed', 'steward');
-
-// sysop ~ FOSS Wiki Leadership
-$wgGroupPermissions['sysop']['autopatrol'] = true;
+// sysop
 $wgGroupPermissions['sysop']['checkuser'] = true;
 $wgGroupPermissions['sysop']['checkuser-log'] = true;
 $wgGroupPermissions['sysop']['investigate'] = true;
-$wgGroupPermissions['sysop']['userrights'] = true;
-$wgGroupPermissions['sysop']['userrights-interwiki'] = true;
-$wgGroupPermissions['sysop']['editusercss'] = true;
-$wgGroupPermissions['sysop']['edituserjson'] = true;
-$wgGroupPermissions['sysop']['edituserjs'] = true;
-$wgGroupPermissions['sysop']['editsitecss'] = true;
-$wgGroupPermissions['sysop']['editsitejson'] = true;
-$wgGroupPermissions['sysop']['editsitejs'] = true;
-$wgGroupPermissions['sysop']['editinterface'] = true;
 $wgGroupPermissions['sysop']['template-editing'] = true;
 $wgGroupPermissions['sysop']['module-editing'] = true;
 $wgGroupPermissions['sysop']['meta-editing'] = true;
 $wgGroupPermissions['sysop']['interwiki'] = true;
-$wgGroupPermissions['sysop']['block'] = true;
-$wgGroupPermissions['sysop']['rollback'] = true;
 $wgGroupPermissions['sysop']['renameuser'] = true;
 $wgGroupPermissions['sysop']['suppressrevision'] = true;
 $wgGroupPermissions['sysop']['hideuser'] = true;
@@ -95,4 +87,17 @@ $wgGroupPermissions['sysop']['mwoauthsuppress'] = true;
 $wgGroupPermissions['sysop']['mwoauthviewsuppressed'] = true;
 $wgGroupPermissions['sysop']['mwoauthviewprivate'] = true;
 $wgGroupPermissions['sysop']['mwoauthmanagemygrants'] = true;
+$wgGroupPermissions['sysop']['editalluserpages'] = true;
 $wgGroupPermissions['sysop']['import'] = false;
+$wgAddGroups['sysop'] = array('template-editor', 'steward');
+$wgRemoveGroups['sysop'] = array('template-editor', 'steward', 'sysop');
+$wgRestrictedGroups['sysop'] = ['memberConditions' => [ 'oath.has_2fa' ]];
+
+// interface-admin
+$wgGroupPermissions['interface-admin']['template-editing'] = true;
+$wgGroupPermissions['interface-admin']['module-editing'] = true;
+$wgGroupPermissions['interface-admin']['meta-editing'] = true;
+$wgRestrictedGroups['interface-admin'] = ['memberConditions' => [ 'oath.has_2fa' ]];
+
+// bureaucrat
+$wgRestrictedGroups['bureaucrat'] = ['memberConditions' => [ 'oath.has_2fa' ]];

@@ -15,9 +15,8 @@
     <!-- Paths to check -->
     <file>wiki</file>
 
-    <!-- Exclude vendor and other directories -->
+    <!-- Exclude vendor directories -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
-    <exclude-pattern>*/cache/*</exclude-pattern>
 
     <!-- Show progress and use colors -->
     <arg name="colors"/>

@@ -4,7 +4,7 @@
  * Upload Configuration
  * https://www.mediawiki.org/wiki/Manual:Configuring_file_uploads#Configuring_file_types
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki
@@ -30,7 +30,7 @@ $wgUseInstantCommons = true;
 
 // https://www.mediawiki.org/wiki/Manual:$wgFileExtensions
 $wgFileExtensions = array_merge(
-    $wgFileExtensions = [ 'gif', 'jpeg', 'jpg', 'pdf', 'png', 'svg', 'webp' ]
+    $wgFileExtensions = [ 'gif', 'jpeg', 'jpg', 'png', 'svg', 'webp' ]
 );
 
 // https://www.mediawiki.org/wiki/Manual:$wgTrustedMediaFormats
@@ -38,14 +38,11 @@ $wgTrustedMediaFormats = [
     MEDIATYPE_BITMAP, // All bitmap formats
     MEDIATYPE_AUDIO, // All audio formats
     MEDIATYPE_VIDEO, // All plain video formats
-    "image/svg+xml", // svg
-    "application/pdf", // PDF
+    "image/svg+xml" // svg
 ];
 
 // https://www.mediawiki.org/wiki/Manual:$wgSVGConverters
-$wgSVGConverters = [
-    'rsvg' => '/usr/bin/rsvg-convert -w $width -h $height -o $output $input',
-];
+$wgSVGConverters = ['rsvg' => '/usr/bin/rsvg-convert -w $width -h $height -o $output $input'];
 
 // https://www.mediawiki.org/wiki/Manual:$wgSVGConverter
 $wgSVGConverter = 'rsvg';

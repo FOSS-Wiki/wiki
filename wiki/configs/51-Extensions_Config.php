@@ -3,7 +3,7 @@
 /**
  * Extension Configuring
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki
@@ -40,12 +40,6 @@ $wgVisualEditorEnableDiffPageBetaFeature = true;
 $wgVisualEditorUseSingleEditTab = true;
 $wgDefaultUserOptions['visualeditor-enable'] = 1;
 $wgDefaultUserOptions['visualeditor-editor'] = 'visualeditor';
-
-//######################################################// Interwiki
-// https://www.mediawiki.org/wiki/Extension:Interwiki
-
-// https://www.mediawiki.org/wiki/Manual:$wgUserrightsInterwikiDelimiter
-$wgUserrightsInterwikiDelimiter = '#';
 
 //######################################################// ConfirmEdit
 // https://www.mediawiki.org/wiki/Extension:ConfirmEdit
@@ -176,3 +170,14 @@ $wgCloudflarePurgeToken = $env('CLOUDFLARE_PURGE_TOKEN');
 // Has to exist or else load.php breaks?
 $wgMWOAuthSharedUserIDs = true;
 $wgMWOAuthSharedUserSource = 'local';
+
+//#####################################################// SearchDigest
+// https://www.mediawiki.org/wiki/Extension:SearchDigest
+
+$wgSearchDigestMinimumMisses = 1;
+$wgSearchDigestDateThreshold = 6048001; // 2 Weeks
+
+//######################################################// DiscordEmbed
+// https://github.com/FOSS-Wiki/DiscordEmbed
+
+$wgDiscordServerInvite = $env('DISCORD_INVITE_URL');

@@ -70,7 +70,7 @@ db-status:
             exit 1
         fi
     else
-        # Staging/production use external database from .env
+        # Production uses external database from .env
         DB_SERVER=$(grep "^DB_SERVER=" .env | cut -d'=' -f2 | tr -d '"')
 
         if nc -zv "$DB_SERVER" 3306 2>&1 | grep -q "succeeded"; then
@@ -84,42 +84,23 @@ db-status:
 # === System Services ===
 
 # Setup production sitemap generation as a systemd timer service
-sitemap-production:
+sitemap:
     #!/usr/bin/env bash
     set -euo pipefail
     just _check-sudo
 
-    echo "Installing production systemd service files..."
-    sudo cp systemd/production-wiki-sitemap.service /etc/systemd/system/
-    sudo cp systemd/production-wiki-sitemap.timer /etc/systemd/system/
+    echo "Installing sitemap systemd service files..."
+    sudo cp systemd/wiki-sitemap.service /etc/systemd/system/
+    sudo cp systemd/wiki-sitemap.timer /etc/systemd/system/
 
     echo "Reloading systemd daemon..."
     sudo systemctl daemon-reload
 
-    echo "Enabling and starting production sitemap timer..."
-    sudo systemctl enable production-wiki-sitemap.timer
-    sudo systemctl start production-wiki-sitemap.timer
+    echo "Enabling and starting sitemap sitemap timer..."
+    sudo systemctl enable wiki-sitemap.timer
+    sudo systemctl start wiki-sitemap.timer
 
-    echo "Production sitemap timer setup complete!"
-
-# Setup staging sitemap generation as a systemd timer service
-sitemap-staging:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    just _check-sudo
-
-    echo "Installing staging systemd service files..."
-    sudo cp systemd/staging-wiki-sitemap.service /etc/systemd/system/
-    sudo cp systemd/staging-wiki-sitemap.timer /etc/systemd/system/
-
-    echo "Reloading systemd daemon..."
-    sudo systemctl daemon-reload
-
-    echo "Enabling and starting staging sitemap timer..."
-    sudo systemctl enable staging-wiki-sitemap.timer
-    sudo systemctl start staging-wiki-sitemap.timer
-
-    echo "Staging sitemap timer setup complete!"
+    echo "Sitemap timer setup complete!"
 
 # Resetup all the wiki configurations
 startup-tasks:
@@ -134,12 +115,9 @@ startup-tasks:
     echo "Starting sitemap timer..."
     if [ "$ENV" = "local" ]; then
         echo "Local environment detected, skipping sitemap timer..."
-    elif [ "$ENV" = "staging" ]; then
-        sudo systemctl start staging-wiki-sitemap.timer
-        sudo systemctl start staging-wiki-sitemap.service
     elif [ "$ENV" = "production" ]; then
-        sudo systemctl start production-wiki-sitemap.timer
-        sudo systemctl start production-wiki-sitemap.service
+        sudo systemctl start wiki-sitemap.timer
+        sudo systemctl start wiki-sitemap.service
     else
         echo "Invalid ${ENV} detected."
     fi

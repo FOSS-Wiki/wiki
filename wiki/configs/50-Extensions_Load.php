@@ -3,7 +3,7 @@
 /**
  * Extensions Loading
  *
- * PHP version 8.3
+ * PHP version 8.5
  *
  * @category Configuration
  * @package  FOSS-Wiki
@@ -90,14 +90,16 @@ wfLoadExtension('OpenGraphMeta');
 wfLoadExtension('PageImages');
 // https://www.mediawiki.org/wiki/Extension:ParserFunctions
 wfLoadExtension('ParserFunctions');
-// https://www.mediawiki.org/wiki/Extension:PdfHandler
-wfLoadExtension('PdfHandler');
 // https://www.mediawiki.org/wiki/Extension:Poem
 wfLoadExtension('Poem');
+// https://www.mediawiki.org/wiki/Extension:Popups
+wfLoadExtension('Popups');
 // https://www.mediawiki.org/wiki/Extension:ReplaceText
 wfLoadExtension('ReplaceText');
 // https://www.mediawiki.org/wiki/Extension:Scribunto
 wfLoadExtension('Scribunto');
+// https://www.mediawiki.org/wiki/Extension:SearchDigest
+wfLoadExtension('SearchDigest');
 // https://www.mediawiki.org/wiki/Extension:SecureLinkFixer
 wfLoadExtension('SecureLinkFixer');
 // https://www.mediawiki.org/wiki/Extension:SimpleBatchUpload

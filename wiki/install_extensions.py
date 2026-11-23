@@ -21,13 +21,12 @@ EXTENSIONS_JSON = '/tmp/extensions.json'
 EXTENSIONS_DIR = '/var/www/wiki/mediawiki/extensions'
 USER_AGENT = 'FOSSWikiBuildScript/0.0 (https://foss.wiki/FW:Contact; admin@foss.wiki)'
 
+""" Run a shell command and handle errors
+args:
+    command (str): The shell command to run
+"""
 def run(command):
-    """
-    Run a shell command and handle errors
 
-    args:
-        command (str): The shell command to run
-    """
     print(f'Running: {command}')
     try:
         subprocess.check_call(command, shell=True)
@@ -36,10 +35,6 @@ def run(command):
         raise
 
 def main():
-    """
-    Install MediaWiki extensions as specified in the extensions.json file
-    """
-
     with open(EXTENSIONS_JSON, encoding='utf-8') as extensions_file:
         extensions = json.load(extensions_file)
     os.makedirs(EXTENSIONS_DIR, exist_ok=True)
