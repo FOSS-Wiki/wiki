@@ -160,22 +160,21 @@ RUN addgroup -g 1000 -S mediawiki && \
     adduser -u 1000 -S mediawiki -G mediawiki && \
     mkdir -p /var/www/wiki/cache/gitinfo /var/www/wiki/sitemap && \
     touch /var/www/wiki/sitemap/sitemap-index-foss.wiki.xml && \
-    ln -s /var/www/wiki/sitemap/sitemap-index-foss.wiki.xml /var/www/wiki/sitemap.xml && \
-    chown -R mediawiki:mediawiki /var/www/wiki && \
-    chmod -R 775 /var/www/wiki/sitemap && \
+    chown -R mediawiki:mediawiki /var/www/wiki/cache /var/www/wiki/sitemap && \
+    chmod 755 /var/www/wiki/sitemap && \
+    chmod 644 /var/www/wiki/sitemap/sitemap-index-foss.wiki.xml && \
     chmod -R 770 /var/www/wiki/cache
 
 USER 1000:1000
 WORKDIR /var/www/wiki
 
-COPY --link --chown=1000:1000 --from=mw-src /var/www/wiki .
-COPY --link --chown=1000:1000 --chmod=744 wiki/robots.txt ./robots.txt
-COPY --link --chown=1000:1000 --chmod=744 wiki/security-at-fosswiki_public.asc ./security-at-fosswiki_public.asc
-COPY --link --chown=1000:1000 --chmod=744 wiki/.well-known ./.well-known
-COPY --link --chown=1000:1000 wiki/configs/ ./configs/
-COPY --link --chown=1000:1000 wiki/LocalSettings.php ./mediawiki/LocalSettings.php
-
-RUN ln -sf ./.well-known/security.txt ./security.txt
+COPY --link --chown=0:0 --chmod=u=rwX,go=rX --from=mw-src /var/www/wiki .
+COPY --link --chown=0:0 --chmod=644 wiki/robots.txt ./mediawiki/robots.txt
+COPY --link --chown=0:0 --chmod=644 wiki/security-at-fosswiki_public.asc ./mediawiki/security-at-fosswiki_public.asc
+COPY --link --chown=0:0 --chmod=u=rwX,go=rX wiki/.well-known ./mediawiki/.well-known
+COPY --link --chown=0:0 --chmod=644 wiki/.well-known/security.txt ./mediawiki/security.txt
+COPY --link --chown=0:0 --chmod=u=rwX,go=rX wiki/configs/ ./configs/
+COPY --link --chown=0:1000 --chmod=640 wiki/LocalSettings.php ./mediawiki/LocalSettings.php
 
 # Expose Port for FastCGI
 EXPOSE 9000
