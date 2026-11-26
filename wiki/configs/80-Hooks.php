@@ -59,37 +59,32 @@ $wgHooks['MediaWikiServices'][] = static function () {
 };
 
 // Add custom footer links
-$wgHooks["SkinAddFooterLinks"][] = function ($sk, $key, &$footerlinks) {
-    if ($key !== "places") {
+$wgHooks['SkinAddFooterLinks'][] = function (Skin $skin, string $key, array &$footerlinks) {
+    if ($key !== 'places') {
         return;
     }
 
-    // Remove existing footers
-    unset($footerlinks["about"], $footerlinks["privacy"], $footerlinks["disclaimers"]);
+    $rel = 'nofollow noreferrer noopener';
 
-    $rel = "nofollow noreferrer noopener";
+    $link = static function ($msg, $target) use ($skin, $rel) {
+        $attrs = str_starts_with($target, 'https://')
+            ? ['href' => $target, 'rel' => $rel]
+            : ['href' => Title::newFromText($target)->getFullURL()];
 
-    $links = [
-        // Column 1
-        "about"        => ["footer-about",        "FW:About"],
-        "guidelines"   => ["footer-guidelines",   "FW:Guidelines"],
-        "disclaimers"  => ["footer-disclaimer",   "FW:Disclaimer"],
-        // Column 2
-        "statuspage"   => ["footer-statuspage",   "https://status.foss.wiki"],
-        "transparency" => ["footer-transparency", "https://open.foss.wiki"],
-        "privacy"      => ["footer-privacy",      "FW:Privacy_Policy"],
-        // Column 3
-        "discord"      => ["footer-discord",      "https://discord.foss.wiki"],
-        "donate"       => ["footer-donate",       "https://donate.foss.wiki"],
-        "github"       => ["footer-github",       "https://github.foss.wiki"],
-    ];
+        return Html::rawElement('a', $attrs, $skin->msg($msg)->escaped());
+    };
 
-    foreach ($links as $id => [$msg, $target]) {
-        $external = str_starts_with($target, "https://");
-        $attrs = $external
-            ? ["href" => $target, "rel" => $rel]
-            : ["href" => Title::newFromText($target)->getFullURL()];
+    // Column 1
+    $footerlinks['about']        = $link('footer-about', 'FW:About');
+    $footerlinks['guidelines']   = $link('footer-guidelines', 'FW:Guidelines');
+    $footerlinks['transparency'] = $link('footer-transparency', 'https://open.foss.wiki');
 
-        $footerlinks[$id] = Html::rawElement("a", $attrs, $sk->msg($msg)->escaped());
-    }
+    // Column 2
+    $footerlinks['statuspage']   = $link('footer-statuspage', 'https://status.foss.wiki');
+    $footerlinks['privacy']      = $link('footer-privacy', 'FW:Privacy_Policy');
+    $footerlinks['disclaimers']  = $link('footer-disclaimer', 'FW:Disclaimer');
+    // Column 3
+    $footerlinks['discord']      = $link('footer-discord', 'https://discord.foss.wiki');
+    $footerlinks['donate']       = $link('footer-donate', 'https://donate.foss.wiki');
+    $footerlinks['github']       = $link('footer-github', 'https://github.foss.wiki');
 };
