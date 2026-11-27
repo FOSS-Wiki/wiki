@@ -79,3 +79,14 @@ $wgHooks['GetLocalURL::Internal'][] = static function ($title, &$url, $query) {
     $parts = explode('&', substr($url, strlen($prefix)), 2);
     $url = '/' . $parts[0] . (($parts[1] ?? '') !== '' ? '?' . $parts[1] : '');
 };
+
+// Move history button to tools/action menu
+$wgHooks['SkinTemplateNavigation::Universal'][] = 'MoveHistoryToActions';
+function MoveHistoryToActions(SkinTemplate $sktemplate, array &$links)
+{
+    if (isset($links['views']['history'])) {
+        $historyLink = $links['views']['history'];
+        unset($links['views']['history']);
+        $links['actions'] = array_merge([ 'history' => $historyLink ], $links['actions'] ?? []);
+    }
+}
