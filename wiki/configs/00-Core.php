@@ -243,8 +243,6 @@ $wgCSPHeader = [
         'images.foss.wiki', // Our images S3
         'upload.wikimedia.org', // Wikimedia Commons
         'thumb.wikimedia.org', // Wikimedia Commons
-        'fonts.googleapis.com', // Google Fonts
-        'fonts.gstatic.com', // Google Fonts
         'challenges.cloudflare.com' // Cloudflare Turnstile
     ],
     'script-src' => [ 'challenges.cloudflare.com' ],
