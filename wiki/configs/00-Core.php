@@ -97,13 +97,33 @@ $wgExternalLinkTarget = '_blank';
 $wgUsePathInfo = true;
 
 // https://www.mediawiki.org/wiki/Manual:$wgScript
-$wgScript = "/index.php";
+$wgScript = "/";
 
 // https://www.mediawiki.org/wiki/Manual:$wgScriptPath
 $wgScriptPath = "";
 
 // https://www.mediawiki.org/wiki/Manual:$wgArticlePath
 $wgArticlePath = "/$1";
+
+// https://www.mediawiki.org/wiki/Manual:$wgActionPaths
+$wgActionPaths = [
+  'view'          => '/$1',
+  'edit'          => '/$1?action=edit',
+  'watch'         => '/$1?action=watch',
+  'unwatch'       => '/$1?action=unwatch',
+  'delete'        => '/$1?action=delete',
+  'revert'        => '/$1?action=revert',
+  'rollback'      => '/$1?action=rollback',
+  'protect'       => '/$1?action=protect',
+  'unprotect'     => '/$1?action=unprotect',
+  'markpatrolled' => '/$1?action=markpatrolled',
+  'raw'           => '/$1?action=raw',
+  'render'        => '/$1?action=render',
+  'submit'        => '/$1?action=submit',
+  'history'       => '/$1?action=history',
+  'purge'         => '/$1?action=purge',
+  'info'          => '/$1?action=info'
+];
 
 // https://www.mediawiki.org/wiki/Manual:$wgForceHTTPS
 // Only force HTTPS if the server URL uses HTTPS
