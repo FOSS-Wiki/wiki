@@ -17,11 +17,11 @@
 // https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgLogos
 $wgLogos = [
     '1x' => "https://images.foss.wiki/Logo-135.png",
-    'icon' => "https://images.foss.wiki/Logo.png",
+    'icon' => "https://images.foss.wiki/Logo.svg",
 ];
 
 // https://www.mediawiki.org/wiki/Manual:$wgFavicon
-$wgFavicon = "https://images.foss.wiki/Favicon.png";
+$wgFavicon = "https://images.foss.wiki/Logo.svg";
 
 // https://www.mediawiki.org/wiki/Manual:$wgAppleTouchIcon
 $wgAppleTouchIcon = "https://images.foss.wiki/Apple-touch-icon.png";
