@@ -172,6 +172,7 @@ COPY --link --chown=0:0 --chmod=u=rwX,go=rX --from=mw-src /var/www/wiki .
 COPY --link --chown=0:0 --chmod=644 wiki/robots.txt ./mediawiki/robots.txt
 COPY --link --chown=0:0 --chmod=644 wiki/security-at-fosswiki_public.asc ./mediawiki/security-at-fosswiki_public.asc
 COPY --link --chown=0:0 --chmod=u=rwX,go=rX wiki/.well-known ./mediawiki/.well-known
+COPY --link --chown=0:0 --chmod=u=rwX,go=rX wiki/fonts ./mediawiki/fonts
 COPY --link --chown=0:0 --chmod=644 wiki/.well-known/security.txt ./mediawiki/security.txt
 COPY --link --chown=0:0 --chmod=u=rwX,go=rX wiki/configs/ ./configs/
 COPY --link --chown=0:1000 --chmod=640 wiki/LocalSettings.php ./mediawiki/LocalSettings.php
