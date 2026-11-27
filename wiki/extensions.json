@@ -77,11 +77,6 @@
     "post_install_commands": ["composer install --no-dev"]
   },
   {
-    "extension_name": "LastModified",
-    "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/LastModified",
-    "install_type": "git"
-  },
-  {
     "extension_name": "NewSignupPage",
     "extension_url": "https://gerrit.wikimedia.org/r/mediawiki/extensions/NewSignupPage",
     "install_type": "git"
